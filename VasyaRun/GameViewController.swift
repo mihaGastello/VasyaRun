@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             let scene = GameScene(size: CGSize(width: 1024, height: 768))
                 // Set the scale mode to scale to fit the window
-                //scene.scaleMode = .aspectFill
+                //scene.scaleMode = .aspectFill // kisluhin
                   scene.scaleMode = .resizeFill
                 
                 // Present the scene
