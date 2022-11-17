@@ -17,11 +17,13 @@ class GameScene: SKScene {
     // SpriteNodes
     var bg = SKSpriteNode()
     var ground = SKSpriteNode()
+    var sky = SKSpriteNode()
     var hero = SKSpriteNode()
     
     // Sprite Objects
     var bgObject = SKNode()
     var groundObject = SKNode()
+    var skyObject = SKNode()
     var heroObject = SKNode()
     
     // Bit masks
@@ -42,12 +44,14 @@ class GameScene: SKScene {
     func createObjects() {
         self.addChild(bgObject)
         self.addChild(groundObject)
+        self.addChild(skyObject)
         self.addChild(heroObject)
     }
     
     func createGame() {
         createBg()
         createGround()
+        createSky()
         createHero()
     }
     
@@ -75,8 +79,17 @@ class GameScene: SKScene {
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.categoryBitMask = groundGroup
         ground.zPosition = 1
-        
         groundObject.addChild(ground)
+    }
+    
+    func createSky() {
+        sky = SKSpriteNode()
+        sky.position = CGPoint(x: 0, y: self.frame.maxY) // check it
+        sky.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width + 100,
+                                                            height: self.frame.size.height - 100))
+        sky.physicsBody?.isDynamic = false
+        sky.zPosition = 1
+        skyObject.addChild(sky)
     }
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
