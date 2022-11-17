@@ -16,6 +16,7 @@
 		8AAF3DDC29261E5800A5C027 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AAF3DDA29261E5800A5C027 /* LaunchScreen.storyboard */; };
 		8AAF3DE329264BD000A5C027 /* scene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8AAF3DE229264BD000A5C027 /* scene.atlas */; };
 		8AAF3DE6292687FE00A5C027 /* GameScene_Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */; };
+		8AAF3DE82926925C00A5C027 /* GameScene_Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF3DE72926925C00A5C027 /* GameScene_Physics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		8AAF3DDB29261E5800A5C027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8AAF3DE229264BD000A5C027 /* scene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = scene.atlas; sourceTree = "<group>"; };
 		8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Touches.swift; sourceTree = "<group>"; };
+		8AAF3DE72926925C00A5C027 /* GameScene_Physics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Physics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				8AAF3DCD29261E5700A5C027 /* GameScene.sks */,
 				8AAF3DD129261E5700A5C027 /* GameScene.swift */,
 				8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */,
+				8AAF3DE72926925C00A5C027 /* GameScene_Physics.swift */,
 				8AAF3DD329261E5700A5C027 /* GameViewController.swift */,
 				8AAF3DD529261E5700A5C027 /* Main.storyboard */,
 				8AAF3DD829261E5800A5C027 /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AAF3DE6292687FE00A5C027 /* GameScene_Touches.swift in Sources */,
+				8AAF3DE82926925C00A5C027 /* GameScene_Physics.swift in Sources */,
 				8AAF3DD229261E5700A5C027 /* GameScene.swift in Sources */,
 				8AAF3DD429261E5700A5C027 /* GameViewController.swift in Sources */,
 				8AAF3DCC29261E5700A5C027 /* AppDelegate.swift in Sources */,

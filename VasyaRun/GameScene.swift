@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Texture
     var bgTexture: SKTexture!
@@ -36,6 +36,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         bgTexture = SKTexture(imageNamed: "bg01.jpg")
         flyHeroTexture = SKTexture(imageNamed: "run_000.png")
+        
+        self.physicsWorld.contactDelegate = self
         
         createObjects()
         createGame()
@@ -86,7 +88,7 @@ class GameScene: SKScene {
         sky = SKSpriteNode()
         sky.position = CGPoint(x: 0, y: self.frame.maxY) // check it
         sky.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width + 100,
-                                                            height: self.frame.size.height - 100))
+                                                            height: self.frame.size.height - 200))
         sky.physicsBody?.isDynamic = false
         sky.zPosition = 1
         skyObject.addChild(sky)
