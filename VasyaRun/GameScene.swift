@@ -86,7 +86,7 @@ class GameScene: SKScene {
     }
     
     func createHero() {
-        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: 0 + flyHeroTexture.size().height + 400))
-       // hero.zPosition = -2 // kisluhin
+        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: 0 + flyHeroTexture.size().height + 100))
+        
     }
 }
