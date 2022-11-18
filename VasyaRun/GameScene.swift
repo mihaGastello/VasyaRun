@@ -15,7 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Texture
     var bgTexture: SKTexture!
-    var flyHeroTexture: SKTexture!
+    var runHeroTexture: SKTexture!
+    var jumpHeroTexture: SKTexture!
     
     // SpriteNodes
     var bg = SKSpriteNode()
@@ -34,14 +35,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var groundGroup: UInt32 = 0x1 << 2
     
     // Array textures for animate
-    var heroFlyTexturesArray = [SKTexture]()
+    var heroRunTexturesArray = [SKTexture]()
+    var heroJumpTexturesArray = [SKTexture]()
     
     override func didMove(to view: SKView) {
         bgTexture = SKTexture(imageNamed: "bg01.jpg")
-        flyHeroTexture = SKTexture(imageNamed: "run_000.png")
+        runHeroTexture = SKTexture(imageNamed: "run_020.png")
+        jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
+        
+        heroRunTexturesArray = [
+            SKTexture(imageNamed: "run_004.png"),
+            SKTexture(imageNamed: "run_008.png"),
+            SKTexture(imageNamed: "run_012.png"),
+            SKTexture(imageNamed: "run_016.png"),
+            SKTexture(imageNamed: "run_020.png"),
+            SKTexture(imageNamed: "run_024.png"),
+            SKTexture(imageNamed: "run_028.png"),
+            SKTexture(imageNamed: "run_032.png"),
+            SKTexture(imageNamed: "run_036.png"),
+            SKTexture(imageNamed: "run_040.png"),
+            SKTexture(imageNamed: "run_000.png")]
+        
+        heroJumpTexturesArray = [
+            SKTexture(imageNamed: "run_000.png")]
         
         self.physicsWorld.contactDelegate = self
-        
         createObjects()
         createGame()
         }
@@ -98,25 +116,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
-        hero = SKSpriteNode(texture: flyHeroTexture)
+        hero = SKSpriteNode(texture: runHeroTexture)
         
-        // Animate hero
-        heroFlyTexturesArray = [
-            SKTexture(imageNamed: "run_000.png"),
-            SKTexture(imageNamed: "run_004.png"),
-            SKTexture(imageNamed: "run_008.png"),
-            SKTexture(imageNamed: "run_012.png"),
-            SKTexture(imageNamed: "run_016.png"),
-            SKTexture(imageNamed: "run_020.png"),
-            SKTexture(imageNamed: "run_024.png"),
-            SKTexture(imageNamed: "run_028.png"),
-            SKTexture(imageNamed: "run_032.png"),
-            SKTexture(imageNamed: "run_036.png"),
-            SKTexture(imageNamed: "run_040.png")]
-        
-        let heroFlyAnimation = SKAction.animate(with: heroFlyTexturesArray, timePerFrame: 0.1)
-        let flyHero = SKAction.repeatForever(heroFlyAnimation)
-        hero.run(flyHero)
+        changeActionToRun()
         
         hero.position = position
         // hero.size.height = 80
@@ -129,12 +131,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody?.allowsRotation = false
         hero.zPosition = 1
 
-        
         heroObject.addChild(hero)
     }
     
     func createHero() {
-        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: flyHeroTexture.size().height))
-        
+        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: runHeroTexture.size().height))
+    }
+    
+    func chnangeActionToJump() {
+        let heroJumpAnimation = SKAction.animate(with: heroJumpTexturesArray, timePerFrame: 1)
+        let jumpHero = SKAction.repeatForever(heroJumpAnimation)
+        hero.run(jumpHero)
+    }
+    
+    func changeActionToRun() {
+        let heroRunAnimation = SKAction.animate(with: heroRunTexturesArray, timePerFrame: 0.1)
+        let runHero = SKAction.repeatForever(heroRunAnimation)
+        hero.run(runHero)
     }
 }
