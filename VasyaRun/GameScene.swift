@@ -10,6 +10,9 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    // logic: hero can jump only from ground, dont double jump
+    var onGroung: Bool! 
+    
     // Texture
     var bgTexture: SKTexture!
     var flyHeroTexture: SKTexture!
