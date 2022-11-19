@@ -10,6 +10,9 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    
+    var sound = true
+    
     // logic: hero can jump only from ground, dont double jump
     var onGroung: Bool! 
     
@@ -17,26 +20,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgTexture: SKTexture!
     var runHeroTexture: SKTexture!
     var jumpHeroTexture: SKTexture!
+    var bottleTexture: SKTexture!
+    var bottleHeroTexture: SKTexture!
     
     // SpriteNodes
     var bg = SKSpriteNode()
     var ground = SKSpriteNode()
     var sky = SKSpriteNode()
     var hero = SKSpriteNode()
+    var bottle = SKSpriteNode()
     
     // Sprite Objects
     var bgObject = SKNode()
     var groundObject = SKNode()
     var skyObject = SKNode()
     var heroObject = SKNode()
+    var bottleObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
     var groundGroup: UInt32 = 0x1 << 2
+    var bottleGroup: UInt32 = 0x1 << 3
+    
+    // Timers
+    var timerAddBottle = Timer()
+    
+    // Sounds
+    var pickBottlePreload = SKAction()
     
     // Array textures for animate
     var heroRunTexturesArray = [SKTexture]()
     var heroJumpTexturesArray = [SKTexture]()
+    var bottleTexturesArray = [SKTexture]()
     
     override func didMove(to view: SKView) {
         bgTexture = SKTexture(imageNamed: "bg01.jpg")
@@ -59,9 +74,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heroJumpTexturesArray = [
             SKTexture(imageNamed: "run_000.png")]
         
+        // Bottle texture
+        bottleTexture = SKTexture(imageNamed: "bottle1.png")
+        bottleHeroTexture = SKTexture(imageNamed: "bottle1.png")
+
+        
         self.physicsWorld.contactDelegate = self
         createObjects()
         createGame()
+        
+        pickBottlePreload = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
         }
     
     func createObjects() {
@@ -69,13 +91,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundObject)
         self.addChild(skyObject)
         self.addChild(heroObject)
+        self.addChild(bottleObject)
     }
     
     func createGame() {
         createBg()
         createGround()
         createSky()
+        
         createHero()
+        timerFunc()
+   
     }
     
     func createBg() {
@@ -125,7 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: hero.size.width - 20, height: hero.size.height - 20))
         hero.physicsBody?.categoryBitMask = heroGroup
-        hero.physicsBody?.contactTestBitMask = groundGroup
+        hero.physicsBody?.contactTestBitMask = groundGroup | bottleGroup
         hero.physicsBody?.collisionBitMask = groundGroup // check it
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.allowsRotation = false
@@ -138,7 +164,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: runHeroTexture.size().height))
     }
     
-    func chnangeActionToJump() {
+    @objc func addBottle() {
+        bottle = SKSpriteNode(texture: bottleTexture)
+        bottleTexturesArray = [
+            SKTexture(imageNamed: "bottle1.png"),
+            SKTexture(imageNamed: "bottle2.png"),
+            SKTexture(imageNamed: "bottle3.png"),
+            SKTexture(imageNamed: "bottle4.png")]
+        
+        let bottleAnimation = SKAction.animate(with: bottleTexturesArray, timePerFrame: 0.3)
+        let bottleHero = SKAction.repeatForever(bottleAnimation)
+        bottle.run(bottleHero)
+        
+        let movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
+        let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
+        bottle.size.height = 40
+        bottle.size.width = 40
+        bottle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottle.size.height - 10,
+                                                               height: bottle.size.width - 10))
+        bottle.physicsBody?.restitution = 0
+        bottle.position = CGPoint(x: self.size.width + 50,
+                                  y: 0 + bottleTexture.size().height + 50 + pipeOffset)
+        let moveBottle = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
+        let removeAction = SKAction.removeFromParent()
+        let bottleMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveBottle, removeAction]))
+        bottle.run(bottleMoveBgForever)
+        
+        bottle.physicsBody?.isDynamic = false
+        bottle.physicsBody?.categoryBitMask = bottleGroup
+        bottle.zPosition = 1
+        bottleObject.addChild(bottle)
+    }
+    
+    func timerFunc() {
+        timerAddBottle.invalidate()
+        timerAddBottle = Timer.scheduledTimer(timeInterval: 4.0,
+                                              target: self,
+                                              selector: #selector(GameScene.addBottle),
+                                              userInfo: nil,
+                                              repeats: true)
+        
+    }
+    
+    func changeActionToJump() {
         let heroJumpAnimation = SKAction.animate(with: heroJumpTexturesArray, timePerFrame: 1)
         let jumpHero = SKAction.repeatForever(heroJumpAnimation)
         hero.run(jumpHero)
