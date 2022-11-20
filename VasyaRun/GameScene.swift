@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bottleTexturesArray = [SKTexture]()
     
     override func didMove(to view: SKView) {
-        bgTexture = SKTexture(imageNamed: "bg01.jpg")
+        bgTexture = SKTexture(imageNamed: "bg03.jpg")
         runHeroTexture = SKTexture(imageNamed: "run_020.png")
         jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
         
@@ -105,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBg() {
-        bgTexture = SKTexture(imageNamed: "bg01.jpg")
+        bgTexture = SKTexture(imageNamed: "bg03.jpg")
         
         let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 5)
         let replaceBg = SKAction.moveBy(x: bgTexture.size().width, y: 0, duration: 0)
