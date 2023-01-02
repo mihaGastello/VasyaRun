@@ -52,7 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerAddCar = Timer()
     
     // Sounds
-    var pickBottlePreload = SKAction()
+    var pickBottle = SKAction()
     var carSoundPreload = SKAction()
     
     // Array textures for animate
@@ -93,9 +93,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         createObjects()
         createGame()
-        
-        pickBottlePreload = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
-        carSoundPreload = SKAction.playSoundFileNamed("sirena.mp3", waitForCompletion: false)
+        pickBottle = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
+        carSoundPreload = SKAction.playSoundFileNamed("sirena", waitForCompletion: false)
         }
     
     func createObjects() {
@@ -112,8 +111,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createGround()
         createSky()
         createHero()
-        timerFunc()
-        addCar()
+        timerFuncBottle()
+        timerFuncCar()
     }
     
     func createBg() {
@@ -146,8 +145,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createSky() {
         sky = SKSpriteNode()
         sky.position = CGPoint(x: 0, y: self.frame.maxY) // check it
-        sky.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width + 100,
-                                                            height: self.frame.size.height - 200))
+        sky.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width * 2,
+                                                            height: self.frame.size.height - 250))
         sky.physicsBody?.isDynamic = false
         sky.zPosition = 1
         skyObject.addChild(sky)
@@ -159,20 +158,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         changeActionToRun()
         
         hero.position = position
-        
-        hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: hero.size.width - 20, height: hero.size.height - 20))
+        hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: hero.size.width,
+                                                             height: hero.size.height))
         hero.physicsBody?.categoryBitMask = heroGroup
-        hero.physicsBody?.contactTestBitMask = groundGroup | bottleGroup //| carGroup
-        hero.physicsBody?.collisionBitMask = groundGroup // check it
+        hero.physicsBody?.contactTestBitMask = groundGroup | bottleGroup | carGroup
+        hero.physicsBody?.collisionBitMask = groundGroup | carGroup
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.allowsRotation = false
-        hero.zPosition = 1
+        hero.zPosition = 10
 
         heroObject.addChild(hero)
     }
     
     func createHero() {
-        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: runHeroTexture.size().height))
+        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: self.size.height/4))
     }
     
     @objc func addBottle() {
@@ -191,8 +190,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
         bottle.size.height = 40
         bottle.size.width = 40
-        bottle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottle.size.height - 10,
-                                                               height: bottle.size.width - 10))
+        bottle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottle.size.width - 10,
+                                                               height: bottle.size.height - 10))
         bottle.physicsBody?.restitution = 0
         bottle.position = CGPoint(x: self.size.width + 50,
                                   y: 0 + bottleTexture.size().height + 50 + pipeOffset)
@@ -203,43 +202,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         bottle.physicsBody?.isDynamic = false
         bottle.physicsBody?.categoryBitMask = bottleGroup
-        bottle.zPosition = 1
+        bottle.zPosition = 2
         bottleObject.addChild(bottle)
     }
     
-    func addCar() {
+    @objc func addCar() {
         if sound == true {
             run(carSoundPreload)
         }
+        
         car = SKSpriteNode(texture: carTexture)
         carTexArr = [SKTexture(imageNamed: "car.png"),
                      SKTexture(imageNamed: "car2.png")]
         
-        let moveCar = SKAction.moveBy(x: -carTexture.size().width * 3, y: 0, duration: 10)
-        
         let carAnimation = SKAction.animate(with: carTexArr, timePerFrame: 0.25)
         let carStart = SKAction.repeatForever(carAnimation)
         car.run(carStart)
-        car.run(moveCar)
         
-        //sam
-        car.position = CGPoint(x: self.size.width, y: carTexture.size().height)
-        car.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: car.size.width - 20, height: car.size.height - 20))
+        car.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: car.size.width,
+                                                            height: car.size.height))
+        car.physicsBody?.restitution = 1
+        car.position = CGPoint(x: self.size.width + 50,
+                               y: self.size.height / 4)
+                                  //y: 0 + carTexture.size().height + 50)
+        let moveCar = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
+        let removeActionCar = SKAction.removeFromParent()
+        let carMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveCar, removeActionCar]))
+        car.run(carMoveBgForever)
+        
+        car.physicsBody?.collisionBitMask = groundGroup
         car.physicsBody?.categoryBitMask = carGroup
-        car.physicsBody?.isDynamic = true
-        car.physicsBody?.allowsRotation = false
+        car.physicsBody?.isDynamic = false
         car.zPosition = 1
         carObject.addChild(car)
+        
     }
     
-    func timerFunc() {
+    func timerFuncBottle() {
         timerAddBottle.invalidate()
         timerAddBottle = Timer.scheduledTimer(timeInterval: 4.0,
                                               target: self,
                                               selector: #selector(GameScene.addBottle),
                                               userInfo: nil,
                                               repeats: true)
-        
+    }
+    
+    func timerFuncCar() {
+        timerAddCar.invalidate()
+        timerAddCar = Timer.scheduledTimer(timeInterval: 8.0,
+                                              target: self,
+                                              selector: #selector(GameScene.addCar),
+                                              userInfo: nil,
+                                              repeats: true)
     }
     
     func changeActionToJump() {

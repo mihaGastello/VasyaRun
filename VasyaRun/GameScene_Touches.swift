@@ -13,8 +13,7 @@ extension GameScene {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
-            
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
             changeActionToJump()
         }
         
@@ -28,10 +27,20 @@ extension GameScene {
            let bottleNode = contact.bodyA.categoryBitMask == bottleGroup ? contact.bodyA.node : contact.bodyB.node
            
            if sound == true {
-               run(pickBottlePreload)
+               run(pickBottle)
            }
            
            bottleNode?.removeFromParent()
+           hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
        }
+//       if contact.bodyA.categoryBitMask == carGroup || contact.bodyB.categoryBitMask == carGroup {
+//
+//            if sound == true {
+//                run(pickBottlePreload) //zamenit na zvuk udara
+//            }
+//
+//        }
+        
+        
     }
 }
