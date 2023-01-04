@@ -10,7 +10,6 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    
     var sound = true
     
     // logic: hero can jump only from ground, dont double jump
@@ -24,6 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bottleHeroTexture: SKTexture!
     var carTexture: SKTexture!
     var deadHeroTexture: SKTexture!
+    var backPoliceTexture: SKTexture!
     
     // SpriteNodes
     var bg = SKSpriteNode()
@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var hero = SKSpriteNode()
     var bottle = SKSpriteNode()
     var car = SKSpriteNode()
+    var backPolice = SKSpriteNode()
     
     // Sprite Objects
     var bgObject = SKNode()
@@ -40,12 +41,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var heroObject = SKNode()
     var bottleObject = SKNode()
     var carObject = SKNode()
+    var backPoliceObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
     var groundGroup: UInt32 = 0x1 << 2
     var bottleGroup: UInt32 = 0x1 << 3
     var carGroup: UInt32 = 0x1 << 4
+    var backPoliceGroup: UInt32 = 0x1 << 5
     
     // Timers
     var timerAddBottle = Timer()
@@ -56,18 +59,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var carSoundPreload = SKAction()
     
     // Array textures for animate
-    var heroRunTexturesArray = [SKTexture]()
-    var heroJumpTexturesArray = [SKTexture]()
+    var heroRunTextArr = [SKTexture]()
+    var heroJumpTextArr = [SKTexture]()
+    var backPoliceTextArr = [SKTexture]()
     var bottleTexturesArray = [SKTexture]()
     var carTexArr = [SKTexture]()
     var heroDeadTexArr = [SKTexture]()
+    
     
     override func didMove(to view: SKView) {
         bgTexture = SKTexture(imageNamed: "bg03.jpg")
         runHeroTexture = SKTexture(imageNamed: "run_020.png")
         jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
         
-        heroRunTexturesArray = [
+        heroRunTextArr = [
             SKTexture(imageNamed: "run_004.png"),
             SKTexture(imageNamed: "run_008.png"),
             SKTexture(imageNamed: "run_012.png"),
@@ -80,7 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "run_040.png"),
             SKTexture(imageNamed: "run_000.png")]
         
-        heroJumpTexturesArray = [
+        heroJumpTextArr = [
             SKTexture(imageNamed: "run_000.png")]
         
         // Bottle texture
@@ -89,6 +94,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // Car texture
         carTexture = SKTexture(imageNamed: "car.png")
+        
+        // Back police texture
+        backPoliceTexture = SKTexture(imageNamed: "bottle1.png")
         
         self.physicsWorld.contactDelegate = self
         createObjects()
@@ -104,6 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(heroObject)
         self.addChild(bottleObject)
         self.addChild(carObject)
+        self.addChild(backPoliceObject)
     }
     
     func createGame() {
@@ -111,6 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createGround()
         createSky()
         createHero()
+        createBackPolice()
         timerFuncBottle()
         timerFuncCar()
     }
@@ -133,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createGround() {
-        ground = SKSpriteNode()
+        //ground = SKSpriteNode()
         ground.position = CGPoint.zero
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width * 2, height: self.frame.height/4))
         ground.physicsBody?.isDynamic = false
@@ -151,6 +161,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sky.zPosition = 1
         skyObject.addChild(sky)
     }
+    
+    func createBackPolice() {
+        backPolice.position = CGPoint(x: self.size.width/8, y: self.size.height/4)
+        backPolice.physicsBody = SKPhysicsBody(texture: backPoliceTexture, size: backPoliceTexture.size())
+        backPolice.physicsBody?.isDynamic = false
+        backPolice.zPosition = 5
+        backPoliceObject.addChild(backPolice)
+
+    }
+    
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
         hero = SKSpriteNode(texture: runHeroTexture)
@@ -224,16 +244,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         car.physicsBody?.restitution = 1
         car.position = CGPoint(x: self.size.width + 50,
                                y: self.size.height / 4)
-                                  //y: 0 + carTexture.size().height + 50)
         let moveCar = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
         let removeActionCar = SKAction.removeFromParent()
         let carMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveCar, removeActionCar]))
         car.run(carMoveBgForever)
         
-        car.physicsBody?.collisionBitMask = groundGroup
-        car.physicsBody?.categoryBitMask = carGroup
+        //car.physicsBody?.collisionBitMask = groundGroup
+        //car.physicsBody?.categoryBitMask = carGroup
         car.physicsBody?.isDynamic = false
-        car.zPosition = 1
+        car.zPosition = 10
         carObject.addChild(car)
         
     }
@@ -257,13 +276,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func changeActionToJump() {
-        let heroJumpAnimation = SKAction.animate(with: heroJumpTexturesArray, timePerFrame: 1)
+        let heroJumpAnimation = SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)
         let jumpHero = SKAction.repeatForever(heroJumpAnimation)
         hero.run(jumpHero)
     }
     
     func changeActionToRun() {
-        let heroRunAnimation = SKAction.animate(with: heroRunTexturesArray, timePerFrame: 0.1)
+        let heroRunAnimation = SKAction.animate(with: heroRunTextArr, timePerFrame: 0.1)
         let runHero = SKAction.repeatForever(heroRunAnimation)
         hero.run(runHero)
     }
