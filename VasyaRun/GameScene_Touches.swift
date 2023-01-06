@@ -33,14 +33,15 @@ extension GameScene {
            bottleNode?.removeFromParent()
            hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
        }
-//       if contact.bodyA.categoryBitMask == carGroup || contact.bodyB.categoryBitMask == carGroup {
-//
-//            if sound == true {
-//                run(pickBottlePreload) //zamenit na zvuk udara
-//            }
-//
-//        }
+        
+        if hero.position.x < police.position.x {
+            returnPolice()
+        }
+        
+        
         
         
     }
+    
+    
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A98E5E129682ABC00EDEA39 /* electricDead.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A98E5E029682ABC00EDEA39 /* electricDead.mp3 */; };
 		8AAD2BA02928ED0900F483B3 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */; };
 		8AAD2BA52928F19D00F483B3 /* pickBottle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8AAD2BA42928F19D00F483B3 /* pickBottle.mp3 */; };
 		8AAF3DCC29261E5700A5C027 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF3DCB29261E5700A5C027 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A98E5E029682ABC00EDEA39 /* electricDead.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electricDead.mp3; sourceTree = "<group>"; };
 		8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		8AAD2BA42928F19D00F483B3 /* pickBottle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pickBottle.mp3; sourceTree = "<group>"; };
 		8AAF3DC829261E5700A5C027 /* VasyaRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VasyaRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				8ACAE29E292A1BBC00D1FF19 /* sirena.mp3 */,
+				8A98E5E029682ABC00EDEA39 /* electricDead.mp3 */,
 				8AAD2BA42928F19D00F483B3 /* pickBottle.mp3 */,
 			);
 			path = Sounds;
@@ -80,12 +83,12 @@
 				8AAF3DCD29261E5700A5C027 /* GameScene.sks */,
 				8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */,
 				8AAF3DD129261E5700A5C027 /* GameScene.swift */,
-				8AAD2BA32928ED3100F483B3 /* Sounds */,
 				8AAF3DD329261E5700A5C027 /* GameViewController.swift */,
 				8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */,
 				8AAF3DD529261E5700A5C027 /* Main.storyboard */,
 				8AAF3DD829261E5800A5C027 /* Assets.xcassets */,
 				8AAF3DDA29261E5800A5C027 /* LaunchScreen.storyboard */,
+				8AAD2BA32928ED3100F483B3 /* Sounds */,
 				8AAF3DE229264BD000A5C027 /* scene.atlas */,
 			);
 			path = VasyaRun;
@@ -156,6 +159,7 @@
 				8ACAE29F292A1BBC00D1FF19 /* sirena.mp3 in Resources */,
 				8AAF3DD929261E5800A5C027 /* Assets.xcassets in Resources */,
 				8AAF3DDC29261E5800A5C027 /* LaunchScreen.storyboard in Resources */,
+				8A98E5E129682ABC00EDEA39 /* electricDead.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
