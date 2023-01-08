@@ -26,6 +26,8 @@ extension GameScene {
                 run(deadSound)
             }
             
+            AnimationClass.shakeAndFlashAnimation(view: self.view!)
+            
             hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             frontEnemyObject.removeAllChildren()
             //backEnemyObject.removeAllChildren()
