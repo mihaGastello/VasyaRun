@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "ment.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "ment10@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

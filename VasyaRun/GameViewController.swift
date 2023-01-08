@@ -11,25 +11,32 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var reloadButton: UIButton!
+    
+    var scene = GameScene(size: CGSize(width: 1024, height: 768))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            let scene = GameScene(size: CGSize(width: 1024, height: 768))
-                // Set the scale mode to scale to fit the window
-           scene.scaleMode = .resizeFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            
-            view.ignoresSiblingOrder = true
-            view.showsFPS = true
-            view.showsNodeCount = true
-            view.showsPhysics = true
-        }
+        reloadButton.isHidden = true
+        
+        let view = self.view as! SKView?
+        view?.ignoresSiblingOrder = true
+        view?.showsFPS = true
+        view?.showsNodeCount = true
+        view?.showsPhysics = true
+        scene.scaleMode = .resizeFill
+        scene.gameVCBgidge = self
+        view?.presentScene(scene)
+        
     }
 
+    @IBAction func reloadGameButton(sender: UIButton) {
+        
+        scene.reloadGame()
+        reloadButton.isHidden = true
+    }
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
