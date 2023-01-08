@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var reloadBG: UIView!
     @IBOutlet weak var reloadButton: UIButton!
     
     var scene = GameScene(size: CGSize(width: 1024, height: 768))
@@ -19,6 +20,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         reloadButton.isHidden = true
+        reloadBG.isHidden = true
         
         let view = self.view as! SKView?
         view?.ignoresSiblingOrder = true
@@ -35,6 +37,7 @@ class GameViewController: UIViewController {
         
         scene.reloadGame()
         reloadButton.isHidden = true
+        reloadBG.isHidden = true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

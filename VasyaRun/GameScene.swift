@@ -11,10 +11,9 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var sound = true
-    var gameVCBgidge: GameViewController!
-    // logic: hero can jump only from ground, dont double jump
-    var onGroung: Bool!
+    var onGroung = true
     var onDeath = false
+    var gameVCBgidge: GameViewController!
     
     // Texture
     var bgTexture: SKTexture!
@@ -150,6 +149,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createGame() {
+        
+        onGroung = true
+        onDeath = false
+        
         createBg()
         createGround()
         createSky()
@@ -162,6 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addEnemy(position: CGPoint(x: self.size.width/16, y: self.size.height/4))
         
         gameVCBgidge.reloadButton.isHidden = true
+        gameVCBgidge.reloadBG.isHidden = true
     }
     
     func createBg() {
@@ -271,11 +275,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let polStart = SKAction.repeatForever(polAnimation)
         frontEnemy.run(polStart)
         
-        frontEnemy.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: frontEnemy.size.width,
-                                                            height: frontEnemy.size.height))
+        frontEnemy.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:frontEnemy.size.width, height: frontEnemy.size.height))
         
-        frontEnemy.position = CGPoint(x: self.size.width + 50,
-                               y: self.size.height/4)
+        frontEnemy.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
         let movePol = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 7)
         let removeActionPol = SKAction.removeFromParent()
         let polMoveBgForever = SKAction.repeatForever(SKAction.sequence([movePol, removeActionPol]))
@@ -285,7 +287,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         frontEnemy.physicsBody?.isDynamic = false
         frontEnemy.zPosition = 8
         frontEnemyObject.addChild(frontEnemy)
-        
     }
 
     @objc func addCar() {
@@ -295,7 +296,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         car = SKSpriteNode(texture: carTexture)
 
-        
         let carAnimation = SKAction.animate(with: carTextArr, timePerFrame: 0.25)
         let carStart = SKAction.repeatForever(carAnimation)
         car.run(carStart)
@@ -307,7 +307,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeActionCar = SKAction.removeFromParent()
         let carMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveCar, removeActionCar]))
         car.run(carMoveBgForever)
-        //car.physicsBody?.isDynamic = false
         car.zPosition = 10
         carObject.addChild(car)
         
@@ -326,7 +325,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backEnemy.physicsBody?.isDynamic = false
         backEnemy.zPosition = 7
         backEnemy.physicsBody?.categoryBitMask = backEnemyGroup
-        //backEnemy.physicsBody?.collisionBitMask = heroGroup
         backEnemyObject.addChild(backEnemy)
     }
     
@@ -384,6 +382,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bottleObject.removeAllChildren()
         heroObject.removeAllChildren()
         skyObject.removeAllChildren()
+        groundObject.removeAllChildren()
+        bgObject.removeAllChildren()
         
         heroObject.speed = 1
         frontEnemyObject.speed = 1
@@ -391,24 +391,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bottleObject.speed = 1
         self.speed = 1
         
-        createBg()
-        createGround()
-        createSky()
-        createHero()
-        timerFuncPol()
-        timerFuncBottle()
-        timerFuncCar()
-        addEnemy(position: CGPoint(x: self.size.width/8, y: self.size.height/4))
-        addEnemy(position: CGPoint(x: self.size.width/9, y: self.size.height/4))
-        addEnemy(position: CGPoint(x: self.size.width/16, y: self.size.height/4))
+        createGame()
     }
-    
-
-    
-//    func returnPolice() {
-//        let rightPolAnimation = SKAction.animate(with: backEnemyTextArr, timePerFrame: 0.1)
-//        let rightAnimation = SKAction.repeatForever(rightPolAnimation)
-//        frontEnemy.run(rightAnimation)
-//    }
     
 }

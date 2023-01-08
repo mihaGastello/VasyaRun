@@ -47,6 +47,7 @@ extension GameScene {
                 self.heroObject.removeAllChildren()
                 self.backEnemyObject.removeAllChildren()
                 self.scene?.isPaused = true
+                self.gameVCBgidge.reloadBG.isHidden = false
                 self.gameVCBgidge.reloadButton.isHidden = false
             }
             
