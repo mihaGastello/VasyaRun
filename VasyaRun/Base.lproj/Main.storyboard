@@ -40,13 +40,13 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
-                                <rect key="frame" x="306" y="150" width="124" height="114"/>
+                                <rect key="frame" x="273.33333333333331" y="159" width="189.33333333333331" height="96.333333333333314"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="114" id="8wq-mO-ldc"/>
-                                    <constraint firstAttribute="width" constant="124" id="M6U-l5-yY1"/>
+                                    <constraint firstAttribute="width" constant="189.33000000000001" id="Qbp-Ei-Ahh"/>
+                                    <constraint firstAttribute="height" constant="96.329999999999998" id="XbL-BK-0JG"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="reload"/>
+                                <buttonConfiguration key="configuration" style="plain" image="restartButton"/>
                                 <connections>
                                     <action selector="reloadGameButtonWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="y2g-uS-CO9"/>
                                 </connections>
@@ -72,7 +72,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="reload" width="100" height="100"/>
+        <image name="restartButton" width="165.33332824707031" height="82.333335876464844"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

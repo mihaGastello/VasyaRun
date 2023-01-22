@@ -13,7 +13,7 @@ extension GameScene {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 170))
             changeActionToJump()
         }
         
@@ -25,12 +25,11 @@ extension GameScene {
             if sound == true {
                 run(deadSound)
             }
-            
-            AnimationClass.shakeAndFlashAnimation(view: self.view!)
+            animations.shakeAndFlashAnimation(view: self.view!)
             
             hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             frontEnemyObject.removeAllChildren()
-            //backEnemyObject.removeAllChildren()
+            backEnemyObject.removeAllChildren()
             carObject.removeAllChildren()
             bottleObject.removeAllChildren()
 
@@ -38,6 +37,7 @@ extension GameScene {
             frontEnemyObject.speed = 0
             carObject.speed = 0
             bottleObject.speed = 0
+            bgObject.speed = 0
             
             timerAddPol.invalidate()
             timerAddCar.invalidate()

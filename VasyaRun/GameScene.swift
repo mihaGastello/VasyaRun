@@ -10,6 +10,8 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var animations = AnimationClass()
+    
     var sound = true
     var onGroung = true
     var onDeath = false
@@ -169,16 +171,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBg() {
-        bgTexture = SKTexture(imageNamed: "bg03.jpg")
+        bgTexture = SKTexture(imageNamed: "bgScreen.jpg")
         
-        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 5)
+        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 40)
         let replaceBg = SKAction.moveBy(x: bgTexture.size().width, y: 0, duration: 0)
         let moveBgForever = SKAction.repeatForever(SKAction.sequence([moveBg, replaceBg]))
         
         for i in 0..<3 {
             bg = SKSpriteNode(texture: bgTexture)
+            //bg.size.height = self.frame.height
+            bg.size.width = self.frame.width * 3
             bg.position = CGPoint(x: size.width/4 + bgTexture.size().width * CGFloat(i), y: size.height/2.0)
-            bg.size.height = self.frame.height
+            
             bg.run(moveBgForever)
             bg.zPosition = -1
             bgObject.addChild(bg)
@@ -204,7 +208,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         skyObject.addChild(sky)
     }
 
-    
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
         hero = SKSpriteNode(texture: runHeroTexture)
@@ -234,6 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody?.allowsRotation = false
         hero.zPosition = 5
         heroObject.addChild(hero)
+        print(hero.size.width)
     }
     
     func createHero() {
@@ -369,6 +373,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func changeActionToDeath() {
         onDeath = true
+        hero.size.height = 56
+        hero.size.width = 87
         let heroDeadAnimation = SKAction.animate(with: heroDeadTextArr, timePerFrame: 1)
         hero.run(heroDeadAnimation)
     }
@@ -385,10 +391,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         groundObject.removeAllChildren()
         bgObject.removeAllChildren()
         
-        heroObject.speed = 1
         frontEnemyObject.speed = 1
-        carObject.speed = 1
         bottleObject.speed = 1
+        heroObject.speed = 1
+        carObject.speed = 1
+        bgObject.speed = 1
         self.speed = 1
         
         createGame()
