@@ -154,7 +154,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         onGroung = true
         onDeath = false
-        
         createBg()
         createGround()
         createSky()
@@ -165,24 +164,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addEnemy(position: CGPoint(x: self.size.width/8, y: self.size.height/4))
         addEnemy(position: CGPoint(x: self.size.width/9, y: self.size.height/4))
         addEnemy(position: CGPoint(x: self.size.width/16, y: self.size.height/4))
-        
         gameVCBgidge.reloadButton.isHidden = true
         gameVCBgidge.reloadBG.isHidden = true
     }
     
     func createBg() {
-        bgTexture = SKTexture(imageNamed: "bgScreen.jpg")
+        bgTexture = SKTexture(imageNamed: "bg01.jpg")
         
-        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 40)
+        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 5)
         let replaceBg = SKAction.moveBy(x: bgTexture.size().width, y: 0, duration: 0)
         let moveBgForever = SKAction.repeatForever(SKAction.sequence([moveBg, replaceBg]))
         
         for i in 0..<3 {
             bg = SKSpriteNode(texture: bgTexture)
-            //bg.size.height = self.frame.height
-            bg.size.width = self.frame.width * 3
             bg.position = CGPoint(x: size.width/4 + bgTexture.size().width * CGFloat(i), y: size.height/2.0)
-            
+            bg.size.height = self.frame.height
             bg.run(moveBgForever)
             bg.zPosition = -1
             bgObject.addChild(bg)
