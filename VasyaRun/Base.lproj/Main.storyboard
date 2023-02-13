@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ifv-5l-EpX">
-    <device id="retina5_5" orientation="landscape" appearance="light"/>
+    <device id="retina5_9" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,28 +8,53 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="MTR-EA-vJK">
             <objects>
-                <viewController id="GHo-KQ-ZmB" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="GHo-KQ-ZmB" customClass="MainViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yP6-EL-rf1">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StartBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="LYR-ky-C8z">
+                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Y5-Gt5">
+                                <rect key="frame" x="317.66666666666669" y="254" width="177" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="Ip9-rv-rAx"/>
+                                    <constraint firstAttribute="height" constant="67" id="mbD-6v-A5G"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="StartButton 1"/>
+                                <connections>
+                                    <action selector="startGameWithSender:" destination="GHo-KQ-ZmB" eventType="touchUpInside" id="Ynh-dW-My1"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="YNK-3r-7B1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hNJ-Y5-Gt5" firstAttribute="centerX" secondItem="YNK-3r-7B1" secondAttribute="centerX" id="2Lk-Nw-NdS"/>
+                            <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="YNK-3r-7B1" secondAttribute="trailing" id="86H-gI-i3z"/>
+                            <constraint firstItem="LYR-ky-C8z" firstAttribute="top" secondItem="yP6-EL-rf1" secondAttribute="top" id="8TQ-Q6-Rj9"/>
+                            <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="YNK-3r-7B1" secondAttribute="leading" id="IEF-Hg-FWT"/>
+                            <constraint firstItem="YNK-3r-7B1" firstAttribute="bottom" secondItem="hNJ-Y5-Gt5" secondAttribute="bottom" constant="20" id="OkN-2P-rdH"/>
+                            <constraint firstAttribute="bottom" secondItem="LYR-ky-C8z" secondAttribute="bottom" id="pLo-rK-91p"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aZc-fV-mPD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qr-rf-JvR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.14130434782609" y="-2.8985507246376816"/>
+            <point key="canvasLocation" x="135.96059113300493" y="-4"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="l0L-ez-RqQ">
             <objects>
                 <viewController id="1LJ-qc-VFG" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eeC-17-YCL">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oLR-mB-SEu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -42,13 +67,13 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lug-hv-xfB">
-                                <rect key="frame" x="-58" y="10.666666666666657" width="852" height="393"/>
+                                <rect key="frame" x="-20" y="-9" width="852" height="393"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="393" id="D7m-J6-88c"/>
@@ -56,7 +81,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
-                                <rect key="frame" x="273.33333333333331" y="159" width="189.33333333333331" height="96.333333333333314"/>
+                                <rect key="frame" x="311.33333333333331" y="139.33333333333334" width="189.33333333333331" height="96.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="189.33000000000001" id="Qbp-Ei-Ahh"/>
                                     <constraint firstAttribute="height" constant="96.329999999999998" id="XbL-BK-0JG"/>
@@ -86,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="901.63043478260875" y="-2.8985507246376816"/>
         </scene>
-        <!--Main-->
+        <!--Navigation Controller-->
         <scene sceneID="mqu-kg-5kK">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Ifv-5l-EpX" customClass="Main" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Ifv-5l-EpX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aS3-gj-DzG">
                         <autoresizingMask key="autoresizingMask"/>
@@ -105,6 +130,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="StartBackGround" width="1327" height="610"/>
+        <image name="StartButton 1" width="152.5" height="52.5"/>
         <image name="restartButton" width="165.33332824707031" height="82.333335876464844"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

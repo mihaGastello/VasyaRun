@@ -9,5 +9,22 @@ import UIKit
 import SpriteKit
 
 class MainViewController: UIViewController {
+ 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
+    
+    @IBAction func startGame(sender: UIButton) {
+        if let storyboard = storyboard {
+            let gameViewController = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+            navigationController?.pushViewController(gameViewController, animated: true)
+        }
+    }
+    
+    func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
 }
