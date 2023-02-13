@@ -21,44 +21,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgTexture: SKTexture!
     var runHeroTexture: SKTexture!
     var jumpHeroTexture: SKTexture!
-    var bottleTexture: SKTexture!
-    var bottleHeroTexture: SKTexture!
+ //   var bottleTexture: SKTexture!
+    var dickTexture: SKTexture!
+//    var bottleHeroTexture: SKTexture!
     var carTexture: SKTexture!
     var deadHeroTexture: SKTexture!
     var frontEnemyTexture: SKTexture!
-    var backEnemyTexture: SKTexture!
+//    var backEnemyTexture: SKTexture!
     
     // SpriteNodes
     var bg = SKSpriteNode()
     var ground = SKSpriteNode()
     var sky = SKSpriteNode()
     var hero = SKSpriteNode()
-    var bottle = SKSpriteNode()
+//    var bottle = SKSpriteNode()
     var car = SKSpriteNode()
     var frontEnemy = SKSpriteNode()
-    var backEnemy = SKSpriteNode()
+//    var backEnemy = SKSpriteNode()
+    var dick = SKSpriteNode()
     
     // Sprite Objects
     var bgObject = SKNode()
     var groundObject = SKNode()
     var skyObject = SKNode()
     var heroObject = SKNode()
-    var bottleObject = SKNode()
+//    var bottleObject = SKNode()
     var carObject = SKNode()
     var frontEnemyObject = SKNode()
     var backEnemyObject = SKNode()
-    var backEnemyObjectTwo = SKNode()
+//    var backEnemyObjectTwo = SKNode()
+    var dickObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
     var groundGroup: UInt32 = 0x1 << 2
-    var bottleGroup: UInt32 = 0x1 << 3
+//    var bottleGroup: UInt32 = 0x1 << 3
     var carGroup: UInt32 = 0x1 << 4
     var frontEnemyGroup: UInt32 = 0x1 << 5
-    var backEnemyGroup: UInt32 = 0x1 << 6
+//    var backEnemyGroup: UInt32 = 0x1 << 6
+    var dickGroup: UInt32 = 0x1 << 7
     
     // Timers
-    var timerAddBottle = Timer()
+//    var timerAddBottle = Timer()
+    var timerAddDick = Timer()
     var timerAddCar = Timer()
     var timerAddPol = Timer()
     
@@ -70,10 +75,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Array textures for animate
     var heroRunTextArr = [SKTexture]()
     var heroJumpTextArr = [SKTexture]()
-    var bottleTextArr = [SKTexture]()
+//    var bottleTextArr = [SKTexture]()
+    var dickTextArr = [SKTexture]()
     var carTextArr = [SKTexture]()
     var heroDeadTextArr = [SKTexture]()
-    var backEnemyTextArr = [SKTexture]()
+//    var backEnemyTextArr = [SKTexture]()
     var frontEnemyTextArr = [SKTexture]()
     
     
@@ -81,25 +87,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         runHeroTexture = SKTexture(imageNamed: "run_020.png")
         jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
         deadHeroTexture = SKTexture(imageNamed: "dead.png")
-        bottleTexture = SKTexture(imageNamed: "bottle1.png")
+ //       bottleTexture = SKTexture(imageNamed: "bottle1.png")
         carTexture = SKTexture(imageNamed: "car.png")
-        backEnemyTexture = SKTexture(imageNamed: "ment0.png")
+        dickTexture = SKTexture(imageNamed: "di1.png")
+//      backEnemyTexture = SKTexture(imageNamed: "ment0.png")
         frontEnemyTexture = SKTexture(imageNamed: "oment0.png")
         
 
         
-        backEnemyTextArr = [
-            SKTexture(imageNamed: "ment0.png"),
-            SKTexture(imageNamed: "ment1.png"),
-            SKTexture(imageNamed: "ment2.png"),
-            SKTexture(imageNamed: "ment3.png"),
-            SKTexture(imageNamed: "ment4.png"),
-            SKTexture(imageNamed: "ment5.png"),
-            SKTexture(imageNamed: "ment6.png"),
-            SKTexture(imageNamed: "ment7.png"),
-            SKTexture(imageNamed: "ment8.png"),
-            SKTexture(imageNamed: "ment9.png"),
-            SKTexture(imageNamed: "ment10.png")]
+//        backEnemyTextArr = [
+//            SKTexture(imageNamed: "ment0.png"),
+//            SKTexture(imageNamed: "ment1.png"),
+//            SKTexture(imageNamed: "ment2.png"),
+//            SKTexture(imageNamed: "ment3.png"),
+//            SKTexture(imageNamed: "ment4.png"),
+//            SKTexture(imageNamed: "ment5.png"),
+//            SKTexture(imageNamed: "ment6.png"),
+//            SKTexture(imageNamed: "ment7.png"),
+//            SKTexture(imageNamed: "ment8.png"),
+//            SKTexture(imageNamed: "ment9.png"),
+//            SKTexture(imageNamed: "ment10.png")]
         
         heroJumpTextArr = [
             SKTexture(imageNamed: "run_000.png")]
@@ -107,12 +114,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         heroDeadTextArr = [
             SKTexture(imageNamed: "dead.png")]
 
-        bottleTextArr = [
-            SKTexture(imageNamed: "bottle1.png"),
-            SKTexture(imageNamed: "bottle2.png"),
-            SKTexture(imageNamed: "bottle3.png"),
-            SKTexture(imageNamed: "bottle4.png")]
+//        bottleTextArr = [
+//            SKTexture(imageNamed: "bottle1.png"),
+//            SKTexture(imageNamed: "bottle2.png"),
+//            SKTexture(imageNamed: "bottle3.png"),
+//            SKTexture(imageNamed: "bottle4.png")]
 
+        dickTextArr = [
+            SKTexture(imageNamed: "di1.png"),
+            SKTexture(imageNamed: "di2.png"),
+            SKTexture(imageNamed: "di3.png"),
+            SKTexture(imageNamed: "di4.png"),
+            SKTexture(imageNamed: "di5.png"),
+            SKTexture(imageNamed: "di6.png"),
+            SKTexture(imageNamed: "di7.png"),
+            SKTexture(imageNamed: "di8.png"),
+            SKTexture(imageNamed: "di9.png"),
+            SKTexture(imageNamed: "di10.png"),
+            SKTexture(imageNamed: "di11.png"),
+            SKTexture(imageNamed: "di12.png")]
+        
         carTextArr = [
             SKTexture(imageNamed: "car.png"),
             SKTexture(imageNamed: "car2.png")]
@@ -143,11 +164,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundObject)
         self.addChild(skyObject)
         self.addChild(heroObject)
-        self.addChild(bottleObject)
+//      self.addChild(bottleObject)
         self.addChild(carObject)
+        self.addChild(dickObject)
         self.addChild(frontEnemyObject)
-        self.addChild(backEnemyObject)
-        self.addChild(backEnemyObjectTwo)
+//      self.addChild(backEnemyObject)
+//      self.addChild(backEnemyObjectTwo)
     }
     
     func createGame() {
@@ -159,11 +181,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createHero()
         timerFuncPol()
-        timerFuncBottle()
+//        timerFuncBottle()
+        timerFuncDick()
         timerFuncCar()
-        addEnemy(position: CGPoint(x: self.size.width/8, y: self.size.height/4))
-        addEnemy(position: CGPoint(x: self.size.width/9, y: self.size.height/4))
-        addEnemy(position: CGPoint(x: self.size.width/16, y: self.size.height/4))
+//        addEnemy(position: CGPoint(x: self.size.width/8, y: self.size.height/4))
+//        addEnemy(position: CGPoint(x: self.size.width/9, y: self.size.height/4))
+//        addEnemy(position: CGPoint(x: self.size.width/16, y: self.size.height/4))
         gameVCBgidge.reloadButton.isHidden = true
         gameVCBgidge.reloadBG.isHidden = true
     }
@@ -227,8 +250,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: hero.size.width,
                                                              height: hero.size.height))
         hero.physicsBody?.categoryBitMask = heroGroup
-        hero.physicsBody?.contactTestBitMask = groundGroup | bottleGroup | frontEnemyGroup | backEnemyGroup
-        hero.physicsBody?.collisionBitMask = groundGroup | backEnemyGroup
+        hero.physicsBody?.contactTestBitMask = groundGroup | dickGroup | frontEnemyGroup // | backEnemyGroup | bottleGroup
+        hero.physicsBody?.collisionBitMask = groundGroup //| backEnemyGroup
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.allowsRotation = false
         hero.zPosition = 5
@@ -240,31 +263,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: self.size.height/4))
     }
     
-    @objc func addBottle() {
-        bottle = SKSpriteNode(texture: bottleTexture)
+//    @objc func addBottle() {
+//        bottle = SKSpriteNode(texture: bottleTexture)
+//
+//        let bottleAnimation = SKAction.animate(with: bottleTextArr, timePerFrame: 0.3)
+//        let bottleHero = SKAction.repeatForever(bottleAnimation)
+//        bottle.run(bottleHero)
+//
+//        let movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
+//        let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
+//        bottle.size.height = 40
+//        bottle.size.width = 40
+//        bottle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottle.size.width - 10,
+//                                                               height: bottle.size.height - 10))
+//        bottle.physicsBody?.restitution = 0
+//        bottle.position = CGPoint(x: self.size.width + 50,
+//                                  y: 0 + bottleTexture.size().height + 50 + pipeOffset)
+//        let moveBottle = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
+//        let removeAction = SKAction.removeFromParent()
+//        let bottleMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveBottle, removeAction]))
+//        bottle.run(bottleMoveBgForever)
+//
+//        bottle.physicsBody?.isDynamic = false
+//        bottle.physicsBody?.categoryBitMask = bottleGroup
+//        bottle.zPosition = 2
+//        bottleObject.addChild(bottle)
+//    }
+    
+    @objc func addDick() {
+        dick = SKSpriteNode(texture: dickTexture)
         
-        let bottleAnimation = SKAction.animate(with: bottleTextArr, timePerFrame: 0.3)
-        let bottleHero = SKAction.repeatForever(bottleAnimation)
-        bottle.run(bottleHero)
+        let dickAnimation = SKAction.animate(with: dickTextArr, timePerFrame: 0.05)
+        let dickHero = SKAction.repeatForever(dickAnimation)
+        dick.run(dickHero)
         
-        let movementAmount = arc4random() % UInt32(self.frame.size.height / 2)
-        let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 4
-        bottle.size.height = 40
-        bottle.size.width = 40
-        bottle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: bottle.size.width - 10,
-                                                               height: bottle.size.height - 10))
-        bottle.physicsBody?.restitution = 0
-        bottle.position = CGPoint(x: self.size.width + 50,
-                                  y: 0 + bottleTexture.size().height + 50 + pipeOffset)
-        let moveBottle = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
+        let movementAmount = arc4random() % UInt32(self.frame.size.height)
+        let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 2
+        dick.size.height = 80
+        dick.size.width = 80
+        dick.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: dick.size.width - 10,
+                                                               height: dick.size.height - 10))
+        dick.physicsBody?.restitution = 0
+        dick.position = CGPoint(x: self.size.width,
+                                  y: 0 + dickTexture.size().height + 50 + pipeOffset)
+        let moveDick = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
         let removeAction = SKAction.removeFromParent()
-        let bottleMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveBottle, removeAction]))
-        bottle.run(bottleMoveBgForever)
+        let dickMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveDick, removeAction]))
+        dick.run(dickMoveBgForever)
         
-        bottle.physicsBody?.isDynamic = false
-        bottle.physicsBody?.categoryBitMask = bottleGroup
-        bottle.zPosition = 2
-        bottleObject.addChild(bottle)
+        dick.physicsBody?.isDynamic = false
+        dick.physicsBody?.categoryBitMask = dickGroup
+        dick.zPosition = 2
+        dickObject.addChild(dick)
     }
     
     @objc func addFrontEnemy() {
@@ -312,27 +362,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    func addEnemy(position: CGPoint) {
-        
-        backEnemy = SKSpriteNode(texture: backEnemyTexture)
-        let backEnemyAnimation = SKAction.animate(with: backEnemyTextArr, timePerFrame: 0.1)
-        let backEnemyAnim = SKAction.repeatForever(backEnemyAnimation)
-        backEnemy.run(backEnemyAnim)
-        backEnemy.position = position
-        
-        backEnemy.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: backEnemy.size.width,
-                                                            height: backEnemy.size.height))
-        backEnemy.physicsBody?.isDynamic = false
-        backEnemy.zPosition = 7
-        backEnemy.physicsBody?.categoryBitMask = backEnemyGroup
-        backEnemyObject.addChild(backEnemy)
-    }
+//    func addEnemy(position: CGPoint) {
+//
+//        backEnemy = SKSpriteNode(texture: backEnemyTexture)
+//        let backEnemyAnimation = SKAction.animate(with: backEnemyTextArr, timePerFrame: 0.1)
+//        let backEnemyAnim = SKAction.repeatForever(backEnemyAnimation)
+//        backEnemy.run(backEnemyAnim)
+//        backEnemy.position = position
+//
+//        backEnemy.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: backEnemy.size.width,
+//                                                            height: backEnemy.size.height))
+//        backEnemy.physicsBody?.isDynamic = false
+//        backEnemy.zPosition = 7
+//        backEnemy.physicsBody?.categoryBitMask = backEnemyGroup
+//        backEnemyObject.addChild(backEnemy)
+//    }
     
-    func timerFuncBottle() {
-        timerAddBottle.invalidate()
-        timerAddBottle = Timer.scheduledTimer(timeInterval: 4.0,
+//    func timerFuncBottle() {
+//        timerAddBottle.invalidate()
+//        timerAddBottle = Timer.scheduledTimer(timeInterval: 4.0,
+//                                              target: self,
+//                                              selector: #selector(GameScene.addBottle),
+//                                              userInfo: nil,
+//                                              repeats: true)
+//    }
+    
+    func timerFuncDick() {
+        timerAddDick.invalidate()
+        timerAddDick = Timer.scheduledTimer(timeInterval: 4.0,
                                               target: self,
-                                              selector: #selector(GameScene.addBottle),
+                                              selector: #selector(GameScene.addDick),
                                               userInfo: nil,
                                               repeats: true)
     }
@@ -379,16 +438,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scene?.isPaused = false
         
         frontEnemyObject.removeAllChildren()
-        backEnemyObject.removeAllChildren()
+  //      backEnemyObject.removeAllChildren()
         carObject.removeAllChildren()
-        bottleObject.removeAllChildren()
+ //       bottleObject.removeAllChildren()
         heroObject.removeAllChildren()
         skyObject.removeAllChildren()
         groundObject.removeAllChildren()
         bgObject.removeAllChildren()
         
         frontEnemyObject.speed = 1
-        bottleObject.speed = 1
+//        bottleObject.speed = 1
         heroObject.speed = 1
         carObject.speed = 1
         bgObject.speed = 1
