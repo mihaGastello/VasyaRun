@@ -87,7 +87,7 @@ extension GameScene {
 
             if sound == true { run(bottleSound) }
 
-            hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 50))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
         }
 
         
