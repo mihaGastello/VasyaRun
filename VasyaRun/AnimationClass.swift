@@ -31,7 +31,6 @@ class AnimationClass {
         shake.autoreverses = true
         shake.repeatCount = 2
         shake.duration = 7/100
-        
         view.layer.add(shake, forKey: nil)
     }
     

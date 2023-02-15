@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         
+        
     }
     
     @IBAction func startGame(sender: UIButton) {
@@ -21,6 +22,7 @@ class MainViewController: UIViewController {
             let gameViewController = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
             navigationController?.pushViewController(gameViewController, animated: true)
         }
+        SKTAudio.sharedInstance().playBackgroundMusic(filename: "toxin.mp3")
     }
     
     func prefersStatusBarHidden() -> Bool {

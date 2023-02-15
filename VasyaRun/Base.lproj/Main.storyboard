@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ifv-5l-EpX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ifv-5l-EpX">
     <device id="retina5_9" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,8 +10,12 @@
         <!--Main View Controller-->
         <scene sceneID="MTR-EA-vJK">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="GHo-KQ-ZmB" customClass="MainViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yP6-EL-rf1">
+                <viewController storyboardIdentifier="MainViewController" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="GHo-KQ-ZmB" customClass="MainViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zqe-ur-KWe"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dj6-9w-NWv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleAspectFill" id="yP6-EL-rf1">
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -20,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Y5-Gt5">
-                                <rect key="frame" x="317.66666666666669" y="254" width="177" height="67"/>
+                                <rect key="frame" x="317.66666666666669" y="259" width="177" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="177" id="Ip9-rv-rAx"/>
                                     <constraint firstAttribute="height" constant="67" id="mbD-6v-A5G"/>
@@ -32,14 +35,13 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="YNK-3r-7B1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hNJ-Y5-Gt5" firstAttribute="centerX" secondItem="YNK-3r-7B1" secondAttribute="centerX" id="2Lk-Nw-NdS"/>
-                            <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="YNK-3r-7B1" secondAttribute="trailing" id="86H-gI-i3z"/>
+                            <constraint firstItem="hNJ-Y5-Gt5" firstAttribute="centerX" secondItem="yP6-EL-rf1" secondAttribute="centerX" id="2Lk-Nw-NdS"/>
+                            <constraint firstItem="Dj6-9w-NWv" firstAttribute="top" secondItem="hNJ-Y5-Gt5" secondAttribute="bottom" constant="15" id="5CH-6M-Ehx"/>
+                            <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="yP6-EL-rf1" secondAttribute="trailing" id="86H-gI-i3z"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="top" secondItem="yP6-EL-rf1" secondAttribute="top" id="8TQ-Q6-Rj9"/>
-                            <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="YNK-3r-7B1" secondAttribute="leading" id="IEF-Hg-FWT"/>
-                            <constraint firstItem="YNK-3r-7B1" firstAttribute="bottom" secondItem="hNJ-Y5-Gt5" secondAttribute="bottom" constant="20" id="OkN-2P-rdH"/>
+                            <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="yP6-EL-rf1" secondAttribute="leading" id="IEF-Hg-FWT"/>
                             <constraint firstAttribute="bottom" secondItem="LYR-ky-C8z" secondAttribute="bottom" id="pLo-rK-91p"/>
                         </constraints>
                     </view>
@@ -53,10 +55,13 @@
         <scene sceneID="l0L-ez-RqQ">
             <objects>
                 <viewController id="1LJ-qc-VFG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TPY-eV-YLi"/>
+                        <viewControllerLayoutGuide type="bottom" id="DJq-dD-pb6"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eeC-17-YCL">
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="oLR-mB-SEu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
@@ -68,6 +73,10 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController storyboardIdentifier="GameViewController" id="BV1-FR-VrT" customClass="GameViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fh8-RB-avg"/>
+                        <viewControllerLayoutGuide type="bottom" id="WYI-LN-7X6"/>
+                    </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +102,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xwl-op-vEu" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="9AE-Pp-5Fm"/>

@@ -21,9 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgTexture: SKTexture!
     var runHeroTexture: SKTexture!
     var jumpHeroTexture: SKTexture!
- //   var bottleTexture: SKTexture!
     var dickTexture: SKTexture!
-//    var bottleHeroTexture: SKTexture!
     var carTexture: SKTexture!
     var deadHeroTexture: SKTexture!
     var frontEnemyTexture: SKTexture!
@@ -84,29 +82,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
+        
         runHeroTexture = SKTexture(imageNamed: "run_020.png")
         jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
         deadHeroTexture = SKTexture(imageNamed: "dead.png")
+        bgTexture = SKTexture(imageNamed: "bg000.jpg")
  //       bottleTexture = SKTexture(imageNamed: "bottle1.png")
         carTexture = SKTexture(imageNamed: "car.png")
         dickTexture = SKTexture(imageNamed: "di1.png")
 //      backEnemyTexture = SKTexture(imageNamed: "ment0.png")
         frontEnemyTexture = SKTexture(imageNamed: "oment0.png")
-        
-
-        
-//        backEnemyTextArr = [
-//            SKTexture(imageNamed: "ment0.png"),
-//            SKTexture(imageNamed: "ment1.png"),
-//            SKTexture(imageNamed: "ment2.png"),
-//            SKTexture(imageNamed: "ment3.png"),
-//            SKTexture(imageNamed: "ment4.png"),
-//            SKTexture(imageNamed: "ment5.png"),
-//            SKTexture(imageNamed: "ment6.png"),
-//            SKTexture(imageNamed: "ment7.png"),
-//            SKTexture(imageNamed: "ment8.png"),
-//            SKTexture(imageNamed: "ment9.png"),
-//            SKTexture(imageNamed: "ment10.png")]
         
         heroJumpTextArr = [
             SKTexture(imageNamed: "run_000.png")]
@@ -164,12 +149,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundObject)
         self.addChild(skyObject)
         self.addChild(heroObject)
-//      self.addChild(bottleObject)
         self.addChild(carObject)
         self.addChild(dickObject)
         self.addChild(frontEnemyObject)
-//      self.addChild(backEnemyObject)
-//      self.addChild(backEnemyObjectTwo)
+
     }
     
     func createGame() {
@@ -181,7 +164,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createHero()
         timerFuncPol()
-//        timerFuncBottle()
         timerFuncDick()
         timerFuncCar()
 //        addEnemy(position: CGPoint(x: self.size.width/8, y: self.size.height/4))
@@ -192,9 +174,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBg() {
-        bgTexture = SKTexture(imageNamed: "bg01.jpg")
+        bgTexture = SKTexture(imageNamed: "bg000.jpg")
         
-        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 5)
+        let moveBg = SKAction.moveBy(x: -bgTexture.size().width, y: 0, duration: 20)
         let replaceBg = SKAction.moveBy(x: bgTexture.size().width, y: 0, duration: 0)
         let moveBgForever = SKAction.repeatForever(SKAction.sequence([moveBg, replaceBg]))
         
@@ -202,10 +184,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg = SKSpriteNode(texture: bgTexture)
             bg.position = CGPoint(x: size.width/4 + bgTexture.size().width * CGFloat(i), y: size.height/2.0)
             bg.size.height = self.frame.height
+            //bg.size.width = self.frame.width
             bg.run(moveBgForever)
             bg.zPosition = -1
             bgObject.addChild(bg)
-        }
+       }
     }
     
     func createGround() {
