@@ -29,7 +29,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var carTexture: SKTexture!
     var deadHeroTexture: SKTexture!
     var frontEnemyTexture: SKTexture!
-//    var backEnemyTexture: SKTexture!
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
@@ -41,7 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var hero = SKSpriteNode()
     var car = SKSpriteNode()
     var frontEnemy = SKSpriteNode()
-//    var backEnemy = SKSpriteNode()
     var dick = SKSpriteNode()
     
     // Sprite Objects
@@ -60,7 +58,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var groundGroup: UInt32 = 0x1 << 2
     var carGroup: UInt32 = 0x1 << 3
     var frontEnemyGroup: UInt32 = 0x1 << 4
-//    var backEnemyGroup: UInt32 = 0x1 << 6
     var dickGroup: UInt32 = 0x1 << 7
     
     // Timers
@@ -233,7 +230,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: hero.size.width,
                                                              height: hero.size.height))
         hero.physicsBody?.categoryBitMask = heroGroup
-        hero.physicsBody?.contactTestBitMask = groundGroup | dickGroup | frontEnemyGroup
+        hero.physicsBody?.contactTestBitMask = groundGroup | carGroup | dickGroup | frontEnemyGroup
         hero.physicsBody?.collisionBitMask = groundGroup | carGroup
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.allowsRotation = false
@@ -255,14 +252,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let movementAmount = arc4random() % UInt32(self.frame.size.height)
         let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 2
-        dick.size.height = 80
-        dick.size.width = 80
+        dick.size.height = 100
+        dick.size.width = 100
         dick.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: dick.size.width - 10,
                                                                height: dick.size.height - 10))
         dick.physicsBody?.restitution = 0
         dick.position = CGPoint(x: self.size.width,
                                   y: 0 + dickTexture.size().height + 50 + pipeOffset)
-        let moveDick = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 5)
+        let moveDick = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0 , duration: 5)
         let removeAction = SKAction.removeFromParent()
         let dickMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveDick, removeAction]))
         dick.run(dickMoveBgForever)
@@ -271,6 +268,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dick.physicsBody?.categoryBitMask = dickGroup
         dick.zPosition = 2
         dickObject.addChild(dick)
+        
+        animations.changeBackgroundColor(view: self.view!)
     }
     
     @objc func addDirtyRam() {
@@ -280,13 +279,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dirtyRam.zPosition = 8
         dirtyRamObject.addChild(dirtyRam)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
            self.dirtyRam.scale(to: CGSize(width: self.dirtyRam.size.width * 1.2,
                                           height: self.dirtyRam.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.dirtyRam.scale(to: CGSize(width: self.dirtyRam.size.width * 1.2,
                                                height: self.dirtyRam.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.dirtyRam.removeFromParent()
                 }
             }
@@ -300,13 +299,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         povFasol.zPosition = 8
         dirtyRamObject.addChild(povFasol)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
            self.povFasol.scale(to: CGSize(width: self.povFasol.size.width * 1.2,
                                           height: self.povFasol.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.povFasol.scale(to: CGSize(width: self.povFasol.size.width * 1.2,
                                                height: self.povFasol.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.povFasol.removeFromParent()
                 }
             }
@@ -320,13 +319,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         iskDram.zPosition = 8
         dirtyRamObject.addChild(iskDram)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
            self.iskDram.scale(to: CGSize(width: self.iskDram.size.width * 1.2,
                                          height: self.iskDram.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self.iskDram.scale(to: CGSize(width: self.iskDram.size.width * 1.2,
                                               height: self.iskDram.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.iskDram.removeFromParent()
                 }
             }
@@ -351,15 +350,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         frontEnemy.physicsBody?.restitution = 1
         frontEnemy.physicsBody?.categoryBitMask = frontEnemyGroup
         frontEnemy.physicsBody?.isDynamic = false
-        frontEnemy.zPosition = 8
+        frontEnemy.zPosition = 5
         frontEnemyObject.addChild(frontEnemy)
     }
 
     @objc func addCar() {
-        if sound == true {
-            run(bottleSound)
-        }
-        
+
         car = SKSpriteNode(texture: carTexture)
 
         let carAnimation = SKAction.animate(with: carTextArr, timePerFrame: 2)
@@ -373,14 +369,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let removeActionCar = SKAction.removeFromParent()
         let carMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveCar, removeActionCar]))
         car.run(carMoveBgForever)
-        car.zPosition = 10
+        car.physicsBody?.categoryBitMask = carGroup
+        car.zPosition = 5
         carObject.addChild(car)
         
     }
    
     func timerFuncDirtyRam() {
         timerAddDirtyRam.invalidate()
-        timerAddDirtyRam = Timer.scheduledTimer(timeInterval: 2.0,
+        timerAddDirtyRam = Timer.scheduledTimer(timeInterval: 16.0,
                                               target: self,
                                               selector: #selector(GameScene.addDirtyRam),
                                               userInfo: nil,
@@ -389,7 +386,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func timerFuncPovFasol() {
         timerAddPovFasol.invalidate()
-        timerAddPovFasol = Timer.scheduledTimer(timeInterval: 10.0,
+        timerAddPovFasol = Timer.scheduledTimer(timeInterval: 9.0,
                                               target: self,
                                               selector: #selector(GameScene.addPovFasol),
                                               userInfo: nil,
@@ -398,7 +395,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func timerFuncIskDram() {
         timerAddIskDram.invalidate()
-        timerAddIskDram = Timer.scheduledTimer(timeInterval: 18.0,
+        timerAddIskDram = Timer.scheduledTimer(timeInterval: 2.0,
                                               target: self,
                                               selector: #selector(GameScene.addIskDram),
                                               userInfo: nil,
@@ -408,7 +405,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func timerFuncDick() {
         timerAddDick.invalidate()
-        timerAddDick = Timer.scheduledTimer(timeInterval: 10.0,
+        timerAddDick = Timer.scheduledTimer(timeInterval: 20, //Double.random(in: 3...15) ,
                                               target: self,
                                               selector: #selector(GameScene.addDick),
                                               userInfo: nil,
@@ -457,7 +454,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scene?.isPaused = false
         
         frontEnemyObject.removeAllChildren()
-  //      backEnemyObject.removeAllChildren()
         carObject.removeAllChildren()
         heroObject.removeAllChildren()
         skyObject.removeAllChildren()

@@ -58,12 +58,17 @@ extension GameScene {
 //        }
         
         if contact.bodyA.categoryBitMask == groundGroup || contact.bodyB.categoryBitMask == groundGroup {
-            if onDeath == false {
                 onGroung = true
                 changeActionToRun()
-            }
+                print ("XXX ground")
         }
-       
+        
+        
+        if contact.bodyA.categoryBitMask == carGroup || contact.bodyB.categoryBitMask == carGroup {
+                onGroung = true
+                changeActionToRun()
+                print("XXX car")
+        }
         
 //        if contact.bodyA.categoryBitMask == bottleGroup || contact.bodyB.categoryBitMask == bottleGroup {
 //           let bottleNode = contact.bodyA.categoryBitMask == bottleGroup ? contact.bodyA.node : contact.bodyB.node
