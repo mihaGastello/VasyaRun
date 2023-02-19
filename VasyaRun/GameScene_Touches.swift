@@ -16,9 +16,26 @@ extension GameScene {
             hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 170))
             changeActionToJump()
         }
-        
     }
+    
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        if contact.bodyA.categoryBitMask == groundGroup || contact.bodyB.categoryBitMask == groundGroup {
+            onGroung = true
+            changeActionToRun()
+        }
+        
+        if contact.bodyA.categoryBitMask == carGroup || contact.bodyB.categoryBitMask == carGroup {
+            onGroung = true
+            changeActionToRun()
+        }
+        
+        if contact.bodyA.categoryBitMask == headGroup || contact.bodyB.categoryBitMask == headGroup {
+            head.physicsBody?.applyImpulse(CGVector(dx: 1000, dy: 100))
+        }
+    }
+}
+        
         
 //        if contact.bodyA.categoryBitMask == backEnemyGroup || contact.bodyB.categoryBitMask == backEnemyGroup {
 //
@@ -52,24 +69,7 @@ extension GameScene {
 //                self.gameVCBgidge.reloadBG.isHidden = false
 //                self.gameVCBgidge.reloadButton.isHidden = false
 //            }
-//
-//
-//
 //        }
-        
-        if contact.bodyA.categoryBitMask == groundGroup || contact.bodyB.categoryBitMask == groundGroup {
-                onGroung = true
-                changeActionToRun()
-                print ("XXX ground")
-        }
-        
-        
-        if contact.bodyA.categoryBitMask == carGroup || contact.bodyB.categoryBitMask == carGroup {
-                onGroung = true
-                changeActionToRun()
-                print("XXX car")
-        }
-        
 //        if contact.bodyA.categoryBitMask == bottleGroup || contact.bodyB.categoryBitMask == bottleGroup {
 //           let bottleNode = contact.bodyA.categoryBitMask == bottleGroup ? contact.bodyA.node : contact.bodyB.node
 //
@@ -78,7 +78,6 @@ extension GameScene {
 //           bottleNode?.removeFromParent()
 //           hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
 //       }
-        
 //        if contact.bodyA.categoryBitMask == dickGroup || contact.bodyB.categoryBitMask == dickGroup {
 //           let dickNode = contact.bodyA.categoryBitMask == dickGroup ? contact.bodyA.node : contact.bodyB.node
 //
@@ -87,18 +86,3 @@ extension GameScene {
 //           dickNode?.removeFromParent()
 //           hero.physicsBody?.applyImpulse(CGVector(dx: 50, dy: 0))
 //       }
-        
-        if contact.bodyA.categoryBitMask == frontEnemyGroup || contact.bodyB.categoryBitMask == frontEnemyGroup {
-
-            if sound == true { run(bottleSound) }
-
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
-        }
-
-        
-        
-        
-    }
-    
-    
-}
