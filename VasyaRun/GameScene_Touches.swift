@@ -9,11 +9,12 @@ import Foundation
 import SpriteKit
 
 extension GameScene {
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 170))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 130))
             changeActionToJump()
         }
     }
@@ -30,9 +31,18 @@ extension GameScene {
             changeActionToRun()
         }
         
-        if contact.bodyA.categoryBitMask == headGroup || contact.bodyB.categoryBitMask == headGroup {
-            head.physicsBody?.applyImpulse(CGVector(dx: 1000, dy: 100))
+        if contact.bodyA.categoryBitMask == faceGroup || contact.bodyB.categoryBitMask == faceGroup {
+            face.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 50))
         }
+        
+        if contact.bodyA.categoryBitMask == shamGroup || contact.bodyB.categoryBitMask == shamGroup {
+            sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 50))
+        }
+        
+        if contact.bodyA.categoryBitMask == wallGroup || contact.bodyB.categoryBitMask == wallGroup {
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 200))
+        }
+        
     }
 }
         
