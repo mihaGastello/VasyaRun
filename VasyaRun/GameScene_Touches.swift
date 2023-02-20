@@ -33,10 +33,31 @@ extension GameScene {
         
         if contact.bodyA.categoryBitMask == faceGroup || contact.bodyB.categoryBitMask == faceGroup {
             face.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 50))
+            
+            whiteBoom = SKSpriteNode(texture: whiteBoomTexture)
+            whiteBoom.position = face.position
+            whiteBoom.zPosition = 8
+            boomObject.addChild(whiteBoom)
+
+            let boomAnimation = SKAction.animate(with: whiteBoomTextArr, timePerFrame: 0.1)
+            let boomRemove = SKAction.removeFromParent()
+            let boomSequence = SKAction.sequence([boomAnimation, boomRemove])
+            whiteBoom.run(boomSequence)
+            
         }
         
         if contact.bodyA.categoryBitMask == shamGroup || contact.bodyB.categoryBitMask == shamGroup {
             sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 50))
+            
+            whiteBoom = SKSpriteNode(texture: whiteBoomTexture)
+            whiteBoom.position = sham.position
+            whiteBoom.zPosition = 8
+            boomObject.addChild(whiteBoom)
+
+            let boomAnimation = SKAction.animate(with: whiteBoomTextArr, timePerFrame: 0.1)
+            let boomRemove = SKAction.removeFromParent()
+            let boomSequence = SKAction.sequence([boomAnimation, boomRemove])
+            whiteBoom.run(boomSequence)
         }
         
         if contact.bodyA.categoryBitMask == wallGroup || contact.bodyB.categoryBitMask == wallGroup {

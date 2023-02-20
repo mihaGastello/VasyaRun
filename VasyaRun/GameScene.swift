@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var deadHeroTexture: SKTexture!
     var faceTexture: SKTexture!
     var shamTexture: SKTexture!
+    var whiteBoomTexture: SKTexture!
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
@@ -47,6 +48,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sham = SKSpriteNode()
     var dick = SKSpriteNode()
     
+    var whiteBoom = SKSpriteNode()
+    
+    //emiters
+    var boomEmitter = SKEmitterNode()
+    
     // Sprite Objects
     var dirtyRamObject = SKNode()
     var bgObject = SKNode()
@@ -60,6 +66,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var faceObject = SKNode()
     var shamObject = SKNode()
     var dickObject = SKNode()
+    
+    var boomObject = SKNode()
+    var boomEmitterObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
@@ -83,6 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerFlashThree = Timer()
     var timerFlashFour = Timer()
     var timerColView = Timer()
+    var timerColViewTwo = Timer()
+    var timerColViewThree = Timer()
+    var timerColViewFour = Timer()
     var timerFace = Timer()
     var timerSham = Timer()
     var timerFaceTwo = Timer()
@@ -101,11 +113,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var heroDeadTextArr = [SKTexture]()
     var faceTextArr = [SKTexture]()
     var shamTextArr = [SKTexture]()
-    var backColorArr = [SKView] ()
+    var whiteBoomTextArr = [SKTexture]()
 
     override func didMove(to view: SKView) {
-
-        //self.physicsWorld.gravity = CGVectorMake(0, -1)
         
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
         iskDramTexture = SKTexture(imageNamed: "iskDram.png")
@@ -118,9 +128,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         faceTexture = SKTexture(imageNamed: "face5.png")
         shamTexture = SKTexture(imageNamed: "sham5.png")
         heroJumpTextArr = [SKTexture(imageNamed: "run_000.png")]
-        //heroDeadTextArr = [SKTexture(imageNamed: "dead.png")]
-        //deadHeroTexture = SKTexture(imageNamed: "dead.png")
-
+        whiteBoomTexture = SKTexture(imageNamed: "cloud200.png")
+        
+        whiteBoomTextArr = [
+            SKTexture(imageNamed: "cloud200.png"),
+            SKTexture(imageNamed: "cloud400.png")]
+        
         dickTextArr = [
             SKTexture(imageNamed: "di1.png"),
             SKTexture(imageNamed: "di2.png"),
@@ -188,6 +201,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(faceObject)
         self.addChild(shamObject)
         self.addChild(dirtyRamObject)
+        
+        self.addChild(boomObject)
     }
     
     func createGame() {
@@ -203,6 +218,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncIskDram()
         timerFuncPovFasol()
         timerFuncColorView(tim: timerColView, timInt: 30.1)
+        timerFuncColorView(tim: timerColViewTwo, timInt: 59.5)
+        timerFuncColorView(tim: timerColViewThree, timInt: 103.3)
+        timerFuncColorView(tim: timerColViewFour, timInt: 117.8)
         timerFuncFlash(tim: timerFlash, timInt: 29.3)
         timerFuncFlash(tim: timerFlashTwo, timInt: 58.7)
         timerFuncFlash(tim: timerFlashThree, timInt: 102.5)
@@ -218,7 +236,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createBg() {
-        bgTexture = SKTexture(imageNamed: "bg7.jpg")
         
         let moveBg = SKAction.moveBy(x: -self.frame.width * 2, y: 0, duration: 15)
         let replaceBg = SKAction.moveBy(x: self.frame.width * 2, y: 0, duration: 0)
@@ -281,8 +298,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "run_000.png")]
         
         changeActionToRun()
-        
         hero.position = position
+        
+        let moveBeginHero = SKAction.moveBy(x: -self.frame.size.width, y: 0 , duration: 25)
+        hero.run(moveBeginHero)
+        
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (hero.size.width - 10), height: hero.size.height))
         hero.physicsBody?.categoryBitMask = heroGroup
         hero.physicsBody?.contactTestBitMask = groundGroup | carGroup | wallGroup | faceGroup | shamGroup
@@ -294,7 +314,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createHero() {
-        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4, y: self.size.height/4))
+        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4*5 , y: self.size.height/4))
     }
     
     
@@ -387,19 +407,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func addFace() {
         face = SKSpriteNode(texture: faceTexture)
-        let faceAnimation = SKAction.animate(with: faceTextArr, timePerFrame: 0.1)
+        let faceAnimation = SKAction.animate(with: faceTextArr, timePerFrame: 0.07)
         let faceStart = SKAction.repeatForever(faceAnimation)
         face.run(faceStart)
         face.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: face.size.height, height: face.size.height))
         face.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
-        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 7)
+        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 8)
         let removeActionFace = SKAction.removeFromParent()
         let faceMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveFace, removeActionFace]))
         face.run(faceMoveBgForever)
         face.physicsBody?.isDynamic = true
         face.physicsBody?.categoryBitMask = faceGroup
-        face.physicsBody?.collisionBitMask = groundGroup | heroGroup | wallGroup
-        face.physicsBody?.contactTestBitMask = heroGroup | wallGroup
+        face.physicsBody?.collisionBitMask = groundGroup | heroGroup
+        face.physicsBody?.contactTestBitMask = heroGroup
         face.zPosition = 5
         faceObject.addChild(face)
     }
@@ -407,18 +427,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func addSham() {
         
         sham = SKSpriteNode(texture: shamTexture)
-        let shamAnimation = SKAction.animate(with: shamTextArr, timePerFrame: 0.05)
+        let shamAnimation = SKAction.animate(with: shamTextArr, timePerFrame: 0.07)
         let shamStart = SKAction.repeatForever(shamAnimation)
         sham.run(shamStart)
         sham.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sham.size.height, height: sham.size.height))
         sham.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
-        let moveSham = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 7)
+        let moveSham = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 6)
         let removeActionSham = SKAction.removeFromParent()
         let shamMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveSham, removeActionSham]))
         sham.run(shamMoveBgForever)
         sham.physicsBody?.isDynamic = true
-        sham.physicsBody?.collisionBitMask = groundGroup | heroGroup | wallGroup
-        sham.physicsBody?.contactTestBitMask = heroGroup | wallGroup
+        sham.physicsBody?.categoryBitMask = shamGroup
+        sham.physicsBody?.collisionBitMask = groundGroup | heroGroup
+        sham.physicsBody?.contactTestBitMask = heroGroup
         sham.zPosition = 5
         shamObject.addChild(sham)
     }
@@ -438,8 +459,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let carMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveCar, removeActionCar]))
         car.run(carMoveBgForever)
         car.physicsBody?.categoryBitMask = carGroup
-        car.physicsBody?.contactTestBitMask = groundGroup | heroGroup | wallGroup
-        car.physicsBody?.collisionBitMask = groundGroup | heroGroup | wallGroup
+        car.physicsBody?.contactTestBitMask = groundGroup | heroGroup
+        car.physicsBody?.collisionBitMask = groundGroup | heroGroup
         //car.physicsBody?.allowsRotation = false
         car.physicsBody?.isDynamic = false
         car.zPosition = 5
@@ -480,9 +501,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
                     aView.backgroundColor = UIColor.green
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                        aView.backgroundColor = UIColor.purple
+                        aView.backgroundColor = UIColor.red
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                            aView.backgroundColor = UIColor.systemPink
+                            aView.backgroundColor = UIColor.blue
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
                                 aView.removeFromSuperview()
                             }
@@ -519,7 +540,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                               userInfo: nil,
                                               repeats: false)
     }
-    
     
     func timerFuncDick() {
         timerAddDick.invalidate()
