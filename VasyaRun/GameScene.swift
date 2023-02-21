@@ -16,7 +16,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var onDeath = false
     var gameVCBgidge: GameViewController!
     
-    
     // Texture
     var dirtyRamTexture: SKTexture!
     var iskDramTexture: SKTexture!
@@ -99,6 +98,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerSham = Timer()
     var timerFaceTwo = Timer()
     var timerShamTwo = Timer()
+    var timerStopGame = Timer()
     
     // Sounds
     var bottleSound = SKAction()
@@ -185,8 +185,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createObjects()
         createGame()
         bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
-        carSound = SKAction.playSoundFileNamed("sirena", waitForCompletion: false)
-        deadSound = SKAction.playSoundFileNamed("electricDead.mp3", waitForCompletion: false)
     }
     
     func createObjects() {
@@ -217,6 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncDirtyRam()
         timerFuncIskDram()
         timerFuncPovFasol()
+        timerFuncDick()
         timerFuncColorView(tim: timerColView, timInt: 30.1)
         timerFuncColorView(tim: timerColViewTwo, timInt: 59.5)
         timerFuncColorView(tim: timerColViewThree, timInt: 103.3)
@@ -231,6 +230,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncSham(tim: timerShamTwo, timInt: 55)
         timerFuncCar(tim: timerCar, timInt: 33)
         timerFuncCar(tim: timerCarTwo, timInt: 88)
+        timerFuncStopGame(tim: timerStopGame, timInt: 65)
         gameVCBgidge.reloadButton.isHidden = true
         gameVCBgidge.reloadBG.isHidden = true
     }
@@ -266,6 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sky.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width * 3,
                                                             height: self.frame.size.height / 6))
         sky.physicsBody?.isDynamic = false
+        sky.physicsBody?.categoryBitMask = wallGroup
         sky.zPosition = 1
         skyObject.addChild(sky)
     }
@@ -309,7 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.run(moveBeginHero)
         
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (hero.size.width - 30),
-                                                             height: hero.size.height - 20))
+                                                             height: hero.size.height))
         hero.physicsBody?.categoryBitMask = heroGroup
         hero.physicsBody?.contactTestBitMask = groundGroup | carGroup | wallGroup | faceGroup | shamGroup
         hero.physicsBody?.collisionBitMask = groundGroup | carGroup | wallGroup
@@ -345,8 +346,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let dickMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveDick, removeAction]))
         dick.run(dickMoveBgForever)
         
-        dick.physicsBody?.isDynamic = true
-        //dick.physicsBody?.categoryBitMask = dickGroup
+        dick.physicsBody?.isDynamic = false
+        dick.physicsBody?.categoryBitMask = dickGroup
+        dick.physicsBody?.collisionBitMask = heroGroup
+        dick.physicsBody?.contactTestBitMask = heroGroup
         dick.zPosition = 2
         dickObject.addChild(dick)
     }
@@ -437,7 +440,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let shamStart = SKAction.repeatForever(shamAnimation)
         sham.run(shamStart)
         sham.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sham.size.height, height: sham.size.height))
-        sham.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
+        sham.position = CGPoint(x: self.size.width, y: self.size.height + 100)
         let moveSham = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 6)
         let removeActionSham = SKAction.removeFromParent()
         let shamMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveSham, removeActionSham]))
@@ -467,7 +470,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         car.physicsBody?.categoryBitMask = carGroup
         car.physicsBody?.contactTestBitMask = groundGroup | heroGroup
         car.physicsBody?.collisionBitMask = groundGroup | heroGroup
-        //car.physicsBody?.allowsRotation = false
         car.physicsBody?.isDynamic = false
         car.zPosition = 5
         carObject.addChild(car)
@@ -606,6 +608,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                    repeats: false)
     }
     
+    func timerFuncStopGame(tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(timeInterval: timInt,
+                                   target: self,
+                                   selector: #selector(GameScene.stopGame),
+                                   userInfo: nil,
+                                   repeats: false)
+    }
+    
     func changeActionToJump() {
         let heroJumpAnimation = SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)
         let jumpHero = SKAction.repeatForever(heroJumpAnimation)
@@ -628,21 +640,69 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func reloadGame() {
         scene?.isPaused = false
+        SKTAudio.sharedInstance().playBackgroundMusic(filename: "toxin.mp3")
         
-        faceObject.removeAllChildren()
-        carObject.removeAllChildren()
-        heroObject.removeAllChildren()
-        skyObject.removeAllChildren()
-        groundObject.removeAllChildren()
-        bgObject.removeAllChildren()
-        
-        faceObject.speed = 1
-        heroObject.speed = 1
-        carObject.speed = 1
-        bgObject.speed = 1
-        self.speed = 1
+//        faceObject.removeAllChildren()
+//        carObject.removeAllChildren()
+//        heroObject.removeAllChildren()
+//        skyObject.removeAllChildren()
+//        groundObject.removeAllChildren()
+//        bgObject.removeAllChildren()
+//
+//        faceObject.speed = 1
+//        heroObject.speed = 1
+//        carObject.speed = 1
+//        bgObject.speed = 1
+//        self.speed = 1
         
         createGame()
     }
+    
+    @objc func stopGame() {
+        
+        heroObject.removeAllChildren()
+        faceObject.removeAllChildren()
+        shamObject.removeAllChildren()
+        carObject.removeAllChildren()
+        dickObject.removeAllChildren()
+        boomObject.removeAllChildren()
+        wallObject.removeAllChildren()
+        skyObject.removeAllChildren()
+        groundObject.removeAllChildren()
+        //bgObject.removeAllChildren()
+        
+        stopAllTimers()
+        SKTAudio.sharedInstance().pauseBackgroundMusic()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.scene?.isPaused = true
+            self.gameVCBgidge.reloadBG.frame = self.view!.frame
+            self.gameVCBgidge.reloadBG.isHidden = false
+            self.gameVCBgidge.reloadButton.isHidden = false
+        }
+    }
+    
+    func stopAllTimers() {
+        timerAddDirtyRam.invalidate()
+        timerAddIskDram.invalidate()
+        timerAddPovFasol.invalidate()
+        timerAddDick.invalidate()
+        timerCar.invalidate()
+        timerCarTwo.invalidate()
+        timerAddPol.invalidate()
+        timerFlash.invalidate()
+        timerFlashTwo.invalidate()
+        timerFlashThree.invalidate()
+        timerFlashFour.invalidate()
+        timerColView.invalidate()
+        timerColViewTwo.invalidate()
+        timerColViewThree.invalidate()
+        timerColViewFour.invalidate()
+        timerFace.invalidate()
+        timerSham.invalidate()
+        timerFaceTwo.invalidate()
+        timerShamTwo.invalidate()
+    }
+    
     
 }

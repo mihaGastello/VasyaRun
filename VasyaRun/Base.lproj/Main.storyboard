@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ifv-5l-EpX">
-    <device id="retina5_9" orientation="landscape" appearance="light"/>
+    <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,32 +16,44 @@
                         <viewControllerLayoutGuide type="bottom" id="Dj6-9w-NWv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFill" id="yP6-EL-rf1">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StartBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="LYR-ky-C8z">
-                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ramBg" translatesAutoresizingMaskIntoConstraints="NO" id="LYR-ky-C8z">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Y5-Gt5">
-                                <rect key="frame" x="317.66666666666669" y="259" width="177" height="67"/>
+                                <rect key="frame" x="476" y="264" width="200" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="Ip9-rv-rAx"/>
-                                    <constraint firstAttribute="height" constant="67" id="mbD-6v-A5G"/>
+                                    <constraint firstAttribute="width" constant="200" id="6sG-4F-p64"/>
+                                    <constraint firstAttribute="height" constant="110" id="Wwv-MC-98F"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="StartButton 1"/>
+                                <state key="normal" backgroundImage="startBt"/>
                                 <connections>
                                     <action selector="startGameWithSender:" destination="GHo-KQ-ZmB" eventType="touchUpInside" id="Ynh-dW-My1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мини игра по мотивам клипа Токсин (Грязный Рамирес). Автор: MihailGastello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-me-P7e">
+                                <rect key="frame" x="471" y="30" width="215" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="Nk1-B2-XjA"/>
+                                    <constraint firstAttribute="width" constant="215" id="ppK-UD-cX6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hNJ-Y5-Gt5" firstAttribute="centerX" secondItem="yP6-EL-rf1" secondAttribute="centerX" id="2Lk-Nw-NdS"/>
-                            <constraint firstItem="Dj6-9w-NWv" firstAttribute="top" secondItem="hNJ-Y5-Gt5" secondAttribute="bottom" constant="15" id="5CH-6M-Ehx"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="yP6-EL-rf1" secondAttribute="trailing" id="86H-gI-i3z"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="top" secondItem="yP6-EL-rf1" secondAttribute="top" id="8TQ-Q6-Rj9"/>
+                            <constraint firstItem="YNb-me-P7e" firstAttribute="top" secondItem="Zqe-ur-KWe" secondAttribute="bottom" constant="30" id="8Xm-b1-xpO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hNJ-Y5-Gt5" secondAttribute="trailing" constant="40" id="Eho-Fh-I9N"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="yP6-EL-rf1" secondAttribute="leading" id="IEF-Hg-FWT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YNb-me-P7e" secondAttribute="trailing" constant="30" id="een-oH-wOW"/>
+                            <constraint firstItem="Dj6-9w-NWv" firstAttribute="top" secondItem="hNJ-Y5-Gt5" secondAttribute="bottom" constant="40" id="mbO-zm-SBi"/>
                             <constraint firstAttribute="bottom" secondItem="LYR-ky-C8z" secondAttribute="bottom" id="pLo-rK-91p"/>
                         </constraints>
                     </view>
@@ -60,7 +72,7 @@
                         <viewControllerLayoutGuide type="bottom" id="DJq-dD-pb6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eeC-17-YCL">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -78,25 +90,26 @@
                         <viewControllerLayoutGuide type="bottom" id="WYI-LN-7X6"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lug-hv-xfB">
-                                <rect key="frame" x="-20" y="-9" width="852" height="393"/>
+                            <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lug-hv-xfB">
+                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="393" id="D7m-J6-88c"/>
-                                    <constraint firstAttribute="width" constant="852" id="p10-UZ-Zhg"/>
-                                </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ramBg" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-3m-kig">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
-                                <rect key="frame" x="311.33333333333331" y="139.33333333333334" width="189.33333333333331" height="96.333333333333343"/>
+                                <rect key="frame" x="486.66666666666669" y="277.66666666666669" width="189.33333333333331" height="96.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="189.33000000000001" id="Qbp-Ei-Ahh"/>
                                     <constraint firstAttribute="height" constant="96.329999999999998" id="XbL-BK-0JG"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="restartButton"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="car1"/>
                                 <connections>
                                     <action selector="reloadGameButtonWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="y2g-uS-CO9"/>
                                 </connections>
@@ -104,10 +117,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Xwl-op-vEu" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="9AE-Pp-5Fm"/>
-                            <constraint firstItem="Xwl-op-vEu" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="ct5-Br-S1o"/>
-                            <constraint firstItem="lug-hv-xfB" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="jH4-Ib-H1G"/>
-                            <constraint firstItem="lug-hv-xfB" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="pKA-vg-ysN"/>
+                            <constraint firstItem="WYI-LN-7X6" firstAttribute="top" secondItem="Xwl-op-vEu" secondAttribute="bottom" constant="40" id="U8Z-wT-BvY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xwl-op-vEu" secondAttribute="trailing" constant="40" id="jeL-Cg-0wi"/>
                         </constraints>
                     </view>
                     <connections>
@@ -117,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901.63043478260875" y="-2.8985507246376816"/>
+            <point key="canvasLocation" x="900.81521739130437" y="-4.3478260869565224"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mqu-kg-5kK">
@@ -138,9 +149,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="StartBackGround" width="1327" height="610"/>
-        <image name="StartButton 1" width="152.5" height="52.5"/>
-        <image name="restartButton" width="165.33332824707031" height="82.333335876464844"/>
+        <image name="car1" width="365" height="131"/>
+        <image name="ramBg" width="1500" height="692.5"/>
+        <image name="startBt" width="200" height="111"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

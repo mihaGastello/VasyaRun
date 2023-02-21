@@ -12,9 +12,6 @@ class MainViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
     }
     
     @IBAction func startGame(sender: UIButton) {

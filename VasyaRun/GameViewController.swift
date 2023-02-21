@@ -14,13 +14,22 @@ class GameViewController: UIViewController {
     @IBOutlet weak var reloadBG: UIView!
     @IBOutlet weak var reloadButton: UIButton!
     
+    
     var scene = GameScene(size: CGSize(width: 1024, height: 768))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let bgView = UIView(frame: self.view!.frame)
+//        bgView.backgroundColor = UIColor.green
+//        bgView.alpha = 0.5
+//        self.view!.addSubview(bgView)
+//        bgView.isHidden = true
+        
         reloadButton.isHidden = true
         reloadBG.isHidden = true
+       
+        
         
         let view = self.view as! SKView?
         view?.ignoresSiblingOrder = true
@@ -30,13 +39,13 @@ class GameViewController: UIViewController {
         scene.scaleMode = .resizeFill
         scene.gameVCBgidge = self
         view?.presentScene(scene)
-        
     }
 
     @IBAction func reloadGameButton(sender: UIButton) {
         
         scene.reloadGame()
         reloadButton.isHidden = true
+        //bgView.isHidden = true
         reloadBG.isHidden = true
     }
     
