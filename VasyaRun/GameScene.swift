@@ -120,14 +120,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
         iskDramTexture = SKTexture(imageNamed: "iskDram.png")
         povFasolTexture = SKTexture(imageNamed: "povFasol.png")
-        runHeroTexture = SKTexture(imageNamed: "run_020.png")
-        jumpHeroTexture = SKTexture(imageNamed: "run_000.png")
+        runHeroTexture = SKTexture(imageNamed: "hero14.png")
+        jumpHeroTexture = SKTexture(imageNamed: "hero14.png")
         bgTexture = SKTexture(imageNamed: "bg7.jpg")
         carTexture = SKTexture(imageNamed: "car1.png")
         dickTexture = SKTexture(imageNamed: "di1.png")
         faceTexture = SKTexture(imageNamed: "face5.png")
         shamTexture = SKTexture(imageNamed: "sham5.png")
-        heroJumpTextArr = [SKTexture(imageNamed: "run_000.png")]
+        heroJumpTextArr = [SKTexture(imageNamed: "hero14.png")]
         whiteBoomTexture = SKTexture(imageNamed: "cloud200.png")
         
         whiteBoomTextArr = [
@@ -285,17 +285,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero = SKSpriteNode(texture: runHeroTexture)
         
         heroRunTextArr = [
-            SKTexture(imageNamed: "run_004.png"),
-            SKTexture(imageNamed: "run_008.png"),
-            SKTexture(imageNamed: "run_012.png"),
-            SKTexture(imageNamed: "run_016.png"),
-            SKTexture(imageNamed: "run_020.png"),
-            SKTexture(imageNamed: "run_024.png"),
-            SKTexture(imageNamed: "run_028.png"),
-            SKTexture(imageNamed: "run_032.png"),
-            SKTexture(imageNamed: "run_036.png"),
-            SKTexture(imageNamed: "run_040.png"),
-            SKTexture(imageNamed: "run_000.png")]
+            SKTexture(imageNamed: "hero1.png"),
+            SKTexture(imageNamed: "hero2.png"),
+            SKTexture(imageNamed: "hero3.png"),
+            SKTexture(imageNamed: "hero4.png"),
+            SKTexture(imageNamed: "hero5.png"),
+            SKTexture(imageNamed: "hero6.png"),
+            SKTexture(imageNamed: "hero7.png"),
+            SKTexture(imageNamed: "hero8.png"),
+            SKTexture(imageNamed: "hero9.png"),
+            SKTexture(imageNamed: "hero10.png"),
+            SKTexture(imageNamed: "hero11.png"),
+            SKTexture(imageNamed: "hero12.png"),
+            SKTexture(imageNamed: "hero13.png"),
+            SKTexture(imageNamed: "hero14.png"),
+            SKTexture(imageNamed: "hero15.png"),
+            SKTexture(imageNamed: "hero16.png")]
         
         changeActionToRun()
         hero.position = position
@@ -303,7 +308,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveBeginHero = SKAction.moveBy(x: -self.frame.size.width, y: 0 , duration: 25)
         hero.run(moveBeginHero)
         
-        hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (hero.size.width - 10), height: hero.size.height))
+        hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (hero.size.width - 30),
+                                                             height: hero.size.height - 20))
         hero.physicsBody?.categoryBitMask = heroGroup
         hero.physicsBody?.contactTestBitMask = groundGroup | carGroup | wallGroup | faceGroup | shamGroup
         hero.physicsBody?.collisionBitMask = groundGroup | carGroup | wallGroup

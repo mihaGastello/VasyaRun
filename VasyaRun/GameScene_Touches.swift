@@ -14,7 +14,7 @@ extension GameScene {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 130))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 450))
             changeActionToJump()
         }
     }
