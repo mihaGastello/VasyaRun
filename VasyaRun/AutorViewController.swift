@@ -11,11 +11,15 @@ import SpriteKit
 
 class AutorViewController: UIViewController {
     
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var emptyBg: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .green
-        
+    }
+    
+    @IBAction func closeAutorView(sender: UIButton) {
+        dismiss(animated: true)
     }
     
 }

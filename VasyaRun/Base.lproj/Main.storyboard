@@ -78,22 +78,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyBg" translatesAutoresizingMaskIntoConstraints="NO" id="PbT-Yk-sgO">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-Qm-FQs">
-                                <rect key="frame" x="606" y="30" width="80" height="51"/>
+                                <rect key="frame" x="660" y="30" width="46" height="63"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="M18-CX-9ut"/>
-                                    <constraint firstAttribute="height" constant="51" id="d6V-Fj-Lbp"/>
+                                    <constraint firstAttribute="height" constant="63" id="Lfw-e5-QBH"/>
+                                    <constraint firstAttribute="width" constant="46" id="XF6-nh-buc"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button" image="exitBt"/>
+                                <state key="normal" image="exitBtGreen"/>
+                                <connections>
+                                    <action selector="closeAutorViewWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="4Yd-O8-90l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="mxv-Qm-FQs" secondAttribute="trailing" constant="30" id="f0t-or-beE"/>
-                            <constraint firstItem="mxv-Qm-FQs" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" constant="30" id="lLK-qy-ci4"/>
+                            <constraint firstAttribute="trailing" secondItem="mxv-Qm-FQs" secondAttribute="trailing" constant="30" id="IWC-Vm-tyA"/>
+                            <constraint firstAttribute="bottom" secondItem="PbT-Yk-sgO" secondAttribute="bottom" id="Nu4-Z2-fJO"/>
+                            <constraint firstItem="mxv-Qm-FQs" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" constant="30" id="Pzh-gv-Nbz"/>
+                            <constraint firstAttribute="trailing" secondItem="PbT-Yk-sgO" secondAttribute="trailing" id="WUQ-DV-tnD"/>
+                            <constraint firstItem="PbT-Yk-sgO" firstAttribute="leading" secondItem="eeC-17-YCL" secondAttribute="leading" id="Waq-vU-4E1"/>
+                            <constraint firstItem="PbT-Yk-sgO" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" id="n6z-hU-RJb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="closeButton" destination="mxv-Qm-FQs" id="kUE-4K-jAg"/>
+                        <outlet property="emptyBg" destination="PbT-Yk-sgO" id="8y6-ex-0hQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70R-RD-CGi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -107,7 +121,7 @@
                         <viewControllerLayoutGuide type="top" id="fh8-RB-avg"/>
                         <viewControllerLayoutGuide type="bottom" id="WYI-LN-7X6"/>
                     </layoutGuides>
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -185,7 +199,8 @@
     </scenes>
     <resources>
         <image name="avtorBt" width="236.5" height="104.5"/>
-        <image name="exitBt" width="116" height="73"/>
+        <image name="emptyBg" width="1500" height="692.5"/>
+        <image name="exitBtGreen" width="44" height="63"/>
         <image name="ramBg" width="1500" height="692.5"/>
         <image name="restartBt" width="277.5" height="105.5"/>
         <image name="startBt" width="200" height="111"/>
