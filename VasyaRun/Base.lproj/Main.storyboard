@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-XS-zPX">
                                 <rect key="frame" x="451" y="85" width="215" height="244"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мини игра по мотивам клипа Токсин (Грязный Рамирес). Автор: MihailGastello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-me-P7e">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мини-игра по мотивам клипа Токсин (Грязный Рамирес). Автор: MihailGastello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-me-P7e">
                                         <rect key="frame" x="0.0" y="0.0" width="215" height="77"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="77" id="Nk1-B2-XjA"/>
@@ -66,10 +66,10 @@
             </objects>
             <point key="canvasLocation" x="135.96059113300493" y="-4"/>
         </scene>
-        <!--View Controller-->
+        <!--Autor View Controller-->
         <scene sceneID="l0L-ez-RqQ">
             <objects>
-                <viewController id="1LJ-qc-VFG" sceneMemberID="viewController">
+                <viewController id="1LJ-qc-VFG" customClass="AutorViewController" customModule="VasyaRun" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TPY-eV-YLi"/>
                         <viewControllerLayoutGuide type="bottom" id="DJq-dD-pb6"/>
@@ -77,12 +77,27 @@
                     <view key="view" contentMode="scaleToFill" id="eeC-17-YCL">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-Qm-FQs">
+                                <rect key="frame" x="606" y="30" width="80" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="M18-CX-9ut"/>
+                                    <constraint firstAttribute="height" constant="51" id="d6V-Fj-Lbp"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="exitBt"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mxv-Qm-FQs" secondAttribute="trailing" constant="30" id="f0t-or-beE"/>
+                            <constraint firstItem="mxv-Qm-FQs" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" constant="30" id="lLK-qy-ci4"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70R-RD-CGi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-607" y="714"/>
+            <point key="canvasLocation" x="900.81521739130437" y="792.75362318840587"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -112,6 +127,7 @@
                                         <state key="normal" image="avtorBt"/>
                                         <connections>
                                             <action selector="toAvtorInfoWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="5Km-hn-BoM"/>
+                                            <segue destination="1LJ-qc-VFG" kind="presentation" id="JLh-E8-lek"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
@@ -169,6 +185,7 @@
     </scenes>
     <resources>
         <image name="avtorBt" width="236.5" height="104.5"/>
+        <image name="exitBt" width="116" height="73"/>
         <image name="ramBg" width="1500" height="692.5"/>
         <image name="restartBt" width="277.5" height="105.5"/>
         <image name="startBt" width="200" height="111"/>
