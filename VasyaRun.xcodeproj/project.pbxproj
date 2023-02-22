@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A4733C8299A535B0007759F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4733C7299A535B0007759F /* MainViewController.swift */; };
 		8A4733CA299A6B810007759F /* toxin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A4733C9299A6B810007759F /* toxin.mp3 */; };
+		8A5CA48929A61D9100DDA1A0 /* AutorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */; };
 		8A98E5E129682ABC00EDEA39 /* electricDead.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A98E5E029682ABC00EDEA39 /* electricDead.mp3 */; };
 		8A98E5E3296A893F00EDEA39 /* AnimationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A98E5E2296A893F00EDEA39 /* AnimationClass.swift */; };
 		8AAD2BA02928ED0900F483B3 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		8A4733C7299A535B0007759F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8A4733C9299A6B810007759F /* toxin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = toxin.mp3; sourceTree = "<group>"; };
+		8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorViewController.swift; sourceTree = "<group>"; };
 		8A98E5E029682ABC00EDEA39 /* electricDead.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = electricDead.mp3; sourceTree = "<group>"; };
 		8A98E5E2296A893F00EDEA39 /* AnimationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationClass.swift; sourceTree = "<group>"; };
 		8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
@@ -91,10 +93,11 @@
 				8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */,
 				8AAF3DD129261E5700A5C027 /* GameScene.swift */,
 				8A98E5E2296A893F00EDEA39 /* AnimationClass.swift */,
-				8AAF3DD329261E5700A5C027 /* GameViewController.swift */,
 				8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */,
 				8AAF3DD529261E5700A5C027 /* Main.storyboard */,
+				8AAF3DD329261E5700A5C027 /* GameViewController.swift */,
 				8A4733C7299A535B0007759F /* MainViewController.swift */,
+				8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */,
 				8AAF3DD829261E5800A5C027 /* Assets.xcassets */,
 				8AAF3DDA29261E5800A5C027 /* LaunchScreen.storyboard */,
 				8AAD2BA32928ED3100F483B3 /* Sounds */,
@@ -186,6 +189,7 @@
 				8AAF3DD229261E5700A5C027 /* GameScene.swift in Sources */,
 				8AAF3DD429261E5700A5C027 /* GameViewController.swift in Sources */,
 				8AAF3DCC29261E5700A5C027 /* AppDelegate.swift in Sources */,
+				8A5CA48929A61D9100DDA1A0 /* AutorViewController.swift in Sources */,
 				8A98E5E3296A893F00EDEA39 /* AnimationClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

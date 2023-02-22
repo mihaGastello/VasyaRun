@@ -13,7 +13,6 @@ class GameViewController: UIViewController {
 
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var avtorButton: UIButton!
-    @IBOutlet weak var exitButton: UIButton!
     @IBOutlet weak var reloadRamBg: UIImageView!
     
     var scene = GameScene(size: CGSize(width: 1024, height: 768))
@@ -24,7 +23,6 @@ class GameViewController: UIViewController {
         reloadButton.isHidden = true
         reloadRamBg.isHidden = true
         avtorButton.isHidden = true
-        exitButton.isHidden = true
        
         let view = self.view as! SKView?
         view?.ignoresSiblingOrder = true
@@ -38,16 +36,12 @@ class GameViewController: UIViewController {
     
     @IBAction func toAvtorInfo(sender: UIButton) {
     }
-    
-    @IBAction func exitFromApp(sender: UIButton) {
-    }
 
     @IBAction func reloadGameButton(sender: UIButton) {
         scene.reloadGame()
         reloadButton.isHidden = true
         reloadRamBg.isHidden = true
         avtorButton.isHidden = true
-        exitButton.isHidden = true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

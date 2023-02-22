@@ -210,7 +210,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameVCBgidge.reloadButton.isHidden = true
         gameVCBgidge.reloadRamBg.isHidden = true
         gameVCBgidge.avtorButton.isHidden = true
-        gameVCBgidge.exitButton.isHidden = true
         
         createBg()
         createGround()
@@ -683,7 +682,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.gameVCBgidge.reloadButton.isHidden = false
             self.gameVCBgidge.reloadRamBg.isHidden = false
             self.gameVCBgidge.avtorButton.isHidden = false
-            self.gameVCBgidge.exitButton.isHidden = false
         }
     }
     
