@@ -207,6 +207,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         onGroung = true
         onDeath = false
+        gameVCBgidge.reloadButton.isHidden = true
+        gameVCBgidge.reloadRamBg.isHidden = true
+        gameVCBgidge.avtorButton.isHidden = true
+        gameVCBgidge.exitButton.isHidden = true
+        
         createBg()
         createGround()
         createSky()
@@ -231,8 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncCar(tim: timerCar, timInt: 33)
         timerFuncCar(tim: timerCarTwo, timInt: 88)
         timerFuncStopGame(tim: timerStopGame, timInt: 65)
-        gameVCBgidge.reloadButton.isHidden = true
-        gameVCBgidge.reloadBG.isHidden = true
+
     }
     
     func createBg() {
@@ -676,9 +680,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.scene?.isPaused = true
-            self.gameVCBgidge.reloadBG.frame = self.view!.frame
-            self.gameVCBgidge.reloadBG.isHidden = false
             self.gameVCBgidge.reloadButton.isHidden = false
+            self.gameVCBgidge.reloadRamBg.isHidden = false
+            self.gameVCBgidge.avtorButton.isHidden = false
+            self.gameVCBgidge.exitButton.isHidden = false
         }
     }
     

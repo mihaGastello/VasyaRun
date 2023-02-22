@@ -22,14 +22,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ramBg" translatesAutoresizingMaskIntoConstraints="NO" id="LYR-ky-C8z">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Y5-Gt5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-Y5-Gt5">
                                 <rect key="frame" x="476" y="264" width="200" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="6sG-4F-p64"/>
                                     <constraint firstAttribute="height" constant="110" id="Wwv-MC-98F"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" backgroundImage="startBt"/>
+                                <state key="normal" image="startBt"/>
                                 <connections>
                                     <action selector="startGameWithSender:" destination="GHo-KQ-ZmB" eventType="touchUpInside" id="Ynh-dW-My1"/>
                                 </connections>
@@ -93,37 +93,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lug-hv-xfB">
-                                <rect key="frame" x="0.0" y="0.0" width="812" height="375"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ramBg" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-3m-kig">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ramBg" translatesAutoresizingMaskIntoConstraints="NO" id="qu3-3m-kig">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
-                                <rect key="frame" x="486.66666666666669" y="277.66666666666669" width="189.33333333333331" height="96.333333333333314"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-op-vEu">
+                                <rect key="frame" x="456" y="290" width="220" height="84"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="189.33000000000001" id="Qbp-Ei-Ahh"/>
-                                    <constraint firstAttribute="height" constant="96.329999999999998" id="XbL-BK-0JG"/>
+                                    <constraint firstAttribute="width" constant="220" id="Qbp-Ei-Ahh"/>
+                                    <constraint firstAttribute="height" constant="84" id="XbL-BK-0JG"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button" image="car1"/>
+                                <state key="normal" image="restartBt"/>
                                 <connections>
                                     <action selector="reloadGameButtonWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="y2g-uS-CO9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aE4-fS-yOS">
+                                <rect key="frame" x="496" y="190" width="180" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="XY4-bQ-x6x"/>
+                                    <constraint firstAttribute="height" constant="80" id="hs2-U3-EUG"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="avtorBt"/>
+                                <connections>
+                                    <action selector="toAvtorInfoWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="5Km-hn-BoM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqU-vd-Le2">
+                                <rect key="frame" x="576" y="97" width="100" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="15s-aE-T9A"/>
+                                    <constraint firstAttribute="height" constant="63" id="JMR-3Q-agm"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="exitBt"/>
+                                <connections>
+                                    <action selector="exitFromAppWithSender:" destination="BV1-FR-VrT" eventType="touchUpInside" id="m1P-bd-t3O"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qu3-3m-kig" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="0Ds-s0-XCm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SqU-vd-Le2" secondAttribute="trailing" constant="40" id="1Db-PA-jdJ"/>
+                            <constraint firstItem="aE4-fS-yOS" firstAttribute="top" secondItem="SqU-vd-Le2" secondAttribute="bottom" constant="30" id="1xe-ne-UId"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aE4-fS-yOS" secondAttribute="trailing" constant="40" id="2z8-aC-F03"/>
+                            <constraint firstItem="qu3-3m-kig" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="3yl-bn-rUh"/>
                             <constraint firstItem="WYI-LN-7X6" firstAttribute="top" secondItem="Xwl-op-vEu" secondAttribute="bottom" constant="40" id="U8Z-wT-BvY"/>
+                            <constraint firstAttribute="trailing" secondItem="qu3-3m-kig" secondAttribute="trailing" id="gth-Rk-8HM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xwl-op-vEu" secondAttribute="trailing" constant="40" id="jeL-Cg-0wi"/>
+                            <constraint firstItem="WYI-LN-7X6" firstAttribute="top" secondItem="qu3-3m-kig" secondAttribute="bottom" id="mkl-fH-3ss"/>
+                            <constraint firstItem="Xwl-op-vEu" firstAttribute="top" secondItem="aE4-fS-yOS" secondAttribute="bottom" constant="20" id="sqr-cR-0AG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="SqU-vd-Le2" secondAttribute="trailing" constant="40" id="u9E-9E-b7G"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="reloadBG" destination="lug-hv-xfB" id="P0j-HN-Hy5"/>
+                        <outlet property="avtorButton" destination="aE4-fS-yOS" id="7O8-Og-cxI"/>
+                        <outlet property="exitButton" destination="SqU-vd-Le2" id="esd-su-hdF"/>
                         <outlet property="reloadButton" destination="Xwl-op-vEu" id="rQJ-kQ-zxd"/>
+                        <outlet property="reloadRamBg" destination="qu3-3m-kig" id="A9J-3X-QO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -149,8 +178,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="car1" width="365" height="131"/>
+        <image name="avtorBt" width="236.5" height="104.5"/>
+        <image name="exitBt" width="116" height="73"/>
         <image name="ramBg" width="1500" height="692.5"/>
+        <image name="restartBt" width="277.5" height="105.5"/>
         <image name="startBt" width="200" height="111"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

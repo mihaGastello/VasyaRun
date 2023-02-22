@@ -11,26 +11,21 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet weak var reloadBG: UIView!
     @IBOutlet weak var reloadButton: UIButton!
-    
+    @IBOutlet weak var avtorButton: UIButton!
+    @IBOutlet weak var exitButton: UIButton!
+    @IBOutlet weak var reloadRamBg: UIImageView!
     
     var scene = GameScene(size: CGSize(width: 1024, height: 768))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let bgView = UIView(frame: self.view!.frame)
-//        bgView.backgroundColor = UIColor.green
-//        bgView.alpha = 0.5
-//        self.view!.addSubview(bgView)
-//        bgView.isHidden = true
-        
         reloadButton.isHidden = true
-        reloadBG.isHidden = true
+        reloadRamBg.isHidden = true
+        avtorButton.isHidden = true
+        exitButton.isHidden = true
        
-        
-        
         let view = self.view as! SKView?
         view?.ignoresSiblingOrder = true
         view?.showsFPS = true
@@ -40,13 +35,19 @@ class GameViewController: UIViewController {
         scene.gameVCBgidge = self
         view?.presentScene(scene)
     }
+    
+    @IBAction func toAvtorInfo(sender: UIButton) {
+    }
+    
+    @IBAction func exitFromApp(sender: UIButton) {
+    }
 
     @IBAction func reloadGameButton(sender: UIButton) {
-        
         scene.reloadGame()
         reloadButton.isHidden = true
-        //bgView.isHidden = true
-        reloadBG.isHidden = true
+        reloadRamBg.isHidden = true
+        avtorButton.isHidden = true
+        exitButton.isHidden = true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
