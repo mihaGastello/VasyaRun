@@ -10,7 +10,7 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var animations = AnimationClass()
+    //var animations = AnimationClass()
     var sound = true
     var onGroung = true
     var onDeath = false
@@ -36,17 +36,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var povFasol = SKSpriteNode()
     var iskDram = SKSpriteNode()
     var bg = SKSpriteNode()
-    
     var ground = SKSpriteNode()
     var sky = SKSpriteNode()
     var wall = SKSpriteNode()
-    
     var hero = SKSpriteNode()
     var car = SKSpriteNode()
     var face = SKSpriteNode()
     var sham = SKSpriteNode()
     var dick = SKSpriteNode()
-    
+    var colorizedBack = SKSpriteNode()
     var whiteBoom = SKSpriteNode()
     
     //emiters
@@ -101,9 +99,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerStopGame = Timer()
     
     // Sounds
-    var bottleSound = SKAction()
-    var carSound = SKAction()
-    var deadSound = SKAction()
+//    var bottleSound = SKAction()
+//    var carSound = SKAction()
+//    var deadSound = SKAction()
     
     // Array textures for animate
     var heroRunTextArr = [SKTexture]()
@@ -184,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         createObjects()
         createGame()
-        bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
+//        bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
     }
     
     func createObjects() {
@@ -500,23 +498,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func changeBackgroundColor() {
-        let aView = UIView(frame: self.view!.frame)
-        aView.layer.zPosition = 0
-        aView.backgroundColor = UIColor.green
-        self.view!.addSubview(aView)
-        aView.alpha = 0.1
+        
+        colorizedBack = SKSpriteNode(color: .green, size: CGSize(width: self.frame.size.width,
+                                                                 height: self.frame.size.height))
+        colorizedBack.position = CGPoint(x: self.frame.size.width/2,
+                                         y: self.frame.size.height/2)
+        colorizedBack.zPosition = 1
+        colorizedBack.alpha = 0.1
+        groundObject.addChild(colorizedBack)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-            aView.backgroundColor = UIColor.red
+            self.colorizedBack.color = UIColor.red
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                aView.backgroundColor = UIColor.blue
+                self.colorizedBack.color = UIColor.blue
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                    aView.backgroundColor = UIColor.green
+                    self.colorizedBack.color = UIColor.green
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                        aView.backgroundColor = UIColor.red
+                        self.colorizedBack.color = UIColor.red
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                            aView.backgroundColor = UIColor.blue
+                            self.colorizedBack.color = UIColor.blue
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                                aView.removeFromSuperview()
+                                self.colorizedBack.removeFromParent()
                             }
                         }
                     }
