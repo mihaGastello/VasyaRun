@@ -93,88 +93,70 @@
                                     <action selector="closeAutorViewWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="4Yd-O8-90l"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVf-Tf-5vV">
-                                <rect key="frame" x="124" y="30" width="488" height="125"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="488" id="VCU-0D-O34"/>
-                                    <constraint firstAttribute="height" constant="125" id="dzg-aK-cAl"/>
-                                </constraints>
-                                <string key="text">Всем привет, меня зовут Михаил, это мой первый пробный проект разработки приложений для iOS. Примерно полгода назад я начал изучать Swift, решил что будет интересно сделать мини-игру по клипу Токсин. Буду благодарен за любую поддержку.</string>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2uW-wS-usQ">
-                                <rect key="frame" x="178" y="309" width="380" height="35"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-Iq-2C5">
+                                <rect key="frame" x="118" y="74.666666666666686" width="500" height="265"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eL-Wo-UpP">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVf-Tf-5vV">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="ceR-iM-KHC"/>
-                                            <constraint firstAttribute="height" constant="35" id="dUf-j3-R2q"/>
+                                            <constraint firstAttribute="height" constant="110" id="dzg-aK-cAl"/>
+                                            <constraint firstAttribute="width" constant="500" id="sI0-X4-fMp"/>
                                         </constraints>
-                                        <color key="tintColor" red="0.55686277149999996" green="0.95686274770000002" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Instagram">
-                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="pressInsButtonWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="akU-Ci-rz2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mz-AF-EBX">
-                                        <rect key="frame" x="140" y="0.0" width="100" height="35"/>
+                                        <string key="text">Всем привет, меня зовут Михаил, это мой первый пробный проект разработки приложений / игр для iOS. В конце 22-го я начал изучать Swift. Пересматривая в очередной раз клип Токсин (Грязный Рамирес), пришла идея добавить фана в обучение и создать мини-игру.</string>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3og-nV-jM6">
+                                        <rect key="frame" x="0.0" y="130" width="500" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="G8W-6x-iST"/>
-                                            <constraint firstAttribute="height" constant="35" id="Olv-L6-cOU"/>
+                                            <constraint firstAttribute="height" constant="80" id="Mvt-bt-6li"/>
+                                            <constraint firstAttribute="width" constant="500" id="cIy-MO-TjB"/>
                                         </constraints>
-                                        <color key="tintColor" red="0.55686277149999996" green="0.95686274770000002" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Telegram">
-                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="pressTelButtonWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="gUz-NL-4cB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blP-Eu-OTz">
-                                        <rect key="frame" x="280" y="0.0" width="100" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="6Wy-xz-lSD"/>
-                                            <constraint firstAttribute="height" constant="35" id="oVi-TG-KuJ"/>
-                                        </constraints>
-                                        <color key="tintColor" red="0.55686277149999996" green="0.95686274770000002" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Tinkoff">
-                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="pressTinButtonWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="J7Z-5h-0MB"/>
-                                        </connections>
-                                    </button>
+                                        <string key="text">Здесь будет написано о дальнейших планах, о готовности участия в крутых проектах. Все контакты и возможность задонатить копейку по ссылке ниже.</string>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="2uW-wS-usQ">
+                                        <rect key="frame" x="125" y="230" width="250" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mz-AF-EBX">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="Et3-aB-4Gv"/>
+                                                    <constraint firstAttribute="height" constant="35" id="TlL-XY-UTD"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.55686277149999996" green="0.95686274770000002" blue="0.3058823645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Taplink">
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="pressTelButtonWithSender:" destination="1LJ-qc-VFG" eventType="touchUpInside" id="gUz-NL-4cB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2uW-wS-usQ" firstAttribute="centerX" secondItem="eeC-17-YCL" secondAttribute="centerX" id="2bm-Lf-Dwp"/>
-                            <constraint firstItem="rVf-Tf-5vV" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" constant="30" id="BSu-K7-zBF"/>
                             <constraint firstAttribute="trailing" secondItem="mxv-Qm-FQs" secondAttribute="trailing" constant="30" id="IWC-Vm-tyA"/>
                             <constraint firstAttribute="bottom" secondItem="PbT-Yk-sgO" secondAttribute="bottom" id="Nu4-Z2-fJO"/>
                             <constraint firstItem="mxv-Qm-FQs" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" constant="30" id="Pzh-gv-Nbz"/>
                             <constraint firstAttribute="trailing" secondItem="PbT-Yk-sgO" secondAttribute="trailing" id="WUQ-DV-tnD"/>
                             <constraint firstItem="PbT-Yk-sgO" firstAttribute="leading" secondItem="eeC-17-YCL" secondAttribute="leading" id="Waq-vU-4E1"/>
-                            <constraint firstItem="DJq-dD-pb6" firstAttribute="top" secondItem="2uW-wS-usQ" secondAttribute="bottom" constant="70" id="mqf-ZQ-9BS"/>
+                            <constraint firstItem="rgP-Iq-2C5" firstAttribute="centerY" secondItem="eeC-17-YCL" secondAttribute="centerY" id="dZq-x8-Yp8"/>
                             <constraint firstItem="PbT-Yk-sgO" firstAttribute="top" secondItem="TPY-eV-YLi" secondAttribute="bottom" id="n6z-hU-RJb"/>
-                            <constraint firstItem="rVf-Tf-5vV" firstAttribute="centerX" secondItem="eeC-17-YCL" secondAttribute="centerX" id="wZG-Cb-nzN"/>
+                            <constraint firstItem="rgP-Iq-2C5" firstAttribute="centerX" secondItem="eeC-17-YCL" secondAttribute="centerX" id="pJU-LX-Srj"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="mxv-Qm-FQs" id="kUE-4K-jAg"/>
                         <outlet property="emptyBg" destination="PbT-Yk-sgO" id="8y6-ex-0hQ"/>
-                        <outlet property="insButton" destination="1eL-Wo-UpP" id="3BJ-qA-Kks"/>
                         <outlet property="telButton" destination="4mz-AF-EBX" id="ppD-QP-XCE"/>
-                        <outlet property="tinButton" destination="blP-Eu-OTz" id="iqW-4f-c8v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70R-RD-CGi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

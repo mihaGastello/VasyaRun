@@ -29,12 +29,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var deadHeroTexture: SKTexture!
     var faceTexture: SKTexture!
     var shamTexture: SKTexture!
+    var morgTexture: SKTexture!
     var whiteBoomTexture: SKTexture!
+    var guysTexture: SKTexture!
+    var sleepTexture: SKTexture!
+    var tableTexture: SKTexture!
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
     var povFasol = SKSpriteNode()
     var iskDram = SKSpriteNode()
+    var title = SKSpriteNode()
     var bg = SKSpriteNode()
     var ground = SKSpriteNode()
     var sky = SKSpriteNode()
@@ -43,29 +48,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var car = SKSpriteNode()
     var face = SKSpriteNode()
     var sham = SKSpriteNode()
+    var morg = SKSpriteNode()
     var dick = SKSpriteNode()
     var colorizedBack = SKSpriteNode()
     var whiteBoom = SKSpriteNode()
-    
-    //emiters
-    var boomEmitter = SKEmitterNode()
+    var guys = SKSpriteNode()
+    var sleep = SKSpriteNode()
+    var table = SKSpriteNode()
     
     // Sprite Objects
     var dirtyRamObject = SKNode()
     var bgObject = SKNode()
-    
     var groundObject = SKNode()
     var skyObject = SKNode()
     var wallObject = SKNode()
-    
     var heroObject = SKNode()
     var carObject = SKNode()
-    var faceObject = SKNode()
-    var shamObject = SKNode()
+    var headObject = SKNode()
+    var titleObject = SKNode()
+    // var shamObject = SKNode()
     var dickObject = SKNode()
-    
     var boomObject = SKNode()
-    var boomEmitterObject = SKNode()
+    var backPersonObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
@@ -97,11 +101,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerFaceTwo = Timer()
     var timerShamTwo = Timer()
     var timerStopGame = Timer()
+    var timerBackSleep = Timer()
+    var timerBackGuys = Timer()
+    var timerBackTable = Timer()
+    var timerMorg = Timer()
+    var timerMorgTwo = Timer()
     
     // Sounds
-//    var bottleSound = SKAction()
-//    var carSound = SKAction()
-//    var deadSound = SKAction()
+    //    var bottleSound = SKAction()
     
     // Array textures for animate
     var heroRunTextArr = [SKTexture]()
@@ -111,9 +118,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var heroDeadTextArr = [SKTexture]()
     var faceTextArr = [SKTexture]()
     var shamTextArr = [SKTexture]()
+    var morgTextArr = [SKTexture]()
     var whiteBoomTextArr = [SKTexture]()
-
+    
     override func didMove(to view: SKView) {
+        
+        guysTexture = SKTexture(imageNamed: "guys.png")
+        sleepTexture = SKTexture(imageNamed: "sleep.png")
+        tableTexture = SKTexture(imageNamed: "table.png")
         
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
         iskDramTexture = SKTexture(imageNamed: "iskDram.png")
@@ -123,8 +135,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bgTexture = SKTexture(imageNamed: "bg7.jpg")
         carTexture = SKTexture(imageNamed: "car1.png")
         dickTexture = SKTexture(imageNamed: "di1.png")
-        faceTexture = SKTexture(imageNamed: "face5.png")
-        shamTexture = SKTexture(imageNamed: "sham5.png")
+        
+        faceTexture = SKTexture(imageNamed: "face1.png")
+        shamTexture = SKTexture(imageNamed: "sham1.png")
+        morgTexture = SKTexture(imageNamed: "morg1.png")
+        
         heroJumpTextArr = [SKTexture(imageNamed: "hero14.png")]
         whiteBoomTexture = SKTexture(imageNamed: "cloud200.png")
         
@@ -179,10 +194,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "sham11.png"),
             SKTexture(imageNamed: "sham12.png")]
         
+        morgTextArr = [
+            SKTexture(imageNamed: "morg1.png"),
+            SKTexture(imageNamed: "morg2.png"),
+            SKTexture(imageNamed: "morg3.png"),
+            SKTexture(imageNamed: "morg4.png"),
+            SKTexture(imageNamed: "morg5.png"),
+            SKTexture(imageNamed: "morg6.png"),
+            SKTexture(imageNamed: "morg7.png"),
+            SKTexture(imageNamed: "morg8.png"),
+            SKTexture(imageNamed: "morg9.png"),
+            SKTexture(imageNamed: "morg10.png"),
+            SKTexture(imageNamed: "morg11.png"),
+            SKTexture(imageNamed: "morg12.png")]
+        
         self.physicsWorld.contactDelegate = self
         createObjects()
         createGame()
-//        bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
+        //        bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
     }
     
     func createObjects() {
@@ -194,11 +223,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(heroObject)
         self.addChild(carObject)
         self.addChild(dickObject)
-        self.addChild(faceObject)
-        self.addChild(shamObject)
+        self.addChild(headObject)
+       
+        self.addChild(titleObject)
         self.addChild(dirtyRamObject)
         
         self.addChild(boomObject)
+        self.addChild(backPersonObject)
     }
     
     func createGame() {
@@ -214,10 +245,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createWall()
         createHero()
-        timerFuncDirtyRam()
-        timerFuncIskDram()
-        timerFuncPovFasol()
-        timerFuncDick()
+        timerFuncIskDram(tim: timerAddIskDram, timInt: 3.5)
+        timerFuncPovFasol(tim: timerAddPovFasol, timInt: 10.9)
+        timerFuncDirtyRam(tim: timerAddDirtyRam, timInt: 18.3)
+        timerFuncDick(tim: timerAddDick, timInt: 22)
         timerFuncColorView(tim: timerColView, timInt: 30.1)
         timerFuncColorView(tim: timerColViewTwo, timInt: 59.5)
         timerFuncColorView(tim: timerColViewThree, timInt: 103.3)
@@ -230,10 +261,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncFace(tim: timerFaceTwo, timInt: 50)
         timerFuncSham(tim: timerSham, timInt: 45)
         timerFuncSham(tim: timerShamTwo, timInt: 55)
+        timerFuncMorg(tim: timerMorg, timInt: 48)
+        timerFuncMorg(tim: timerMorgTwo, timInt: 58)
         timerFuncCar(tim: timerCar, timInt: 33)
         timerFuncCar(tim: timerCarTwo, timInt: 88)
         timerFuncStopGame(tim: timerStopGame, timInt: 65)
-
+        timerFuncAddGuys(tim: timerBackGuys, timInt: 25)
+        timerFuncAddTable(tim: timerBackTable, timInt: 28)
+        timerFuncAddSleep(tim: timerBackSleep, timInt: 30)
     }
     
     func createBg() {
@@ -249,7 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg.run(moveBgForever)
             bg.zPosition = -1
             bgObject.addChild(bg)
-       }
+        }
     }
     
     func createGround() {
@@ -276,7 +311,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wall = SKSpriteNode()
         wall.position = CGPoint(x: self.frame.minX, y: 0)
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width / 8,
-                                                            height: self.frame.size.height * 2))
+                                                             height: self.frame.size.height * 2))
         wall.physicsBody?.isDynamic = false
         wall.physicsBody?.categoryBitMask = wallGroup
         wall.zPosition = 1
@@ -326,7 +361,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    @objc func addDick() {
+    func addDick() {
         dick = SKSpriteNode(texture: dickTexture)
         
         let dickAnimation = SKAction.animate(with: dickTextArr, timePerFrame: 0.05)
@@ -338,10 +373,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dick.size.height = 100
         dick.size.width = 100
         dick.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: dick.size.width - 10,
-                                                               height: dick.size.height - 10))
+                                                             height: dick.size.height - 10))
         dick.physicsBody?.restitution = 0
         dick.position = CGPoint(x: self.size.width,
-                                  y: 0 + dickTexture.size().height + 50 + pipeOffset)
+                                y: 0 + dickTexture.size().height + 50 + pipeOffset)
         let moveDick = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0 , duration: 5)
         let removeAction = SKAction.removeFromParent()
         let dickMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveDick, removeAction]))
@@ -355,74 +390,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dickObject.addChild(dick)
     }
     
-    @objc func addDirtyRam() {
-    
-        dirtyRam = SKSpriteNode(texture: dirtyRamTexture)
-        dirtyRam.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        dirtyRam.zPosition = 8
-        dirtyRamObject.addChild(dirtyRam)
+    func addTitle(txt: SKTexture) {
+        
+        title = SKSpriteNode(texture: txt)
+        title.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        title.zPosition = 8
+        titleObject.addChild(title)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-           self.dirtyRam.scale(to: CGSize(width: self.dirtyRam.size.width * 1.2,
-                                          height: self.dirtyRam.size.height * 1.2))
+            self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
+                                          height: self.title.size.height * 1.2))
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.dirtyRam.scale(to: CGSize(width: self.dirtyRam.size.width * 1.2,
-                                               height: self.dirtyRam.size.height * 1.2))
+                self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
+                                              height: self.title.size.height * 1.2))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.dirtyRam.removeFromParent()
+                    self.title.removeFromParent()
                 }
             }
         }
     }
     
-    @objc func addPovFasol() {
-
-        povFasol = SKSpriteNode(texture: povFasolTexture)
-        povFasol.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        povFasol.zPosition = 8
-        dirtyRamObject.addChild(povFasol)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-           self.povFasol.scale(to: CGSize(width: self.povFasol.size.width * 1.2,
-                                          height: self.povFasol.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.povFasol.scale(to: CGSize(width: self.povFasol.size.width * 1.2,
-                                               height: self.povFasol.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.povFasol.removeFromParent()
-                }
-            }
-        }
-    }
-    
-    @objc func addIskDram() {
-
-        iskDram = SKSpriteNode(texture: iskDramTexture)
-        iskDram.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        iskDram.zPosition = 8
-        dirtyRamObject.addChild(iskDram)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-           self.iskDram.scale(to: CGSize(width: self.iskDram.size.width * 1.2,
-                                         height: self.iskDram.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.iskDram.scale(to: CGSize(width: self.iskDram.size.width * 1.2,
-                                              height: self.iskDram.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.iskDram.removeFromParent()
-                }
-            }
-        }
-    }
-    
-    @objc func addFace() {
-        face = SKSpriteNode(texture: faceTexture)
-        let faceAnimation = SKAction.animate(with: faceTextArr, timePerFrame: 0.07)
+    func addHead(txt: SKTexture, txts: [SKTexture]) {
+        face = SKSpriteNode(texture: txt)
+        let faceAnimation = SKAction.animate(with: txts, timePerFrame: 0.07)
         let faceStart = SKAction.repeatForever(faceAnimation)
         face.run(faceStart)
         face.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: face.size.height, height: face.size.height))
         face.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
-        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 8)
+        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 6)
         let removeActionFace = SKAction.removeFromParent()
         let faceMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveFace, removeActionFace]))
         face.run(faceMoveBgForever)
@@ -431,33 +426,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         face.physicsBody?.collisionBitMask = groundGroup | heroGroup
         face.physicsBody?.contactTestBitMask = heroGroup
         face.zPosition = 5
-        faceObject.addChild(face)
+        headObject.addChild(face)
     }
-
-    @objc func addSham() {
-        
-        sham = SKSpriteNode(texture: shamTexture)
-        let shamAnimation = SKAction.animate(with: shamTextArr, timePerFrame: 0.07)
-        let shamStart = SKAction.repeatForever(shamAnimation)
-        sham.run(shamStart)
-        sham.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sham.size.height, height: sham.size.height))
-        sham.position = CGPoint(x: self.size.width, y: self.size.height + 100)
-        let moveSham = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 6)
-        let removeActionSham = SKAction.removeFromParent()
-        let shamMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveSham, removeActionSham]))
-        sham.run(shamMoveBgForever)
-        sham.physicsBody?.isDynamic = true
-        sham.physicsBody?.categoryBitMask = shamGroup
-        sham.physicsBody?.collisionBitMask = groundGroup | heroGroup
-        sham.physicsBody?.contactTestBitMask = heroGroup
-        sham.zPosition = 5
-        shamObject.addChild(sham)
+    
+    func addBackPerson(txt: SKTexture) {
+        let node = SKSpriteNode(texture: txt)
+        node.position = CGPoint(x: self.size.width + 150, y: self.size.height / 2.5)
+        let moveBackPerson = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 15)
+        let removeBackPerson = SKAction.removeFromParent()
+        let moveBackPersonForever = SKAction.repeatForever(SKAction.sequence([moveBackPerson, removeBackPerson]))
+        node.run(moveBackPersonForever)
+        node.zPosition = 2
+        backPersonObject.addChild(node)
     }
     
     @objc func addCar() {
-
+        
         car = SKSpriteNode(texture: carTexture)
-
+        
         let carAnimation = SKAction.animate(with: carTextArr, timePerFrame: 2)
         let carStart = SKAction.repeatForever(carAnimation)
         car.run(carStart)
@@ -484,7 +470,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             aView.alpha = 0.0
-            }) { (done) in aView.removeFromSuperview()
+        }) { (done) in aView.removeFromSuperview()
         }
         //Shake animation
         let shake = CAKeyframeAnimation(keyPath: "transform")
@@ -526,188 +512,222 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-   
-    func timerFuncDirtyRam() {
-        timerAddDirtyRam.invalidate()
-        timerAddDirtyRam = Timer.scheduledTimer(timeInterval: 18.3,
-                                              target: self,
-                                              selector: #selector(GameScene.addDirtyRam),
-                                              userInfo: nil,
-                                              repeats: false)
-    }
     
-    func timerFuncPovFasol() {
-        timerAddPovFasol.invalidate()
-        timerAddPovFasol = Timer.scheduledTimer(timeInterval: 10.9,
-                                              target: self,
-                                              selector: #selector(GameScene.addPovFasol),
-                                              userInfo: nil,
-                                              repeats: false)
-    }
-
-    func timerFuncIskDram() {
-        timerAddIskDram.invalidate()
-        timerAddIskDram = Timer.scheduledTimer(timeInterval: 3.5,
-                                              target: self,
-                                              selector: #selector(GameScene.addIskDram),
-                                              userInfo: nil,
-                                              repeats: false)
-    }
-    
-    func timerFuncDick() {
-        timerAddDick.invalidate()
-        timerAddDick = Timer.scheduledTimer(timeInterval: 20,
-                                              target: self,
-                                              selector: #selector(GameScene.addDick),
-                                              userInfo: nil,
-                                              repeats: true)
-    }
-    
-    func timerFuncCar(tim: Timer, timInt: TimeInterval) {
+    func timerFuncDirtyRam(tim: Timer, timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                              target: self,
-                                              selector: #selector(GameScene.addCar),
-                                              userInfo: nil,
-                                              repeats: false)
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                               repeats: false,
+                                   block: { tim in self.addTitle(txt: self.dirtyRamTexture)})
     }
     
-    func timerFuncFace(tim: Timer, timInt: TimeInterval) {
+    func timerFuncIskDram(tim: Timer, timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                           target: self,
-                                           selector: #selector(GameScene.addFace),
-                                           userInfo: nil,
-                                           repeats: false)
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                               repeats: false,
+                                   block: { tim in self.addTitle(txt: self.iskDramTexture)})
     }
     
-    func timerFuncSham(tim: Timer, timInt: TimeInterval) {
+    func timerFuncPovFasol(tim: Timer, timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                           target: self,
-                                           selector: #selector(GameScene.addSham),
-                                           userInfo: nil,
-                                           repeats: false)
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                               repeats: false,
+                                   block: { tim in self.addTitle(txt: self.povFasolTexture)})
     }
     
-    func timerFuncFlash(tim: Timer, timInt: TimeInterval) {
-        var tim = Timer()
-        tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                        target: self,
-                                        selector: #selector(GameScene.shakeAndFlashAnimation),
-                                        userInfo: nil,
-                                        repeats: false)
-    }
-    
-    func timerFuncColorView(tim: Timer, timInt: TimeInterval) {
-        var tim = Timer()
-        tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                   target: self,
-                                   selector: #selector(GameScene.changeBackgroundColor),
-                                   userInfo: nil,
-                                   repeats: false)
-    }
-    
-    func timerFuncStopGame(tim: Timer, timInt: TimeInterval) {
-        var tim = Timer()
-        tim.invalidate()
-        tim = Timer.scheduledTimer(timeInterval: timInt,
-                                   target: self,
-                                   selector: #selector(GameScene.stopGame),
-                                   userInfo: nil,
-                                   repeats: false)
-    }
-    
-    func changeActionToJump() {
-        let heroJumpAnimation = SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)
-        let jumpHero = SKAction.repeatForever(heroJumpAnimation)
-        hero.run(jumpHero)
-    }
-    
-    func changeActionToRun() {
-        let heroRunAnimation = SKAction.animate(with: heroRunTextArr, timePerFrame: 0.1)
-        let runHero = SKAction.repeatForever(heroRunAnimation)
-        hero.run(runHero)
-    }
-    
-    func changeActionToDeath() {
-        onDeath = true
-        hero.size.height = 56
-        hero.size.width = 87
-        let heroDeadAnimation = SKAction.animate(with: heroDeadTextArr, timePerFrame: 1)
-        hero.run(heroDeadAnimation)
-    }
-
-    func reloadGame() {
-        scene?.isPaused = false
-        SKTAudio.sharedInstance().playBackgroundMusic(filename: "toxin.mp3")
-        
-//        faceObject.removeAllChildren()
-//        carObject.removeAllChildren()
-//        heroObject.removeAllChildren()
-//        skyObject.removeAllChildren()
-//        groundObject.removeAllChildren()
-//        bgObject.removeAllChildren()
-//
-//        faceObject.speed = 1
-//        heroObject.speed = 1
-//        carObject.speed = 1
-//        bgObject.speed = 1
-//        self.speed = 1
-        
-        createGame()
-    }
-    
-    @objc func stopGame() {
-        
-        heroObject.removeAllChildren()
-        faceObject.removeAllChildren()
-        shamObject.removeAllChildren()
-        carObject.removeAllChildren()
-        dickObject.removeAllChildren()
-        boomObject.removeAllChildren()
-        wallObject.removeAllChildren()
-        skyObject.removeAllChildren()
-        groundObject.removeAllChildren()
-        //bgObject.removeAllChildren()
-        
-        stopAllTimers()
-        SKTAudio.sharedInstance().pauseBackgroundMusic()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.scene?.isPaused = true
-            self.gameVCBgidge.reloadButton.isHidden = false
-            self.gameVCBgidge.reloadRamBg.isHidden = false
-            self.gameVCBgidge.avtorButton.isHidden = false
+        func timerFuncAddGuys(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                       block: { tim in self.addBackPerson(txt: self.guysTexture)})
         }
+        
+        func timerFuncAddTable(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                       repeats: false,
+                                       block: { tim in self.addBackPerson(txt: self.tableTexture)})
+        }
+    
+    func timerFuncAddSleep(tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addBackPerson(txt: self.sleepTexture)})
+    }
+        
+    func timerFuncDick(tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addDick()})
     }
     
-    func stopAllTimers() {
-        timerAddDirtyRam.invalidate()
-        timerAddIskDram.invalidate()
-        timerAddPovFasol.invalidate()
-        timerAddDick.invalidate()
-        timerCar.invalidate()
-        timerCarTwo.invalidate()
-        timerAddPol.invalidate()
-        timerFlash.invalidate()
-        timerFlashTwo.invalidate()
-        timerFlashThree.invalidate()
-        timerFlashFour.invalidate()
-        timerColView.invalidate()
-        timerColViewTwo.invalidate()
-        timerColViewThree.invalidate()
-        timerColViewFour.invalidate()
-        timerFace.invalidate()
-        timerSham.invalidate()
-        timerFaceTwo.invalidate()
-        timerShamTwo.invalidate()
+//        func timerFuncDick() {
+//            timerAddDick.invalidate()
+//            timerAddDick = Timer.scheduledTimer(timeInterval: 20,
+//                                                target: self,
+//                                                selector: #selector(GameScene.addDick),
+//                                                userInfo: nil,
+//                                                repeats: true)
+//        }
+        
+        func timerFuncCar(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(timeInterval: timInt,
+                                       target: self,
+                                       selector: #selector(GameScene.addCar),
+                                       userInfo: nil,
+                                       repeats: false)
+        }
+        
+    func timerFuncFace (tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addHead(txt: self.faceTexture, txts: self.faceTextArr)})
     }
     
+    func timerFuncSham (tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addHead(txt: self.shamTexture, txts: self.shamTextArr)})
+    }
     
+    func timerFuncMorg (tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addHead(txt: self.morgTexture, txts: self.morgTextArr)})
+    }
+    
+        
+        func timerFuncFlash(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(timeInterval: timInt,
+                                       target: self,
+                                       selector: #selector(GameScene.shakeAndFlashAnimation),
+                                       userInfo: nil,
+                                       repeats: false)
+        }
+        
+        func timerFuncColorView(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(timeInterval: timInt,
+                                       target: self,
+                                       selector: #selector(GameScene.changeBackgroundColor),
+                                       userInfo: nil,
+                                       repeats: false)
+        }
+        
+        func timerFuncStopGame(tim: Timer, timInt: TimeInterval) {
+            var tim = Timer()
+            tim.invalidate()
+            tim = Timer.scheduledTimer(timeInterval: timInt,
+                                       target: self,
+                                       selector: #selector(GameScene.stopGame),
+                                       userInfo: nil,
+                                       repeats: false)
+        }
+        
+        func changeActionToJump() {
+            let heroJumpAnimation = SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)
+            let jumpHero = SKAction.repeatForever(heroJumpAnimation)
+            hero.run(jumpHero)
+        }
+        
+        func changeActionToRun() {
+            let heroRunAnimation = SKAction.animate(with: heroRunTextArr, timePerFrame: 0.1)
+            let runHero = SKAction.repeatForever(heroRunAnimation)
+            hero.run(runHero)
+        }
+        
+        func changeActionToDeath() {
+            onDeath = true
+            hero.size.height = 56
+            hero.size.width = 87
+            let heroDeadAnimation = SKAction.animate(with: heroDeadTextArr, timePerFrame: 1)
+            hero.run(heroDeadAnimation)
+        }
+        
+        func reloadGame() {
+            scene?.isPaused = false
+            SKTAudio.sharedInstance().playBackgroundMusic(filename: "toxin.mp3")
+            
+            //        faceObject.removeAllChildren()
+            //        carObject.removeAllChildren()
+            //        heroObject.removeAllChildren()
+            //        skyObject.removeAllChildren()
+            //        groundObject.removeAllChildren()
+            //        bgObject.removeAllChildren()
+            //
+            //        faceObject.speed = 1
+            //        heroObject.speed = 1
+            //        carObject.speed = 1
+            //        bgObject.speed = 1
+            //        self.speed = 1
+            
+            createGame()
+        }
+        
+        @objc func stopGame() {
+            
+            heroObject.removeAllChildren()
+            headObject.removeAllChildren()
+            titleObject.removeAllChildren()
+            carObject.removeAllChildren()
+            dickObject.removeAllChildren()
+            boomObject.removeAllChildren()
+            wallObject.removeAllChildren()
+            skyObject.removeAllChildren()
+            groundObject.removeAllChildren()
+            //bgObject.removeAllChildren()
+            
+            stopAllTimers()
+            SKTAudio.sharedInstance().pauseBackgroundMusic()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.scene?.isPaused = true
+                self.gameVCBgidge.reloadButton.isHidden = false
+                self.gameVCBgidge.reloadRamBg.isHidden = false
+                self.gameVCBgidge.avtorButton.isHidden = false
+            }
+        }
+        
+        func stopAllTimers() {
+            timerAddDirtyRam.invalidate()
+            timerAddIskDram.invalidate()
+            timerAddPovFasol.invalidate()
+            timerAddDick.invalidate()
+            timerCar.invalidate()
+            timerCarTwo.invalidate()
+            timerAddPol.invalidate()
+            timerFlash.invalidate()
+            timerFlashTwo.invalidate()
+            timerFlashThree.invalidate()
+            timerFlashFour.invalidate()
+            timerColView.invalidate()
+            timerColViewTwo.invalidate()
+            timerColViewThree.invalidate()
+            timerColViewFour.invalidate()
+            timerFace.invalidate()
+            timerSham.invalidate()
+            timerFaceTwo.invalidate()
+            timerShamTwo.invalidate()
+        }
+        
 }
+
