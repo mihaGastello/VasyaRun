@@ -38,10 +38,10 @@ class GameViewController: UIViewController {
     }
 
     @IBAction func reloadGameButton(sender: UIButton) {
+//        reloadButton.isHidden = true
+//        reloadRamBg.isHidden = true
+//        avtorButton.isHidden = true
         scene.reloadGame()
-        reloadButton.isHidden = true
-        reloadRamBg.isHidden = true
-        avtorButton.isHidden = true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -92,6 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerFlashTwo = Timer()
     var timerFlashThree = Timer()
     var timerFlashFour = Timer()
+    var timerFlashFive = Timer()
     var timerColView = Timer()
     var timerColViewTwo = Timer()
     var timerColViewThree = Timer()
@@ -209,9 +210,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "morg12.png")]
         
         self.physicsWorld.contactDelegate = self
-        createObjects()
         createGame()
-        //        bottleSound = SKAction.playSoundFileNamed("pickBottle.mp3", waitForCompletion: false)
+        createObjects()
+        
     }
     
     func createObjects() {
@@ -234,6 +235,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createGame() {
         
+        flashAnimation(clr: .black, fromAplha: 1.0, toAplha: 0.0)
+        
         onGroung = true
         onDeath = false
         gameVCBgidge.reloadButton.isHidden = true
@@ -245,30 +248,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createWall()
         createHero()
+        
         timerFuncIskDram(tim: timerAddIskDram, timInt: 3.5)
         timerFuncPovFasol(tim: timerAddPovFasol, timInt: 10.9)
         timerFuncDirtyRam(tim: timerAddDirtyRam, timInt: 18.3)
         timerFuncDick(tim: timerAddDick, timInt: 22)
-        timerFuncColorView(tim: timerColView, timInt: 30.1)
-        timerFuncColorView(tim: timerColViewTwo, timInt: 59.5)
-        timerFuncColorView(tim: timerColViewThree, timInt: 103.3)
-        timerFuncColorView(tim: timerColViewFour, timInt: 117.8)
-        timerFuncFlash(tim: timerFlash, timInt: 29.3)
-        timerFuncFlash(tim: timerFlashTwo, timInt: 58.7)
-        timerFuncFlash(tim: timerFlashThree, timInt: 102.5)
-        timerFuncFlash(tim: timerFlashFour, timInt: 117)
-        timerFuncFace(tim: timerFace, timInt: 40)
-        timerFuncFace(tim: timerFaceTwo, timInt: 50)
-        timerFuncSham(tim: timerSham, timInt: 45)
-        timerFuncSham(tim: timerShamTwo, timInt: 55)
-        timerFuncMorg(tim: timerMorg, timInt: 48)
-        timerFuncMorg(tim: timerMorgTwo, timInt: 58)
-        timerFuncCar(tim: timerCar, timInt: 33)
-        timerFuncCar(tim: timerCarTwo, timInt: 88)
-        timerFuncStopGame(tim: timerStopGame, timInt: 65)
         timerFuncAddGuys(tim: timerBackGuys, timInt: 25)
+        timerFuncFlashWhite(tim: timerFlash, timInt: 29.3)
+        timerFuncColorView(tim: timerColView, timInt: 30.1)
+        timerFuncFlashWhite(tim: timerFlashTwo, timInt: 58.7)
+        timerFuncColorView(tim: timerColViewTwo, timInt: 59.5)
+        timerFuncFace(tim: timerFace, timInt: TimeInterval.random(in: 40...70))
+        timerFuncFace(tim: timerFaceTwo, timInt: TimeInterval.random(in: 40...70))
+        timerFuncSham(tim: timerSham, timInt: TimeInterval.random(in: 40...70))
+        timerFuncSham(tim: timerShamTwo, timInt: TimeInterval.random(in: 40...70))
+        timerFuncMorg(tim: timerMorg, timInt: TimeInterval.random(in: 40...70))
+        timerFuncMorg(tim: timerMorgTwo, timInt: TimeInterval.random(in: 40...70))
+        timerFuncCar(tim: timerCar, timInt: 33)
         timerFuncAddTable(tim: timerBackTable, timInt: 28)
         timerFuncAddSleep(tim: timerBackSleep, timInt: 30)
+        timerFuncCar(tim: timerCarTwo, timInt: 88)
+        timerFuncFlashWhite(tim: timerFlashThree, timInt: 102.5)
+        timerFuncColorView(tim: timerColViewThree, timInt: 103.3)
+        timerFuncFlashWhite(tim: timerFlashFour, timInt: 117)
+        timerFuncColorView(tim: timerColViewFour, timInt: 117.8)
+        timerFuncFlashBlack(tim: timerFlashFive, timInt: 146.1)
+        timerFuncStopGame(tim: timerStopGame, timInt: 148)
     }
     
     func createBg() {
@@ -416,8 +421,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let faceStart = SKAction.repeatForever(faceAnimation)
         face.run(faceStart)
         face.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: face.size.height, height: face.size.height))
-        face.position = CGPoint(x: self.size.width + 50, y: self.size.height/4)
-        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 6)
+        face.position = CGPoint(x: self.size.width * 1.1, y: self.size.height/4)
+        let moveFace = SKAction.moveBy(x: -self.frame.size.width * 1.2, y: 0, duration: 4)
         let removeActionFace = SKAction.removeFromParent()
         let faceMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveFace, removeActionFace]))
         face.run(faceMoveBgForever)
@@ -462,17 +467,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         carObject.addChild(car)
     }
     
-    @objc func shakeAndFlashAnimation() {
-        //White flash
+    func flashAnimation (clr: UIColor, fromAplha: CGFloat, toAplha: CGFloat) {
         let aView = UIView(frame: self.view!.frame)
-        aView.backgroundColor = UIColor.white
+        aView.backgroundColor = clr
+        aView.alpha = fromAplha
+        self.view!.addSubview(aView)
+        
+        UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn, animations: {
+            aView.alpha = toAplha
+        }) { (done) in aView.removeFromSuperview()
+        }
+    }
+    
+    func shakeAndFlashAnimation(clr: UIColor) {
+        //flash
+        let aView = UIView(frame: self.view!.frame)
+        aView.backgroundColor = clr
         self.view!.addSubview(aView)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             aView.alpha = 0.0
         }) { (done) in aView.removeFromSuperview()
         }
-        //Shake animation
+        //Shake
         let shake = CAKeyframeAnimation(keyPath: "transform")
         shake.values = [
             NSValue(caTransform3D: CATransform3DMakeTranslation(-15, 5, 5)),
@@ -489,7 +506,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                                  height: self.frame.size.height))
         colorizedBack.position = CGPoint(x: self.frame.size.width/2,
                                          y: self.frame.size.height/2)
-        colorizedBack.zPosition = 1
+        colorizedBack.zPosition = 3
         colorizedBack.alpha = 0.1
         groundObject.addChild(colorizedBack)
         
@@ -568,15 +585,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                    repeats: false,
                                    block: { tim in self.addDick()})
     }
-    
-//        func timerFuncDick() {
-//            timerAddDick.invalidate()
-//            timerAddDick = Timer.scheduledTimer(timeInterval: 20,
-//                                                target: self,
-//                                                selector: #selector(GameScene.addDick),
-//                                                userInfo: nil,
-//                                                repeats: true)
-//        }
         
         func timerFuncCar(tim: Timer, timInt: TimeInterval) {
             var tim = Timer()
@@ -612,16 +620,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                    block: { tim in self.addHead(txt: self.morgTexture, txts: self.morgTextArr)})
     }
     
-        
-        func timerFuncFlash(tim: Timer, timInt: TimeInterval) {
-            var tim = Timer()
-            tim.invalidate()
-            tim = Timer.scheduledTimer(timeInterval: timInt,
-                                       target: self,
-                                       selector: #selector(GameScene.shakeAndFlashAnimation),
-                                       userInfo: nil,
-                                       repeats: false)
-        }
+    
+    func timerFuncFlashWhite (tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.shakeAndFlashAnimation(clr: .white)})
+    }
+    
+    func timerFuncFlashBlack (tim: Timer, timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.flashAnimation(clr: .black, fromAplha: 0.0, toAplha: 1.0)})
+    }
         
         func timerFuncColorView(tim: Timer, timInt: TimeInterval) {
             var tim = Timer()
@@ -655,35 +669,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hero.run(runHero)
         }
         
-        func changeActionToDeath() {
-            onDeath = true
-            hero.size.height = 56
-            hero.size.width = 87
-            let heroDeadAnimation = SKAction.animate(with: heroDeadTextArr, timePerFrame: 1)
-            hero.run(heroDeadAnimation)
-        }
-        
         func reloadGame() {
             scene?.isPaused = false
             SKTAudio.sharedInstance().playBackgroundMusic(filename: "toxin.mp3")
-            
-            //        faceObject.removeAllChildren()
-            //        carObject.removeAllChildren()
-            //        heroObject.removeAllChildren()
-            //        skyObject.removeAllChildren()
-            //        groundObject.removeAllChildren()
-            //        bgObject.removeAllChildren()
-            //
-            //        faceObject.speed = 1
-            //        heroObject.speed = 1
-            //        carObject.speed = 1
-            //        bgObject.speed = 1
-            //        self.speed = 1
-            
             createGame()
         }
         
         @objc func stopGame() {
+            
+            self.scene?.isPaused = true
+            self.gameVCBgidge.reloadButton.isHidden = false
+            self.gameVCBgidge.reloadRamBg.isHidden = false
+            self.gameVCBgidge.avtorButton.isHidden = false
+            
+            stopAllTimers()
+            SKTAudio.sharedInstance().pauseBackgroundMusic()
             
             heroObject.removeAllChildren()
             headObject.removeAllChildren()
@@ -694,17 +694,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             wallObject.removeAllChildren()
             skyObject.removeAllChildren()
             groundObject.removeAllChildren()
-            //bgObject.removeAllChildren()
-            
-            stopAllTimers()
-            SKTAudio.sharedInstance().pauseBackgroundMusic()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.scene?.isPaused = true
-                self.gameVCBgidge.reloadButton.isHidden = false
-                self.gameVCBgidge.reloadRamBg.isHidden = false
-                self.gameVCBgidge.avtorButton.isHidden = false
-            }
+
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {  }
         }
         
         func stopAllTimers() {
