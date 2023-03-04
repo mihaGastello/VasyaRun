@@ -286,7 +286,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg.position = CGPoint(x: size.width/4 + self.frame.width * 2 * CGFloat(i), y: size.height/2.0)
             bg.scale(to: CGSize(width: self.frame.width * 2, height: self.frame.height))
             bg.run(moveBgForever)
-            bg.zPosition = -1
+            bg.zPosition = 0
             bgObject.addChild(bg)
         }
     }
@@ -296,7 +296,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width * 3, height: self.frame.height/7))
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.categoryBitMask = groundGroup
-        ground.zPosition = 1
+        //ground.zPosition = 1
         groundObject.addChild(ground)
     }
     
@@ -307,7 +307,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                             height: self.frame.size.height / 6))
         sky.physicsBody?.isDynamic = false
         sky.physicsBody?.categoryBitMask = wallGroup
-        sky.zPosition = 1
+        //sky.zPosition = 0
         skyObject.addChild(sky)
     }
     
@@ -318,7 +318,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                              height: self.frame.size.height * 2))
         wall.physicsBody?.isDynamic = false
         wall.physicsBody?.categoryBitMask = wallGroup
-        wall.zPosition = 1
+        //wall.zPosition = 0
         wallObject.addChild(wall)
     }
     
@@ -356,7 +356,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hero.physicsBody?.collisionBitMask = groundGroup | carGroup | wallGroup
         hero.physicsBody?.isDynamic = true
         hero.physicsBody?.allowsRotation = false
-        hero.zPosition = 5
+        hero.zPosition = 8
         heroObject.addChild(hero)
     }
     
@@ -389,11 +389,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dick.physicsBody?.categoryBitMask = dickGroup
         dick.physicsBody?.collisionBitMask = heroGroup
         dick.physicsBody?.contactTestBitMask = heroGroup
-        dick.zPosition = 2
+        dick.zPosition = 7
         dickObject.addChild(dick)
     }
-    
-    
     
     func addFace(txt: SKTexture, txts: [SKTexture]) {
         face = SKSpriteNode(texture: txt)
@@ -410,7 +408,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         face.physicsBody?.categoryBitMask = faceGroup
         face.physicsBody?.collisionBitMask = groundGroup | heroGroup
         face.physicsBody?.contactTestBitMask = heroGroup
-        face.zPosition = 5
+        face.zPosition = 6
         headObject.addChild(face)
     }
     
@@ -429,7 +427,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         morg.physicsBody?.categoryBitMask = morgGroup
         morg.physicsBody?.collisionBitMask = groundGroup | heroGroup
         morg.physicsBody?.contactTestBitMask = heroGroup
-        morg.zPosition = 5
+        morg.zPosition = 4
         headObject.addChild(morg)
     }
     
@@ -480,7 +478,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         car.physicsBody?.contactTestBitMask = groundGroup | heroGroup
         car.physicsBody?.collisionBitMask = groundGroup | heroGroup
         car.physicsBody?.isDynamic = false
-        car.zPosition = 5
+        car.zPosition = 3
         carObject.addChild(car)
     }
     
@@ -520,7 +518,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             wallObject.removeAllChildren()
             skyObject.removeAllChildren()
             groundObject.removeAllChildren()
-            
         }
         
 }

@@ -26,7 +26,7 @@ extension GameScene {
         var boom = SKSpriteNode()
         boom = SKSpriteNode(texture: txt)
         boom.position = node.position
-        boom.zPosition = 8
+        boom.zPosition = 10
         boomObject.addChild(boom)
 
         let boomAnimation = SKAction.animate(with: txts, timePerFrame: 0.1)
@@ -61,7 +61,7 @@ extension GameScene {
         colorizedBack = SKSpriteNode(color: .green, size: CGSize(width: self.frame.size.width,
                                                                  height: self.frame.size.height))
         colorizedBack.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)
-        colorizedBack.zPosition = 3
+        colorizedBack.zPosition = 1
         colorizedBack.alpha = 0.1
         groundObject.addChild(colorizedBack)
         
@@ -84,4 +84,25 @@ extension GameScene {
             }
         }
     }
+    
+    func addTitle(txt: SKTexture) {
+        
+        title = SKSpriteNode(texture: txt)
+        title.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        title.zPosition = 9
+        titleObject.addChild(title)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
+                                          height: self.title.size.height * 1.2))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
+                                              height: self.title.size.height * 1.2))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    self.title.removeFromParent()
+                }
+            }
+        }
+    }
+
 }
