@@ -58,7 +58,7 @@ extension GameScene {
                                    block: { tim in self.addDick()})
     }
         
-        func timerFuncCar(tim: Timer, timInt: TimeInterval) {
+        func timerFuncCar(timInt: TimeInterval) {
             var tim = Timer()
             tim.invalidate()
             tim = Timer.scheduledTimer(timeInterval: timInt,
@@ -68,7 +68,7 @@ extension GameScene {
                                        repeats: false)
         }
         
-    func timerFuncFace (tim: Timer, timInt: TimeInterval) {
+    func timerFuncFace (timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
         tim = Timer.scheduledTimer(withTimeInterval: timInt,
@@ -76,7 +76,7 @@ extension GameScene {
                                    block: { tim in self.addFace(txt: self.faceTexture, txts: self.faceTextArr)})
     }
     
-    func timerFuncSham (tim: Timer, timInt: TimeInterval) {
+    func timerFuncSham (timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
         tim = Timer.scheduledTimer(withTimeInterval: timInt,
@@ -84,7 +84,7 @@ extension GameScene {
                                    block: { tim in self.addSham(txt: self.shamTexture, txts: self.shamTextArr)})
     }
     
-    func timerFuncMorg (tim: Timer, timInt: TimeInterval) {
+    func timerFuncMorg (timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
         tim = Timer.scheduledTimer(withTimeInterval: timInt,

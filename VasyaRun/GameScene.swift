@@ -87,17 +87,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timerCar = Timer()
     var timerCarTwo = Timer()
     var timerAddPol = Timer()
-    var timerFlashFive = Timer()
-    var timerFace = Timer()
-    var timerSham = Timer()
-    var timerFaceTwo = Timer()
-    var timerShamTwo = Timer()
-    var timerStopGame = Timer()
     var timerBackSleep = Timer()
     var timerBackGuys = Timer()
     var timerBackTable = Timer()
-    var timerMorg = Timer()
-    var timerMorgTwo = Timer()
     
     // Sounds
     //    var bottleSound = SKAction()
@@ -249,33 +241,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncPovFasol(timInt: 10.9)
         timerFuncDirtyRam(timInt: 18.3)
         timerFuncDick(tim: timerAddDick, timInt: 22)
-
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
+        timerFuncCar(timInt: 33)
         timerFuncAddTable(timInt: 40)
         timerFuncFlashWhite(timInt: 58.7)
         timerFuncColorView(timInt: 59.5)
-        timerFuncFace(tim: timerFace, timInt: TimeInterval.random(in: 37...50))
-        timerFuncFace(tim: timerFaceTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncFace(tim: timerFaceTwo, timInt: TimeInterval.random(in: 61...70))
-        timerFuncSham(tim: timerSham, timInt: TimeInterval.random(in: 37...50))
-        timerFuncSham(tim: timerShamTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncSham(tim: timerShamTwo, timInt: TimeInterval.random(in: 61...70))
-        timerFuncMorg(tim: timerMorg, timInt: TimeInterval.random(in: 37...50))
-        timerFuncMorg(tim: timerMorgTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncMorg(tim: timerMorgTwo, timInt: TimeInterval.random(in: 61...70))
-        timerFuncCar(tim: timerCar, timInt: 33)
+        timerFuncFace(timInt: TimeInterval.random(in: 37...50))
+        timerFuncFace(timInt: TimeInterval.random(in: 51...60))
+        timerFuncFace(timInt: TimeInterval.random(in: 61...70))
+        timerFuncSham(timInt: TimeInterval.random(in: 37...50))
+        timerFuncSham(timInt: TimeInterval.random(in: 51...60))
+        timerFuncSham(timInt: TimeInterval.random(in: 61...70))
+        timerFuncMorg(timInt: TimeInterval.random(in: 37...50))
+        timerFuncMorg(timInt: TimeInterval.random(in: 51...60))
+        timerFuncMorg(timInt: TimeInterval.random(in: 61...70))
         timerFuncAddGuys(timInt: 70)
-        timerFuncCar(tim: timerCarTwo, timInt: 88)
-        timerFuncFace(tim: timerFace, timInt: TimeInterval.random(in: 37...50))
-        timerFuncFace(tim: timerFaceTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncFace(tim: timerFaceTwo, timInt: TimeInterval.random(in: 61...70))
-        timerFuncSham(tim: timerSham, timInt: TimeInterval.random(in: 37...50))
-        timerFuncSham(tim: timerShamTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncSham(tim: timerShamTwo, timInt: TimeInterval.random(in: 61...70))
-        timerFuncMorg(tim: timerMorg, timInt: TimeInterval.random(in: 37...50))
-        timerFuncMorg(tim: timerMorgTwo, timInt: TimeInterval.random(in: 51...60))
-        timerFuncMorg(tim: timerMorgTwo, timInt: TimeInterval.random(in: 61...70))
+        timerFuncCar(timInt: 88)
+        timerFuncFace(timInt: TimeInterval.random(in: 88...100))
+        timerFuncFace(timInt: TimeInterval.random(in: 101...110))
+        timerFuncFace(timInt: TimeInterval.random(in: 111...120))
+        timerFuncSham(timInt: TimeInterval.random(in: 111...120))
+        timerFuncSham(timInt: TimeInterval.random(in: 101...110))
+        timerFuncSham(timInt: TimeInterval.random(in: 111...120))
+        timerFuncMorg(timInt: TimeInterval.random(in: 88...100))
+        timerFuncMorg(timInt: TimeInterval.random(in: 101...110))
+        timerFuncMorg(timInt: TimeInterval.random(in: 111...120))
         timerFuncFlashWhite(timInt: 102.5)
         timerFuncColorView(timInt: 103.3)
         timerFuncFlashWhite(timInt: 117)
@@ -373,7 +364,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4*5 , y: self.size.height/4))
     }
     
-    
     func addDick() {
         dick = SKSpriteNode(texture: dickTexture)
         
@@ -403,25 +393,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         dickObject.addChild(dick)
     }
     
-    func addTitle(txt: SKTexture) {
-        
-        title = SKSpriteNode(texture: txt)
-        title.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        title.zPosition = 8
-        titleObject.addChild(title)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
-                                          height: self.title.size.height * 1.2))
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.title.scale(to: CGSize(width: self.title.size.width * 1.2,
-                                              height: self.title.size.height * 1.2))
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.title.removeFromParent()
-                }
-            }
-        }
-    }
+    
     
     func addFace(txt: SKTexture, txts: [SKTexture]) {
         face = SKSpriteNode(texture: txt)
@@ -480,7 +452,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         headObject.addChild(sham)
     }
     
-    
     func addBackPerson(txt: SKTexture) {
         let node = SKSpriteNode(texture: txt)
         node.position = CGPoint(x: self.size.width + 100, y: self.size.height / 3)
@@ -537,8 +508,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.gameVCBgidge.reloadButton.isHidden = false
             self.gameVCBgidge.reloadRamBg.isHidden = false
             self.gameVCBgidge.avtorButton.isHidden = false
-            
-            //stopAllTimers()
+
             SKTAudio.sharedInstance().pauseBackgroundMusic()
             
             heroObject.removeAllChildren()
@@ -552,17 +522,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             groundObject.removeAllChildren()
             
         }
-        
-//        func stopAllTimers() {
-//            timerAddDick.invalidate()
-//            timerCar.invalidate()
-//            timerCarTwo.invalidate()
-//            timerAddPol.invalidate()
-//            timerFace.invalidate()
-//            timerSham.invalidate()
-//            timerFaceTwo.invalidate()
-//            timerShamTwo.invalidate()
-//        }
         
 }
 
