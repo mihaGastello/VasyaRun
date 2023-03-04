@@ -10,6 +10,8 @@
 		8A4733C8299A535B0007759F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4733C7299A535B0007759F /* MainViewController.swift */; };
 		8A4733CA299A6B810007759F /* toxin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8A4733C9299A6B810007759F /* toxin.mp3 */; };
 		8A5CA48929A61D9100DDA1A0 /* AutorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */; };
+		8A5CA49329B3555E00DDA1A0 /* GameScene_Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CA49229B3555E00DDA1A0 /* GameScene_Animations.swift */; };
+		8A5CA49529B359E900DDA1A0 /* GameScene_Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CA49429B359E900DDA1A0 /* GameScene_Timers.swift */; };
 		8AAD2BA02928ED0900F483B3 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */; };
 		8AAF3DCC29261E5700A5C027 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF3DCB29261E5700A5C027 /* AppDelegate.swift */; };
 		8AAF3DCE29261E5700A5C027 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8AAF3DCD29261E5700A5C027 /* GameScene.sks */; };
@@ -25,6 +27,8 @@
 		8A4733C7299A535B0007759F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8A4733C9299A6B810007759F /* toxin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = toxin.mp3; sourceTree = "<group>"; };
 		8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutorViewController.swift; sourceTree = "<group>"; };
+		8A5CA49229B3555E00DDA1A0 /* GameScene_Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Animations.swift; sourceTree = "<group>"; };
+		8A5CA49429B359E900DDA1A0 /* GameScene_Timers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene_Timers.swift; sourceTree = "<group>"; };
 		8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		8AAF3DC829261E5700A5C027 /* VasyaRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VasyaRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AAF3DCB29261E5700A5C027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +83,9 @@
 				8AAF3DCD29261E5700A5C027 /* GameScene.sks */,
 				8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */,
 				8AAF3DD129261E5700A5C027 /* GameScene.swift */,
+				8A5CA49429B359E900DDA1A0 /* GameScene_Timers.swift */,
 				8AAF3DE5292687FE00A5C027 /* GameScene_Touches.swift */,
+				8A5CA49229B3555E00DDA1A0 /* GameScene_Animations.swift */,
 				8AAF3DD529261E5700A5C027 /* Main.storyboard */,
 				8AAF3DD329261E5700A5C027 /* GameViewController.swift */,
 				8A4733C7299A535B0007759F /* MainViewController.swift */,
@@ -171,6 +177,8 @@
 				8AAF3DD429261E5700A5C027 /* GameViewController.swift in Sources */,
 				8AAF3DCC29261E5700A5C027 /* AppDelegate.swift in Sources */,
 				8A5CA48929A61D9100DDA1A0 /* AutorViewController.swift in Sources */,
+				8A5CA49329B3555E00DDA1A0 /* GameScene_Animations.swift in Sources */,
+				8A5CA49529B359E900DDA1A0 /* GameScene_Timers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

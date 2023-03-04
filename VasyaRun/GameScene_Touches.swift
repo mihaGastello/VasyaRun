@@ -14,7 +14,7 @@ extension GameScene {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 320))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 270))
             changeActionToJump()
         }
     }
@@ -33,30 +33,20 @@ extension GameScene {
         
         if contact.bodyA.categoryBitMask == faceGroup || contact.bodyB.categoryBitMask == faceGroup {
             face.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 40))
-            
-            whiteBoom = SKSpriteNode(texture: whiteBoomTexture)
-            whiteBoom.position = face.position
-            whiteBoom.zPosition = 8
-            boomObject.addChild(whiteBoom)
-
-            let boomAnimation = SKAction.animate(with: whiteBoomTextArr, timePerFrame: 0.1)
-            let boomRemove = SKAction.removeFromParent()
-            let boomSequence = SKAction.sequence([boomAnimation, boomRemove])
-            whiteBoom.run(boomSequence)
+            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: face)
         }
         
         if contact.bodyA.categoryBitMask == shamGroup || contact.bodyB.categoryBitMask == shamGroup {
             sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 80))
-            
-            whiteBoom = SKSpriteNode(texture: whiteBoomTexture)
-            whiteBoom.position = sham.position
-            whiteBoom.zPosition = 8
-            boomObject.addChild(whiteBoom)
-
-            let boomAnimation = SKAction.animate(with: whiteBoomTextArr, timePerFrame: 0.1)
-            let boomRemove = SKAction.removeFromParent()
-            let boomSequence = SKAction.sequence([boomAnimation, boomRemove])
-            whiteBoom.run(boomSequence)
+            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: sham)
+        }
+        
+        if contact.bodyA.categoryBitMask == morgGroup || contact.bodyB.categoryBitMask == morgGroup {
+            morg.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 200))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: morg)
         }
         
         if contact.bodyA.categoryBitMask == wallGroup || contact.bodyB.categoryBitMask == wallGroup {
@@ -67,16 +57,8 @@ extension GameScene {
            let dickNode = contact.bodyA.categoryBitMask == dickGroup ? contact.bodyA.node : contact.bodyB.node
            dickNode?.removeFromParent()
            hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+            showBoom(txt: redBoomTexture, txts: redBoomTextArr, node: dick)
             
-            whiteBoom = SKSpriteNode(texture: whiteBoomTexture)
-            whiteBoom.position = hero.position
-            whiteBoom.zPosition = 8
-            boomObject.addChild(whiteBoom)
-
-            let boomAnimation = SKAction.animate(with: whiteBoomTextArr, timePerFrame: 0.1)
-            let boomRemove = SKAction.removeFromParent()
-            let boomSequence = SKAction.sequence([boomAnimation, boomRemove])
-            whiteBoom.run(boomSequence)
        }
     }
 }

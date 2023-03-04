@@ -25,8 +25,8 @@ class AutorViewController: UIViewController {
     }
     
     @IBAction func pressTelButton(sender: UIButton) {
-        guard let telUrl = URL(string: "https://taplink.cc/mihailgastello") else { return }
-        let telSafariVC = SFSafariViewController(url: telUrl)
-        present(telSafariVC, animated: true, completion: nil)
+        guard let tapUrl = URL(string: "https://taplink.cc/mihailgastello") else { return }
+        let tapSafariVC = SFSafariViewController(url: tapUrl)
+        present(tapSafariVC, animated: true, completion: nil)
     }
 }
