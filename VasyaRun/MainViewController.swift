@@ -10,6 +10,8 @@ import SpriteKit
 
 class MainViewController: UIViewController {
  
+//    @IBOutlet weak var tipLabel: UILabel
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

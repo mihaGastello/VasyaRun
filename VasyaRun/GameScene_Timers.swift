@@ -50,23 +50,21 @@ extension GameScene {
                                        block: { tim in self.addBackPerson(txt: self.tableTexture)})
         }
         
-    func timerFuncDick(tim: Timer, timInt: TimeInterval) {
+    func timerFuncDick(timInt: TimeInterval) {
         var tim = Timer()
         tim.invalidate()
         tim = Timer.scheduledTimer(withTimeInterval: timInt,
                                    repeats: false,
                                    block: { tim in self.addDick()})
     }
-        
-        func timerFuncCar(timInt: TimeInterval) {
-            var tim = Timer()
-            tim.invalidate()
-            tim = Timer.scheduledTimer(timeInterval: timInt,
-                                       target: self,
-                                       selector: #selector(GameScene.addCar),
-                                       userInfo: nil,
-                                       repeats: false)
-        }
+    
+    func timerFuncCar(timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addCar()})
+    }
         
     func timerFuncFace (timInt: TimeInterval) {
         var tim = Timer()

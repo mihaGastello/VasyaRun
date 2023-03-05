@@ -49,13 +49,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test test test test test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePy-Tf-pRl">
+                                <rect key="frame" x="298.66666666666669" y="339" width="139" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="OGe-eR-uai"/>
+                                    <constraint firstAttribute="width" constant="139" id="f4I-So-NZS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Dj6-9w-NWv" firstAttribute="top" secondItem="ePy-Tf-pRl" secondAttribute="bottom" constant="50" id="3js-ag-Bqs"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="yP6-EL-rf1" secondAttribute="trailing" id="86H-gI-i3z"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="top" secondItem="yP6-EL-rf1" secondAttribute="top" id="8TQ-Q6-Rj9"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="yP6-EL-rf1" secondAttribute="leading" id="IEF-Hg-FWT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DEM-XS-zPX" secondAttribute="trailing" constant="50" id="MX4-ca-XTr"/>
+                            <constraint firstItem="ePy-Tf-pRl" firstAttribute="centerX" secondItem="yP6-EL-rf1" secondAttribute="centerX" id="Ngl-2C-8Dj"/>
                             <constraint firstAttribute="bottom" secondItem="LYR-ky-C8z" secondAttribute="bottom" id="pLo-rK-91p"/>
                             <constraint firstItem="DEM-XS-zPX" firstAttribute="centerY" secondItem="yP6-EL-rf1" secondAttribute="centerY" id="pdM-Z0-Ebg"/>
                         </constraints>

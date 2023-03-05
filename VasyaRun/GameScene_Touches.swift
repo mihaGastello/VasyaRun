@@ -33,19 +33,19 @@ extension GameScene {
         
         if contact.bodyA.categoryBitMask == faceGroup || contact.bodyB.categoryBitMask == faceGroup {
             face.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 40))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: face)
         }
         
         if contact.bodyA.categoryBitMask == shamGroup || contact.bodyB.categoryBitMask == shamGroup {
             sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 80))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: sham)
         }
         
         if contact.bodyA.categoryBitMask == morgGroup || contact.bodyB.categoryBitMask == morgGroup {
             morg.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 200))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -20, dy: 0))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: morg)
         }
         

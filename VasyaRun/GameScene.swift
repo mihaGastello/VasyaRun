@@ -15,6 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var onGroung = true
     var onDeath = false
     var gameVCBgidge: GameViewController!
+    var mainVCBridge: MainViewController!
     
     // Texture
     var dirtyRamTexture: SKTexture!
@@ -45,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ground = SKSpriteNode()
     var sky = SKSpriteNode()
     var wall = SKSpriteNode()
+    var wallForward = SKSpriteNode()
     var hero = SKSpriteNode()
     var car = SKSpriteNode()
     var face = SKSpriteNode()
@@ -240,7 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncIskDram(timInt: 3.5)
         timerFuncPovFasol(timInt: 10.9)
         timerFuncDirtyRam(timInt: 18.3)
-        timerFuncDick(tim: timerAddDick, timInt: 22)
+        timerFuncDick(timInt: 22)
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
         timerFuncCar(timInt: 33)
@@ -286,7 +288,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bg.position = CGPoint(x: size.width/4 + self.frame.width * 2 * CGFloat(i), y: size.height/2.0)
             bg.scale(to: CGSize(width: self.frame.width * 2, height: self.frame.height))
             bg.run(moveBgForever)
-            bg.zPosition = 0
             bgObject.addChild(bg)
         }
     }
@@ -296,7 +297,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.width * 3, height: self.frame.height/7))
         ground.physicsBody?.isDynamic = false
         ground.physicsBody?.categoryBitMask = groundGroup
-        //ground.zPosition = 1
         groundObject.addChild(ground)
     }
     
@@ -307,19 +307,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                             height: self.frame.size.height / 6))
         sky.physicsBody?.isDynamic = false
         sky.physicsBody?.categoryBitMask = wallGroup
-        //sky.zPosition = 0
         skyObject.addChild(sky)
     }
     
     func createWall() {
+        //back wall
         wall = SKSpriteNode()
         wall.position = CGPoint(x: self.frame.minX, y: 0)
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width / 8,
                                                              height: self.frame.size.height * 2))
         wall.physicsBody?.isDynamic = false
         wall.physicsBody?.categoryBitMask = wallGroup
-        //wall.zPosition = 0
         wallObject.addChild(wall)
+        //forward wall
+//        wallForward = SKSpriteNode()
+//        wallForward.position = CGPoint(x: self.frame.maxX, y: 0)
+//        wallForward.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width / 3,
+//                                                             height: self.frame.size.height * 2))
+//        wallForward.physicsBody?.isDynamic = false
+//        wallForward.physicsBody?.categoryBitMask = wallGroup
+//        wallObject.addChild(wallForward)
     }
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
@@ -461,8 +468,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backPersonObject.addChild(node)
     }
     
-    @objc func addCar() {
-        
+    func addCar() {
         car = SKSpriteNode(texture: carTexture)
         let carAnimation = SKAction.animate(with: carTextArr, timePerFrame: 2)
         let carStart = SKAction.repeatForever(carAnimation)
