@@ -99,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Array textures for animate
     var heroRunTextArr = [SKTexture]()
     var heroJumpTextArr = [SKTexture]()
-    var dickTextArr = [SKTexture]()
+    //var dickTextArr = [SKTexture]()
     var carTextArr = [SKTexture]()
     var heroDeadTextArr = [SKTexture]()
     var faceTextArr = [SKTexture]()
@@ -121,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         jumpHeroTexture = SKTexture(imageNamed: "hero14.png")
         bgTexture = SKTexture(imageNamed: "bg7.jpg")
         carTexture = SKTexture(imageNamed: "car1.png")
-        dickTexture = SKTexture(imageNamed: "di1.png")
+        dickTexture = SKTexture(imageNamed: "dick1.png")
         
         faceTexture = SKTexture(imageNamed: "face1.png")
         shamTexture = SKTexture(imageNamed: "sham1.png")
@@ -139,19 +139,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "boom200.png"),
             SKTexture(imageNamed: "boom400.png")]
         
-        dickTextArr = [
-            SKTexture(imageNamed: "di1.png"),
-            SKTexture(imageNamed: "di2.png"),
-            SKTexture(imageNamed: "di3.png"),
-            SKTexture(imageNamed: "di4.png"),
-            SKTexture(imageNamed: "di5.png"),
-            SKTexture(imageNamed: "di6.png"),
-            SKTexture(imageNamed: "di7.png"),
-            SKTexture(imageNamed: "di8.png"),
-            SKTexture(imageNamed: "di9.png"),
-            SKTexture(imageNamed: "di10.png"),
-            SKTexture(imageNamed: "di11.png"),
-            SKTexture(imageNamed: "di12.png")]
+//        dickTextArr = [
+//            SKTexture(imageNamed: "di1.png"),
+//            SKTexture(imageNamed: "di2.png"),
+//            SKTexture(imageNamed: "di3.png"),
+//            SKTexture(imageNamed: "di4.png"),
+//            SKTexture(imageNamed: "di5.png"),
+//            SKTexture(imageNamed: "di6.png"),
+//            SKTexture(imageNamed: "di7.png"),
+//            SKTexture(imageNamed: "di8.png"),
+//            SKTexture(imageNamed: "di9.png"),
+//            SKTexture(imageNamed: "di10.png"),
+//            SKTexture(imageNamed: "di11.png"),
+//            SKTexture(imageNamed: "di12.png")]
         
         carTextArr = [
             SKTexture(imageNamed: "car1.png"),
@@ -242,13 +242,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncIskDram(timInt: 3.5)
         timerFuncPovFasol(timInt: 10.9)
         timerFuncDirtyRam(timInt: 18.3)
-        timerFuncDick(timInt: 22)
+
+        
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
-        timerFuncCar(timInt: 33)
-        timerFuncAddTable(timInt: 40)
-        timerFuncFlashWhite(timInt: 58.7)
-        timerFuncColorView(timInt: 59.5)
+        
         timerFuncFace(timInt: TimeInterval.random(in: 37...50))
         timerFuncFace(timInt: TimeInterval.random(in: 51...60))
         timerFuncFace(timInt: TimeInterval.random(in: 61...70))
@@ -258,7 +256,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncMorg(timInt: TimeInterval.random(in: 37...50))
         timerFuncMorg(timInt: TimeInterval.random(in: 51...60))
         timerFuncMorg(timInt: TimeInterval.random(in: 61...70))
+        
+        timerFuncCar(timInt: 33)
+        timerFuncAddTable(timInt: 40)
+        
+        timerFuncFlashWhite(timInt: 58.7)
+        timerFuncColorView(timInt: 59.5)
+        
+        timerFuncDick(timInt: TimeInterval.random(in: 62...64),
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: 1000, y: -400), dickDur: 4)
+        timerFuncDick(timInt: TimeInterval.random(in: 66...68),
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3),
+                      dickMove: CGPoint(x: -1000, y: 50), dickDur: 4)
+        timerFuncDick(timInt: TimeInterval.random(in: 70...72),
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: -1000, y: -500), dickDur: 4)
+        timerFuncDick(timInt: TimeInterval.random(in: 74...75),
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: -1000, y: -500), dickDur: 4)
+        
         timerFuncAddGuys(timInt: 70)
+        
+        timerFuncFlashWhite(timInt: 72)
+        timerFuncColorView(timInt: 72.8)
+        
         timerFuncCar(timInt: 88)
         timerFuncFace(timInt: TimeInterval.random(in: 88...100))
         timerFuncFace(timInt: TimeInterval.random(in: 101...110))
@@ -269,10 +291,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncMorg(timInt: TimeInterval.random(in: 88...100))
         timerFuncMorg(timInt: TimeInterval.random(in: 101...110))
         timerFuncMorg(timInt: TimeInterval.random(in: 111...120))
+        
         timerFuncFlashWhite(timInt: 102.5)
         timerFuncColorView(timInt: 103.3)
+        
         timerFuncFlashWhite(timInt: 117)
         timerFuncColorView(timInt: 117.8)
+        
         timerFuncFlashBlack(timInt: 146.1)
         timerFuncStopGame(timInt: 148)
     }
@@ -352,9 +377,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         changeActionToRun()
         hero.position = position
-        
-        let moveBeginHero = SKAction.moveBy(x: -self.frame.size.width, y: 0 , duration: 25)
-        hero.run(moveBeginHero)
+        hero.run(SKAction.moveBy(x: -self.frame.size.width, y: 0 , duration: 25))
         
         hero.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: (hero.size.width - 40),
                                                              height: hero.size.height))
@@ -371,26 +394,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4*5 , y: self.size.height/4))
     }
     
-    func addDick() {
+    func addDick(startPos: CGPoint, move: CGPoint, dur: TimeInterval) {
         dick = SKSpriteNode(texture: dickTexture)
+        dick.run(SKAction.repeatForever(SKAction.rotate(byAngle: 150, duration: 10)))
         
-        let dickAnimation = SKAction.animate(with: dickTextArr, timePerFrame: 0.05)
-        let dickHero = SKAction.repeatForever(dickAnimation)
-        dick.run(dickHero)
-        
-        let movementAmount = arc4random() % UInt32(self.frame.size.height)
-        let pipeOffset = CGFloat(movementAmount) - self.frame.size.height / 2
-        dick.size.height = 100
-        dick.size.width = 100
+        dick.position = CGPoint(x: startPos.x, y: startPos.y)
         dick.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: dick.size.width - 10,
                                                              height: dick.size.height - 10))
         dick.physicsBody?.restitution = 0
-        dick.position = CGPoint(x: self.size.width,
-                                y: 0 + dickTexture.size().height + 50 + pipeOffset)
-        let moveDick = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0 , duration: 5)
+
+        let moveDick = SKAction.moveBy(x: move.x, y: move.y, duration: dur)
         let removeAction = SKAction.removeFromParent()
-        let dickMoveBgForever = SKAction.repeatForever(SKAction.sequence([moveDick, removeAction]))
-        dick.run(dickMoveBgForever)
+        dick.run(SKAction.repeatForever(SKAction.sequence([moveDick, removeAction])))
         
         dick.physicsBody?.isDynamic = false
         dick.physicsBody?.categoryBitMask = dickGroup
@@ -401,10 +416,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addFace(txt: SKTexture, txts: [SKTexture]) {
+        
         face = SKSpriteNode(texture: txt)
-        let faceAnimation = SKAction.animate(with: txts, timePerFrame: 0.07)
-        let faceStart = SKAction.repeatForever(faceAnimation)
-        face.run(faceStart)
+        face.run(SKAction.repeatForever(SKAction.animate(with: txts, timePerFrame: 0.07)))
+
         face.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: face.size.height, height: face.size.height))
         face.position = CGPoint(x: self.size.width * 1.1, y: self.size.height/4)
         let moveFace = SKAction.moveBy(x: -self.frame.size.width * 1.2, y: 0, duration: 4)
@@ -420,10 +435,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addMorg(txt: SKTexture, txts: [SKTexture]) {
+        
         morg = SKSpriteNode(texture: txt)
-        let faceAnimation = SKAction.animate(with: txts, timePerFrame: 0.07)
-        let faceStart = SKAction.repeatForever(faceAnimation)
-        morg.run(faceStart)
+        morg.run(SKAction.repeatForever(SKAction.animate(with: txts, timePerFrame: 0.07)))
+        
         morg.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: morg.size.height, height: morg.size.height))
         morg.position = CGPoint(x: self.size.width * 1.1, y: self.size.height/4)
         let moveFace = SKAction.moveBy(x: -self.frame.size.width * 1.2, y: 0, duration: 4)
@@ -439,10 +454,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addSham(txt: SKTexture, txts: [SKTexture]) {
+        
         sham = SKSpriteNode(texture: txt)
-        let faceAnimation = SKAction.animate(with: txts, timePerFrame: 0.07)
-        let faceStart = SKAction.repeatForever(faceAnimation)
-        sham.run(faceStart)
+        sham.run(SKAction.repeatForever(SKAction.animate(with: txts, timePerFrame: 0.07)))
+        
         sham.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sham.size.height, height: sham.size.height))
         sham.position = CGPoint(x: self.size.width * 1.1, y: self.size.height/4)
         let moveFace = SKAction.moveBy(x: -self.frame.size.width * 1.2, y: 0, duration: 4)
@@ -470,9 +485,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addCar() {
         car = SKSpriteNode(texture: carTexture)
-        let carAnimation = SKAction.animate(with: carTextArr, timePerFrame: 2)
-        let carStart = SKAction.repeatForever(carAnimation)
-        car.run(carStart)
+        car.run(SKAction.repeatForever(SKAction.animate(with: carTextArr, timePerFrame: 2)))
+
         car.physicsBody = SKPhysicsBody(texture: carTexture,
                                         size: CGSize(width: carTexture.size().width, height: carTexture.size().height))
         car.position = CGPoint(x: self.size.width * 1.3, y: self.size.height / 4)
@@ -489,15 +503,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
         func changeActionToJump() {
-            let heroJumpAnimation = SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)
-            let jumpHero = SKAction.repeatForever(heroJumpAnimation)
-            hero.run(jumpHero)
+            hero.run(SKAction.repeatForever(SKAction.animate(with: heroJumpTextArr, timePerFrame: 1)))
         }
         
         func changeActionToRun() {
-            let heroRunAnimation = SKAction.animate(with: heroRunTextArr, timePerFrame: 0.1)
-            let runHero = SKAction.repeatForever(heroRunAnimation)
-            hero.run(runHero)
+            hero.run(SKAction.repeatForever(SKAction.animate(with: heroRunTextArr, timePerFrame: 0.1)))
         }
         
         func reloadGame() {
