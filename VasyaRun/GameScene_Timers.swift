@@ -34,21 +34,14 @@ extension GameScene {
                                    block: { tim in self.addTitle(txt: self.povFasolTexture)})
     }
     
-        func timerFuncAddGuys(timInt: TimeInterval) {
-            var tim = Timer()
-            tim.invalidate()
-            tim = Timer.scheduledTimer(withTimeInterval: timInt,
-                                       repeats: false,
-                                       block: { tim in self.addBackPerson(txt: self.guysTexture)})
-        }
-        
-        func timerFuncAddTable(timInt: TimeInterval) {
-            var tim = Timer()
-            tim.invalidate()
-            tim = Timer.scheduledTimer(withTimeInterval: timInt,
-                                       repeats: false,
-                                       block: { tim in self.addBackPerson(txt: self.tableTexture)})
-        }
+
+    func timerFuncBack(timInt: TimeInterval, txtBack: SKTexture, heightBack: CGFloat) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addBackPerson(txt: txtBack,  height: heightBack)})
+    }
         
     func timerFuncDick(timInt: TimeInterval, dickPos: CGPoint, dickMove: CGPoint, dickDur: TimeInterval) {
         var tim = Timer()

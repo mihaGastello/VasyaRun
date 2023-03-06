@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-XS-zPX">
                                 <rect key="frame" x="451" y="85" width="215" height="244"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мини-игра по мотивам клипа Токсин (Грязный Рамирес). Автор: MihailGastello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-me-P7e">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мини-игра по мотивам клипа Токсин (Грязный Рамирес). Автор: Mihail Gastello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-me-P7e">
                                         <rect key="frame" x="0.0" y="0.0" width="215" height="77"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="77" id="Nk1-B2-XjA"/>
@@ -49,25 +49,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test test test test test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePy-Tf-pRl">
-                                <rect key="frame" x="298.66666666666669" y="339" width="139" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="OGe-eR-uai"/>
-                                    <constraint firstAttribute="width" constant="139" id="f4I-So-NZS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Dj6-9w-NWv" firstAttribute="top" secondItem="ePy-Tf-pRl" secondAttribute="bottom" constant="50" id="3js-ag-Bqs"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="trailing" secondItem="yP6-EL-rf1" secondAttribute="trailing" id="86H-gI-i3z"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="top" secondItem="yP6-EL-rf1" secondAttribute="top" id="8TQ-Q6-Rj9"/>
                             <constraint firstItem="LYR-ky-C8z" firstAttribute="leading" secondItem="yP6-EL-rf1" secondAttribute="leading" id="IEF-Hg-FWT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DEM-XS-zPX" secondAttribute="trailing" constant="50" id="MX4-ca-XTr"/>
-                            <constraint firstItem="ePy-Tf-pRl" firstAttribute="centerX" secondItem="yP6-EL-rf1" secondAttribute="centerX" id="Ngl-2C-8Dj"/>
                             <constraint firstAttribute="bottom" secondItem="LYR-ky-C8z" secondAttribute="bottom" id="pLo-rK-91p"/>
                             <constraint firstItem="DEM-XS-zPX" firstAttribute="centerY" secondItem="yP6-EL-rf1" secondAttribute="centerY" id="pdM-Z0-Ebg"/>
                         </constraints>
@@ -76,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qr-rf-JvR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.96059113300493" y="-4"/>
+            <point key="canvasLocation" x="901" y="-733"/>
         </scene>
         <!--Autor View Controller-->
         <scene sceneID="l0L-ez-RqQ">

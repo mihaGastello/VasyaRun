@@ -36,6 +36,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var guysTexture: SKTexture!
     var sleepTexture: SKTexture!
     var tableTexture: SKTexture!
+    var baner1Texture: SKTexture!
+    var baner2Texture: SKTexture!
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
@@ -111,8 +113,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         guysTexture = SKTexture(imageNamed: "guys.png")
-        sleepTexture = SKTexture(imageNamed: "sleep.png")
         tableTexture = SKTexture(imageNamed: "table.png")
+        baner1Texture = SKTexture(imageNamed: "baner1.png")
+        baner2Texture = SKTexture(imageNamed: "baner2.png")
         
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
         iskDramTexture = SKTexture(imageNamed: "iskDram.png")
@@ -138,20 +141,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         redBoomTextArr = [
             SKTexture(imageNamed: "boom200.png"),
             SKTexture(imageNamed: "boom400.png")]
-        
-//        dickTextArr = [
-//            SKTexture(imageNamed: "di1.png"),
-//            SKTexture(imageNamed: "di2.png"),
-//            SKTexture(imageNamed: "di3.png"),
-//            SKTexture(imageNamed: "di4.png"),
-//            SKTexture(imageNamed: "di5.png"),
-//            SKTexture(imageNamed: "di6.png"),
-//            SKTexture(imageNamed: "di7.png"),
-//            SKTexture(imageNamed: "di8.png"),
-//            SKTexture(imageNamed: "di9.png"),
-//            SKTexture(imageNamed: "di10.png"),
-//            SKTexture(imageNamed: "di11.png"),
-//            SKTexture(imageNamed: "di12.png")]
         
         carTextArr = [
             SKTexture(imageNamed: "car1.png"),
@@ -243,43 +232,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncPovFasol(timInt: 10.9)
         timerFuncDirtyRam(timInt: 18.3)
 
-        
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
+        timerFuncCar(timInt: 31)
         
-        timerFuncFace(timInt: TimeInterval.random(in: 37...50))
-        timerFuncFace(timInt: TimeInterval.random(in: 51...60))
-        timerFuncFace(timInt: TimeInterval.random(in: 61...70))
-        timerFuncSham(timInt: TimeInterval.random(in: 37...50))
-        timerFuncSham(timInt: TimeInterval.random(in: 51...60))
-        timerFuncSham(timInt: TimeInterval.random(in: 61...70))
-        timerFuncMorg(timInt: TimeInterval.random(in: 37...50))
-        timerFuncMorg(timInt: TimeInterval.random(in: 51...60))
-        timerFuncMorg(timInt: TimeInterval.random(in: 61...70))
+        timerFuncFace(timInt: TimeInterval.random(in: 30...39))
+        timerFuncFace(timInt: TimeInterval.random(in: 40...49))
+        timerFuncFace(timInt: TimeInterval.random(in: 50...59))
+        timerFuncSham(timInt: TimeInterval.random(in: 30...39))
+        timerFuncSham(timInt: TimeInterval.random(in: 40...49))
+        timerFuncSham(timInt: TimeInterval.random(in: 50...59))
+        timerFuncMorg(timInt: TimeInterval.random(in: 30...39))
+        timerFuncMorg(timInt: TimeInterval.random(in: 40...49))
+        timerFuncMorg(timInt: TimeInterval.random(in: 50...59))
         
-        timerFuncCar(timInt: 33)
-        timerFuncAddTable(timInt: 40)
+        timerFuncBack(timInt: 40, txtBack: tableTexture, heightBack: self.size.height / 3)
+        timerFuncBack(timInt: 42, txtBack: baner1Texture, heightBack: self.size.height / 2)
+        timerFuncBack(timInt: 45, txtBack: baner2Texture, heightBack: self.size.height / 2)
         
         timerFuncFlashWhite(timInt: 58.7)
         timerFuncColorView(timInt: 59.5)
         
         timerFuncDick(timInt: TimeInterval.random(in: 62...64),
                       dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: 1000, y: -400), dickDur: 4)
+                      dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         timerFuncDick(timInt: TimeInterval.random(in: 66...68),
                       dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3),
-                      dickMove: CGPoint(x: -1000, y: 50), dickDur: 4)
+                      dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
         timerFuncDick(timInt: TimeInterval.random(in: 70...72),
-                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: -1000, y: -500), dickDur: 4)
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3),
+                      dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
         timerFuncDick(timInt: TimeInterval.random(in: 74...75),
                       dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: -1000, y: -500), dickDur: 4)
+                      dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
         
-        timerFuncAddGuys(timInt: 70)
+        timerFuncBack(timInt: 70, txtBack: guysTexture, heightBack: self.size.height / 3)
         
-        timerFuncFlashWhite(timInt: 72)
-        timerFuncColorView(timInt: 72.8)
+        timerFuncFlashWhite(timInt: 73)
+        timerFuncColorView(timInt: 73.8)
         
         timerFuncCar(timInt: 88)
         timerFuncFace(timInt: TimeInterval.random(in: 88...100))
@@ -472,9 +462,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         headObject.addChild(sham)
     }
     
-    func addBackPerson(txt: SKTexture) {
+    func addBackPerson(txt: SKTexture, height: CGFloat) {
         let node = SKSpriteNode(texture: txt)
-        node.position = CGPoint(x: self.size.width + 100, y: self.size.height / 3)
+        node.position = CGPoint(x: self.size.width + 100, y: height)
         let moveBackPerson = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 15)
         let removeBackPerson = SKAction.removeFromParent()
         let moveBackPersonForever = SKAction.repeatForever(SKAction.sequence([moveBackPerson, removeBackPerson]))
