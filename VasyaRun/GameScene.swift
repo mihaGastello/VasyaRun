@@ -38,6 +38,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var tableTexture: SKTexture!
     var baner1Texture: SKTexture!
     var baner2Texture: SKTexture!
+    var baner3Texture: SKTexture!
+    var baner4Texture: SKTexture!
+    var koTexture: SKTexture!
+    var boyTexture: SKTexture!
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
@@ -61,6 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var guys = SKSpriteNode()
     var sleep = SKSpriteNode()
     var table = SKSpriteNode()
+    var ko = SKSpriteNode()
+    var boy = SKSpriteNode()
     
     // Sprite Objects
     var dirtyRamObject = SKNode()
@@ -86,22 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dickGroup: UInt32 = 0x1 << 7
     var wallGroup: UInt32 = 0x1 << 8
     
-    // Timers
-    var timerAddDick = Timer()
-    var timerCar = Timer()
-    var timerCarTwo = Timer()
-    var timerAddPol = Timer()
-    var timerBackSleep = Timer()
-    var timerBackGuys = Timer()
-    var timerBackTable = Timer()
-    
-    // Sounds
-    //    var bottleSound = SKAction()
-    
     // Array textures for animate
     var heroRunTextArr = [SKTexture]()
     var heroJumpTextArr = [SKTexture]()
-    //var dickTextArr = [SKTexture]()
     var carTextArr = [SKTexture]()
     var heroDeadTextArr = [SKTexture]()
     var faceTextArr = [SKTexture]()
@@ -109,13 +102,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var morgTextArr = [SKTexture]()
     var whiteBoomTextArr = [SKTexture]()
     var redBoomTextArr = [SKTexture]()
+    var boyTextArr = [SKTexture]()
     
     override func didMove(to view: SKView) {
         
         guysTexture = SKTexture(imageNamed: "guys.png")
         tableTexture = SKTexture(imageNamed: "table.png")
-        baner1Texture = SKTexture(imageNamed: "baner1.png")
-        baner2Texture = SKTexture(imageNamed: "baner2.png")
+        baner1Texture = SKTexture(imageNamed: "banner1.png")
+        baner2Texture = SKTexture(imageNamed: "banner2.png")
+        baner3Texture = SKTexture(imageNamed: "banner3.png")
+        baner4Texture = SKTexture(imageNamed: "banner4.png")
+        koTexture = SKTexture(imageNamed: "ko.png")
+        boyTexture = SKTexture(imageNamed: "boy1.png")
         
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
         iskDramTexture = SKTexture(imageNamed: "iskDram.png")
@@ -189,6 +187,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "morg11.png"),
             SKTexture(imageNamed: "morg12.png")]
         
+        boyTextArr = [
+            SKTexture(imageNamed: "boy1.png"),
+            SKTexture(imageNamed: "boy2.png"),
+            SKTexture(imageNamed: "boy3.png"),
+            SKTexture(imageNamed: "boy4.png"),
+            SKTexture(imageNamed: "boy5.png"),
+            SKTexture(imageNamed: "boy6.png"),
+            SKTexture(imageNamed: "boy7.png"),
+            SKTexture(imageNamed: "boy8.png"),
+            SKTexture(imageNamed: "boy9.png"),
+            SKTexture(imageNamed: "boy10.png"),
+            SKTexture(imageNamed: "boy11.png"),
+            SKTexture(imageNamed: "boy12.png"),
+            SKTexture(imageNamed: "boy13.png"),
+            SKTexture(imageNamed: "boy14.png"),
+            SKTexture(imageNamed: "boy15.png"),
+            SKTexture(imageNamed: "boy16.png"),
+            SKTexture(imageNamed: "boy17.png")]
+        
         self.physicsWorld.contactDelegate = self
         createGame()
         createObjects()
@@ -227,29 +244,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createWall()
         createHero()
-        
-        timerFuncIskDram(timInt: 3.5)
-        timerFuncPovFasol(timInt: 10.9)
-        timerFuncDirtyRam(timInt: 18.3)
 
+        timerFuncTitle(timInt: 3.5, titleTexture: iskDramTexture)
+        timerFuncTitle(timInt: 10.9, titleTexture: povFasolTexture)
+        timerFuncTitle(timInt: 18.3, titleTexture: dirtyRamTexture)
+
+        timerFuncBoy(timInt: 25)
+        
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
-        timerFuncCar(timInt: 31)
+        timerFuncBack(timInt: 30, txtBack: tableTexture, heightBack: self.size.height / 3)
         
-        timerFuncFace(timInt: TimeInterval.random(in: 30...39))
-        timerFuncFace(timInt: TimeInterval.random(in: 40...49))
-        timerFuncFace(timInt: TimeInterval.random(in: 50...59))
-        timerFuncSham(timInt: TimeInterval.random(in: 30...39))
-        timerFuncSham(timInt: TimeInterval.random(in: 40...49))
-        timerFuncSham(timInt: TimeInterval.random(in: 50...59))
-        timerFuncMorg(timInt: TimeInterval.random(in: 30...39))
-        timerFuncMorg(timInt: TimeInterval.random(in: 40...49))
-        timerFuncMorg(timInt: TimeInterval.random(in: 50...59))
+        timerFuncBack(timInt: 35, txtBack: baner1Texture, heightBack: self.size.height / 2.4)
         
-        timerFuncBack(timInt: 40, txtBack: tableTexture, heightBack: self.size.height / 3)
-        timerFuncBack(timInt: 42, txtBack: baner1Texture, heightBack: self.size.height / 2)
-        timerFuncBack(timInt: 45, txtBack: baner2Texture, heightBack: self.size.height / 2)
+        timerFuncFace(timInt: TimeInterval.random(in: 30...37))
+        timerFuncFace(timInt: TimeInterval.random(in: 40...47))
+        timerFuncFace(timInt: TimeInterval.random(in: 50...57))
+        timerFuncSham(timInt: TimeInterval.random(in: 31...38))
+        timerFuncSham(timInt: TimeInterval.random(in: 41...48))
+        timerFuncSham(timInt: TimeInterval.random(in: 51...58))
+        timerFuncMorg(timInt: TimeInterval.random(in: 32...39))
+        timerFuncMorg(timInt: TimeInterval.random(in: 42...49))
+        timerFuncMorg(timInt: TimeInterval.random(in: 52...59))
         
+        //timerFuncCar(timInt: 45)
+        
+        timerFuncKo(timInt: 57)
         timerFuncFlashWhite(timInt: 58.7)
         timerFuncColorView(timInt: 59.5)
         
@@ -266,27 +286,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                       dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
                       dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
         
-        timerFuncBack(timInt: 70, txtBack: guysTexture, heightBack: self.size.height / 3)
+        timerFuncBack(timInt: 63, txtBack: guysTexture, heightBack: self.size.height / 3)
         
         timerFuncFlashWhite(timInt: 73)
         timerFuncColorView(timInt: 73.8)
         
-        timerFuncCar(timInt: 88)
-        timerFuncFace(timInt: TimeInterval.random(in: 88...100))
-        timerFuncFace(timInt: TimeInterval.random(in: 101...110))
-        timerFuncFace(timInt: TimeInterval.random(in: 111...120))
-        timerFuncSham(timInt: TimeInterval.random(in: 111...120))
-        timerFuncSham(timInt: TimeInterval.random(in: 101...110))
-        timerFuncSham(timInt: TimeInterval.random(in: 111...120))
-        timerFuncMorg(timInt: TimeInterval.random(in: 88...100))
-        timerFuncMorg(timInt: TimeInterval.random(in: 101...110))
-        timerFuncMorg(timInt: TimeInterval.random(in: 111...120))
+        timerFuncBack(timInt: 75, txtBack: baner2Texture, heightBack: self.size.height / 2.4)
+        
+        timerFuncCar(timInt: 87)
+        
+        timerFuncFace(timInt: TimeInterval.random(in: 80...87))
+        timerFuncFace(timInt: TimeInterval.random(in: 90...97))
+        timerFuncFace(timInt: TimeInterval.random(in: 100...107))
+        timerFuncSham(timInt: TimeInterval.random(in: 82...89))
+        timerFuncSham(timInt: TimeInterval.random(in: 92...99))
+        timerFuncSham(timInt: TimeInterval.random(in: 102...109))
+        timerFuncMorg(timInt: TimeInterval.random(in: 84...91))
+        timerFuncMorg(timInt: TimeInterval.random(in: 94...101))
+        timerFuncMorg(timInt: TimeInterval.random(in: 104...111))
         
         timerFuncFlashWhite(timInt: 102.5)
         timerFuncColorView(timInt: 103.3)
         
+        //dudka
+        
+        timerFuncBack(timInt: 105, txtBack: baner3Texture, heightBack: self.size.height / 2.4)
+        
         timerFuncFlashWhite(timInt: 117)
         timerFuncColorView(timInt: 117.8)
+        
+        timerFuncDick(timInt: TimeInterval.random(in: 117...120),
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
+        timerFuncDick(timInt: TimeInterval.random(in: 121...124),
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3),
+                      dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncDick(timInt: TimeInterval.random(in: 125...128),
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3),
+                      dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncDick(timInt: TimeInterval.random(in: 129...132),
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        
+        timerFuncBack(timInt: 131, txtBack: baner4Texture, heightBack: self.size.height / 2.4)
         
         timerFuncFlashBlack(timInt: 146.1)
         timerFuncStopGame(timInt: 148)
@@ -326,7 +368,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createWall() {
-        //back wall
         wall = SKSpriteNode()
         wall.position = CGPoint(x: self.frame.minX, y: 0)
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width / 8,
@@ -334,14 +375,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wall.physicsBody?.isDynamic = false
         wall.physicsBody?.categoryBitMask = wallGroup
         wallObject.addChild(wall)
-        //forward wall
-//        wallForward = SKSpriteNode()
-//        wallForward.position = CGPoint(x: self.frame.maxX, y: 0)
-//        wallForward.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width / 3,
-//                                                             height: self.frame.size.height * 2))
-//        wallForward.physicsBody?.isDynamic = false
-//        wallForward.physicsBody?.categoryBitMask = wallGroup
-//        wallObject.addChild(wallForward)
     }
     
     func addHero(heroNode: SKSpriteNode, atPosition position: CGPoint) {
@@ -464,7 +497,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addBackPerson(txt: SKTexture, height: CGFloat) {
         let node = SKSpriteNode(texture: txt)
-        node.position = CGPoint(x: self.size.width + 100, y: height)
+        node.position = CGPoint(x: self.size.width * 1.5, y: height)
         let moveBackPerson = SKAction.moveBy(x: -self.frame.size.width * 2, y: 0, duration: 15)
         let removeBackPerson = SKAction.removeFromParent()
         let moveBackPersonForever = SKAction.repeatForever(SKAction.sequence([moveBackPerson, removeBackPerson]))

@@ -10,30 +10,13 @@ import SpriteKit
 
 extension GameScene {
     
-    func timerFuncDirtyRam(timInt: TimeInterval) {
+    func timerFuncTitle(timInt: TimeInterval, titleTexture: SKTexture) {
         var tim = Timer()
         tim.invalidate()
         tim = Timer.scheduledTimer(withTimeInterval: timInt,
                                    repeats: false,
-                                   block: { tim in self.addTitle(txt: self.dirtyRamTexture)})
+                                   block: { tim in self.addTitle(txt: titleTexture)})
     }
-    
-    func timerFuncIskDram(timInt: TimeInterval) {
-        var tim = Timer()
-        tim.invalidate()
-        tim = Timer.scheduledTimer(withTimeInterval: timInt,
-                                   repeats: false,
-                                   block: { tim in self.addTitle(txt: self.iskDramTexture)})
-    }
-    
-    func timerFuncPovFasol(timInt: TimeInterval) {
-        var tim = Timer()
-        tim.invalidate()
-        tim = Timer.scheduledTimer(withTimeInterval: timInt,
-                                   repeats: false,
-                                   block: { tim in self.addTitle(txt: self.povFasolTexture)})
-    }
-    
 
     func timerFuncBack(timInt: TimeInterval, txtBack: SKTexture, heightBack: CGFloat) {
         var tim = Timer()
@@ -116,6 +99,22 @@ extension GameScene {
         tim = Timer.scheduledTimer(withTimeInterval: timInt,
                                    repeats: false,
                                    block: { tim in self.stopGame() })
+    }
+    
+    func timerFuncKo (timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addKo() })
+    }
+    
+    func timerFuncBoy (timInt: TimeInterval) {
+        var tim = Timer()
+        tim.invalidate()
+        tim = Timer.scheduledTimer(withTimeInterval: timInt,
+                                   repeats: false,
+                                   block: { tim in self.addBoy() })
     }
     
 }
