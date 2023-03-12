@@ -322,7 +322,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncDick(timInt: 130, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         
         timerFuncBack(timInt: 131, txtBack: baner4Texture, heightBack: self.size.height / 2.4)
-        
         timerFuncFlashBlack(timInt: 146.1)
         timerFuncStopGame(timInt: 148)
     }
