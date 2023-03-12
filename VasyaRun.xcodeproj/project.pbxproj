@@ -79,6 +79,7 @@
 		8AAF3DCA29261E5700A5C027 /* VasyaRun */ = {
 			isa = PBXGroup;
 			children = (
+				8AAD2BA32928ED3100F483B3 /* Sounds */,
 				8AAF3DCB29261E5700A5C027 /* AppDelegate.swift */,
 				8AAF3DCD29261E5700A5C027 /* GameScene.sks */,
 				8AAD2B9F2928ED0900F483B3 /* SKTAudio.swift */,
@@ -92,7 +93,6 @@
 				8A5CA48829A61D9100DDA1A0 /* AutorViewController.swift */,
 				8AAF3DD829261E5800A5C027 /* Assets.xcassets */,
 				8AAF3DDA29261E5800A5C027 /* LaunchScreen.storyboard */,
-				8AAD2BA32928ED3100F483B3 /* Sounds */,
 			);
 			path = VasyaRun;
 			sourceTree = "<group>";
@@ -327,9 +327,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZPRY882P5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Toxin;
+				INFOPLIST_FILE = VasyaRun/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
@@ -360,9 +361,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZPRY882P5M;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Toxin;
+				INFOPLIST_FILE = VasyaRun/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;

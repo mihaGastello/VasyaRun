@@ -17,6 +17,9 @@ extension GameScene {
             hero.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 270))
             changeActionToJump()
         }
+        if greetingLabel.isHidden == false {
+            greetingLabel.isHidden = true
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -58,7 +61,6 @@ extension GameScene {
            dickNode?.removeFromParent()
            hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
             showBoom(txt: redBoomTexture, txts: redBoomTextArr, node: dick)
-            
        }
     }
 }

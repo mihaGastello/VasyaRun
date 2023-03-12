@@ -115,19 +115,16 @@ extension GameScene {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.ko.removeFromParent()
         }
-            
     }
     
     func addBoy() {
         boy = SKSpriteNode(texture: boyTexture)
         boy.anchorPoint = CGPoint(x: 0, y: 0)
-        boy.position = CGPoint(x: self.frame.width / 3, y: 0)
+        boy.position = CGPoint(x: self.frame.width / 4, y: 0)
         boy.zPosition = 9
         titleObject.addChild(boy)
-        
-        boy.run(SKAction.repeatForever(SKAction.animate(with: boyTextArr, timePerFrame: 0.05)))
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        boy.run(SKAction.repeatForever(SKAction.animate(with: boyTextArr, timePerFrame: 0.1)))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
             self.boy.removeFromParent()
         }
             

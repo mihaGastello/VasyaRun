@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -42,6 +43,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var baner4Texture: SKTexture!
     var koTexture: SKTexture!
     var boyTexture: SKTexture!
+    
+    // LabelNodes
+    var greetingLabel = SKLabelNode()
     
     // SpriteNodes
     var dirtyRam = SKSpriteNode()
@@ -81,6 +85,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var dickObject = SKNode()
     var boomObject = SKNode()
     var backPersonObject = SKNode()
+    var labelObject = SKNode()
     
     // Bit masks
     var heroGroup: UInt32 = 0x1 << 1
@@ -204,7 +209,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             SKTexture(imageNamed: "boy14.png"),
             SKTexture(imageNamed: "boy15.png"),
             SKTexture(imageNamed: "boy16.png"),
-            SKTexture(imageNamed: "boy17.png")]
+            SKTexture(imageNamed: "boy17.png"),
+            SKTexture(imageNamed: "boy18.png"),
+            SKTexture(imageNamed: "boy19.png"),
+            SKTexture(imageNamed: "boy20.png"),
+            SKTexture(imageNamed: "boy21.png"),
+            SKTexture(imageNamed: "boy22.png"),
+            SKTexture(imageNamed: "boy23.png"),
+            SKTexture(imageNamed: "boy24.png"),
+            SKTexture(imageNamed: "boy25.png")]
         
         self.physicsWorld.contactDelegate = self
         createGame()
@@ -216,17 +229,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(groundObject)
         self.addChild(skyObject)
         self.addChild(wallObject)
-        
         self.addChild(heroObject)
         self.addChild(carObject)
         self.addChild(dickObject)
         self.addChild(headObject)
-       
         self.addChild(titleObject)
         self.addChild(dirtyRamObject)
-        
         self.addChild(boomObject)
         self.addChild(backPersonObject)
+        self.addChild(labelObject)
     }
     
     func createGame() {
@@ -244,89 +255,71 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createSky()
         createWall()
         createHero()
+        showGreeting()
 
+        //VSTUPLENIE
         timerFuncTitle(timInt: 3.5, titleTexture: iskDramTexture)
         timerFuncTitle(timInt: 10.9, titleTexture: povFasolTexture)
         timerFuncTitle(timInt: 18.3, titleTexture: dirtyRamTexture)
-
-        timerFuncBoy(timInt: 25)
         
+        // KUPLET
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
-        timerFuncBack(timInt: 30, txtBack: tableTexture, heightBack: self.size.height / 3)
-        
-        timerFuncBack(timInt: 35, txtBack: baner1Texture, heightBack: self.size.height / 2.4)
-        
-        timerFuncFace(timInt: TimeInterval.random(in: 30...37))
-        timerFuncFace(timInt: TimeInterval.random(in: 40...47))
-        timerFuncFace(timInt: TimeInterval.random(in: 50...57))
-        timerFuncSham(timInt: TimeInterval.random(in: 31...38))
-        timerFuncSham(timInt: TimeInterval.random(in: 41...48))
-        timerFuncSham(timInt: TimeInterval.random(in: 51...58))
-        timerFuncMorg(timInt: TimeInterval.random(in: 32...39))
-        timerFuncMorg(timInt: TimeInterval.random(in: 42...49))
-        timerFuncMorg(timInt: TimeInterval.random(in: 52...59))
-        
-        //timerFuncCar(timInt: 45)
-        
+        timerFuncBack(timInt: 29, txtBack: tableTexture, heightBack: self.size.height / 3)
+        timerFuncBack(timInt: 36, txtBack: baner1Texture, heightBack: self.size.height / 2.4)
+        timerFuncFace(timInt: 30)
+        timerFuncMorg(timInt: 32)
+        timerFuncSham(timInt: 33)
+        timerFuncFace(timInt: 35)
+        timerFuncSham(timInt: 38)
+        timerFuncMorg(timInt: 39)
+        timerFuncFace(timInt: 45)
+        timerFuncMorg(timInt: 47)
+        timerFuncSham(timInt: 48)
+        timerFuncFace(timInt: 54)
+        timerFuncCar(timInt: 45)
         timerFuncKo(timInt: 57)
+        
+        //PRIPEV
         timerFuncFlashWhite(timInt: 58.7)
         timerFuncColorView(timInt: 59.5)
-        
-        timerFuncDick(timInt: TimeInterval.random(in: 62...64),
-                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
-        timerFuncDick(timInt: TimeInterval.random(in: 66...68),
-                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3),
-                      dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
-        timerFuncDick(timInt: TimeInterval.random(in: 70...72),
-                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3),
-                      dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncDick(timInt: TimeInterval.random(in: 74...75),
-                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
-        
+        timerFuncDick(timInt: 62, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         timerFuncBack(timInt: 63, txtBack: guysTexture, heightBack: self.size.height / 3)
+        timerFuncDick(timInt: 67, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncDick(timInt: 69, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncDick(timInt: 71, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 71, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
         
+        // PRIPEV DEGA
         timerFuncFlashWhite(timInt: 73)
         timerFuncColorView(timInt: 73.8)
-        
         timerFuncBack(timInt: 75, txtBack: baner2Texture, heightBack: self.size.height / 2.4)
         
+        // KUPLET
         timerFuncCar(timInt: 87)
-        
-        timerFuncFace(timInt: TimeInterval.random(in: 80...87))
-        timerFuncFace(timInt: TimeInterval.random(in: 90...97))
-        timerFuncFace(timInt: TimeInterval.random(in: 100...107))
-        timerFuncSham(timInt: TimeInterval.random(in: 82...89))
-        timerFuncSham(timInt: TimeInterval.random(in: 92...99))
-        timerFuncSham(timInt: TimeInterval.random(in: 102...109))
-        timerFuncMorg(timInt: TimeInterval.random(in: 84...91))
-        timerFuncMorg(timInt: TimeInterval.random(in: 94...101))
-        timerFuncMorg(timInt: TimeInterval.random(in: 104...111))
-        
+        timerFuncSham(timInt: 84.5)
+        timerFuncFace(timInt: 85.5)
+        timerFuncSham(timInt: 89)
+        timerFuncFace(timInt: 92)
+        timerFuncMorg(timInt: 93)
+        timerFuncSham(timInt: 96)
+        timerFuncMorg(timInt: 98)
+
+        //KUPLET PRODOLZHENIE
         timerFuncFlashWhite(timInt: 102.5)
+        timerFuncBoy(timInt: 103)
         timerFuncColorView(timInt: 103.3)
-        
-        //dudka
-        
         timerFuncBack(timInt: 105, txtBack: baner3Texture, heightBack: self.size.height / 2.4)
         
+        // PRIPEV
         timerFuncFlashWhite(timInt: 117)
         timerFuncColorView(timInt: 117.8)
         
-        timerFuncDick(timInt: TimeInterval.random(in: 117...120),
-                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
-        timerFuncDick(timInt: TimeInterval.random(in: 121...124),
-                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3),
-                      dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
-        timerFuncDick(timInt: TimeInterval.random(in: 125...128),
-                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3),
-                      dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncDick(timInt: TimeInterval.random(in: 129...132),
-                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 119, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
+        timerFuncDick(timInt: 121, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncDick(timInt: 125, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncDick(timInt: 126, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 130, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         
         timerFuncBack(timInt: 131, txtBack: baner4Texture, heightBack: self.size.height / 2.4)
         
@@ -539,8 +532,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createGame()
         }
         
+    func showGreeting() {
+        greetingLabel.text = "Эй ганстер, для прыжка жми на экран!"
+        greetingLabel.position = CGPoint(x: self.frame.midX, y: 16)
+        greetingLabel.fontSize = 25
+        greetingLabel.zPosition = 11
+        greetingLabel.isHidden = false
+        labelObject.addChild(greetingLabel)
+    }
+    
         func stopGame() {
-            
             self.scene?.isPaused = true
             self.gameVCBgidge.reloadButton.isHidden = false
             self.gameVCBgidge.reloadRamBg.isHidden = false
@@ -557,6 +558,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             wallObject.removeAllChildren()
             skyObject.removeAllChildren()
             groundObject.removeAllChildren()
+            labelObject.removeAllChildren()
         }
         
 }
