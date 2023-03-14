@@ -77,6 +77,7 @@ extension GameScene {
                             self.colorizedBack.color = UIColor.blue
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
                                 self.colorizedBack.removeFromParent()
+                                
                             }
                         }
                     }
@@ -107,8 +108,11 @@ extension GameScene {
     
     func addKo() {
         ko = SKSpriteNode(texture: koTexture)
-        ko.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        ko.run(SKAction.repeatForever(SKAction.fadeIn(withDuration: 1)))
+        ko.position = CGPoint(x: -self.frame.width*2, y: self.frame.height / 2)
+        let moveKo = SKAction.moveBy(x: self.frame.size.width * 6, y: 0, duration: 1.5)
+        let removeKo = SKAction.removeFromParent()
+        let moveKoForever = SKAction.repeatForever(SKAction.sequence([moveKo, removeKo]))
+        ko.run(moveKoForever)
         ko.zPosition = 9
         titleObject.addChild(ko)
         
@@ -127,8 +131,5 @@ extension GameScene {
         DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
             self.boy.removeFromParent()
         }
-            
     }
-    
-
 }

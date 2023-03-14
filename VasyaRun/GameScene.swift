@@ -111,13 +111,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        guysTexture = SKTexture(imageNamed: "guys.png")
-        tableTexture = SKTexture(imageNamed: "table.png")
-        baner1Texture = SKTexture(imageNamed: "banner1.png")
-        baner2Texture = SKTexture(imageNamed: "banner2.png")
-        baner3Texture = SKTexture(imageNamed: "banner3.png")
-        baner4Texture = SKTexture(imageNamed: "banner4.png")
-        koTexture = SKTexture(imageNamed: "ko.png")
+        guysTexture = SKTexture(imageNamed: "guys")
+        tableTexture = SKTexture(imageNamed: "table")
+        baner1Texture = SKTexture(imageNamed: "banner5")
+        baner2Texture = SKTexture(imageNamed: "banner6")
+        baner3Texture = SKTexture(imageNamed: "banner7")
+        baner4Texture = SKTexture(imageNamed: "banner8")
+        koTexture = SKTexture(imageNamed: "white")
         boyTexture = SKTexture(imageNamed: "boy1.png")
         
         dirtyRamTexture = SKTexture(imageNamed: "dirtyRam.png")
@@ -261,16 +261,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncTitle(timInt: 3.5, titleTexture: iskDramTexture)
         timerFuncTitle(timInt: 10.9, titleTexture: povFasolTexture)
         timerFuncTitle(timInt: 18.3, titleTexture: dirtyRamTexture)
-        
+        timerFuncKo(timInt: 26)
         // KUPLET
         timerFuncFlashWhite(timInt: 29.3)
         timerFuncColorView(timInt: 30.1)
         timerFuncBack(timInt: 29, txtBack: tableTexture, heightBack: self.size.height / 3)
-        timerFuncBack(timInt: 36, txtBack: baner1Texture, heightBack: self.size.height / 2.4)
         timerFuncFace(timInt: 30)
         timerFuncMorg(timInt: 32)
         timerFuncSham(timInt: 33)
         timerFuncFace(timInt: 35)
+        timerFuncBack(timInt: 36, txtBack: baner1Texture, heightBack: self.size.height / 2.4)
         timerFuncSham(timInt: 38)
         timerFuncMorg(timInt: 39)
         timerFuncFace(timInt: 45)
@@ -278,17 +278,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncSham(timInt: 48)
         timerFuncFace(timInt: 54)
         timerFuncCar(timInt: 45)
-        timerFuncKo(timInt: 57)
         
         //PRIPEV
         timerFuncFlashWhite(timInt: 58.7)
         timerFuncColorView(timInt: 59.5)
-        timerFuncDick(timInt: 62, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
-        timerFuncBack(timInt: 63, txtBack: guysTexture, heightBack: self.size.height / 3)
-        timerFuncDick(timInt: 67, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
-        timerFuncDick(timInt: 69, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncDick(timInt: 71, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
-        timerFuncDick(timInt: 71, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 60,
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: 1500, y: -400),
+                      dickDur: 3)
+        timerFuncBack(timInt: 64, txtBack: guysTexture, heightBack: self.size.height / 3)
+        timerFuncDick(timInt: 65, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 6), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncKo(timInt: 65)
+        timerFuncDick(timInt: 68, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncDick(timInt: 70, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 73, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
         
         // PRIPEV DEGA
         timerFuncFlashWhite(timInt: 73)
@@ -310,18 +313,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncBoy(timInt: 103)
         timerFuncColorView(timInt: 103.3)
         timerFuncBack(timInt: 105, txtBack: baner3Texture, heightBack: self.size.height / 2.4)
+        timerFuncSham(timInt: 103)
+        timerFuncFace(timInt: 104)
+        timerFuncMorg(timInt: 107)
+        timerFuncSham(timInt: 108.5)
+        timerFuncMorg(timInt: 112)
         
         // PRIPEV
         timerFuncFlashWhite(timInt: 117)
         timerFuncColorView(timInt: 117.8)
         
-        timerFuncDick(timInt: 119, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
-        timerFuncDick(timInt: 121, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
-        timerFuncDick(timInt: 125, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncDick(timInt: 126, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
-        timerFuncDick(timInt: 130, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
+        timerFuncDick(timInt: 118, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
+        timerFuncDick(timInt: 120, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncDick(timInt: 123, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncKo(timInt: 126)
+        timerFuncDick(timInt: 124.5, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 128, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         
-        timerFuncBack(timInt: 131, txtBack: baner4Texture, heightBack: self.size.height / 2.4)
+        timerFuncCar(timInt: 127)
+        timerFuncMorg(timInt: 133)
+        timerFuncSham(timInt: 134.5)
+        timerFuncBack(timInt: 135, txtBack: baner4Texture, heightBack: self.size.height / 2.4)
+        timerFuncFace(timInt: 139)
+        timerFuncSham(timInt: 140)
+        timerFuncMorg(timInt: 142)
+        
         timerFuncFlashBlack(timInt: 146.1)
         timerFuncStopGame(timInt: 148)
     }

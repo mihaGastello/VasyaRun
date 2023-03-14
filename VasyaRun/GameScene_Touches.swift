@@ -14,7 +14,7 @@ extension GameScene {
         if onGroung == true {
             onGroung = false
             hero.physicsBody?.velocity = CGVector.zero
-            hero.physicsBody?.applyImpulse(CGVector(dx: 5, dy: 270))
+            hero.physicsBody?.applyImpulse(CGVector(dx: 10, dy: 270))
             changeActionToJump()
         }
         if greetingLabel.isHidden == false {
@@ -36,19 +36,19 @@ extension GameScene {
         
         if contact.bodyA.categoryBitMask == faceGroup || contact.bodyB.categoryBitMask == faceGroup {
             face.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 40))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: face)
         }
         
         if contact.bodyA.categoryBitMask == shamGroup || contact.bodyB.categoryBitMask == shamGroup {
-            sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 80))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
+            sham.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 150))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: sham)
         }
         
         if contact.bodyA.categoryBitMask == morgGroup || contact.bodyB.categoryBitMask == morgGroup {
-            morg.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 200))
-            hero.physicsBody?.applyImpulse(CGVector(dx: -30, dy: 0))
+            morg.physicsBody?.applyImpulse(CGVector(dx: 300, dy: 300))
+            hero.physicsBody?.applyImpulse(CGVector(dx: -45, dy: 0))
             showBoom(txt: whiteBoomTexture, txts: whiteBoomTextArr, node: morg)
         }
         
@@ -57,9 +57,9 @@ extension GameScene {
         }
         
         if contact.bodyA.categoryBitMask == dickGroup || contact.bodyB.categoryBitMask == dickGroup {
-           let dickNode = contact.bodyA.categoryBitMask == dickGroup ? contact.bodyA.node : contact.bodyB.node
-           dickNode?.removeFromParent()
-           hero.physicsBody?.applyImpulse(CGVector(dx: -50, dy: 0))
+            let dickNode = contact.bodyA.categoryBitMask == dickGroup ? contact.bodyA.node : contact.bodyB.node
+            dickNode?.removeFromParent()
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 90))
             showBoom(txt: redBoomTexture, txts: redBoomTextArr, node: dick)
        }
     }
