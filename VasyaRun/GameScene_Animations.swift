@@ -109,7 +109,7 @@ extension GameScene {
     func addKo() {
         ko = SKSpriteNode(texture: koTexture)
         ko.position = CGPoint(x: -self.frame.width*2, y: self.frame.height / 2)
-        let moveKo = SKAction.moveBy(x: self.frame.size.width * 6, y: 0, duration: 1.5)
+        let moveKo = SKAction.moveBy(x: self.frame.size.width * 6, y: 0, duration: 1.8)
         let removeKo = SKAction.removeFromParent()
         let moveKoForever = SKAction.repeatForever(SKAction.sequence([moveKo, removeKo]))
         ko.run(moveKoForever)
@@ -124,11 +124,11 @@ extension GameScene {
     func addBoy() {
         boy = SKSpriteNode(texture: boyTexture)
         boy.anchorPoint = CGPoint(x: 0, y: 0)
-        boy.position = CGPoint(x: self.frame.width / 4, y: 0)
+        boy.position = CGPoint(x: self.frame.width / 2, y: 0)
         boy.zPosition = 9
         titleObject.addChild(boy)
         boy.run(SKAction.repeatForever(SKAction.animate(with: boyTextArr, timePerFrame: 0.1)))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
             self.boy.removeFromParent()
         }
     }

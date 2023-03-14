@@ -284,14 +284,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncColorView(timInt: 59.5)
         timerFuncDick(timInt: 60,
                       dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2),
-                      dickMove: CGPoint(x: 1500, y: -400),
-                      dickDur: 3)
+                      dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         timerFuncBack(timInt: 64, txtBack: guysTexture, heightBack: self.size.height / 3)
-        timerFuncDick(timInt: 65, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 6), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
-        timerFuncKo(timInt: 65)
-        timerFuncDick(timInt: 68, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncDick(timInt: 70, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
-        timerFuncDick(timInt: 73, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
+        timerFuncDick(timInt: 65,
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 10),
+                      dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
+        timerFuncKo(timInt: 64)
+        timerFuncDick(timInt: 68,
+                      dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3),
+                      dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
+        timerFuncDick(timInt: 70,
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2),
+                      dickMove: CGPoint(x: -1500, y: -1000), dickDur: 4)
+        timerFuncDick(timInt: 73,
+                      dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 10),
+                      dickMove: CGPoint(x: -1500, y: -40), dickDur: 4)
         
         // PRIPEV DEGA
         timerFuncFlashWhite(timInt: 73)
@@ -326,7 +333,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timerFuncDick(timInt: 118, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         timerFuncDick(timInt: 120, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height / 3), dickMove: CGPoint(x: -1500, y: 50), dickDur: 4)
         timerFuncDick(timInt: 123, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height / 3), dickMove: CGPoint(x: 1500, y: 100), dickDur: 3)
-        timerFuncKo(timInt: 126)
+        timerFuncKo(timInt: 124)
         timerFuncDick(timInt: 124.5, dickPos: CGPoint(x: self.frame.width * 1.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: -1500, y: -500), dickDur: 4)
         timerFuncDick(timInt: 128, dickPos: CGPoint(x: self.frame.width * -0.2, y: self.frame.height * 1.2), dickMove: CGPoint(x: 1500, y: -400), dickDur: 3)
         
@@ -422,7 +429,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createHero() {
-        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width/4*5 , y: self.size.height/4))
+        addHero(heroNode: hero, atPosition: CGPoint(x: self.size.width , y: self.size.height/4))
     }
     
     func addDick(startPos: CGPoint, move: CGPoint, dur: TimeInterval) {
