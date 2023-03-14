@@ -128,7 +128,7 @@ extension GameScene {
         boy.zPosition = 9
         titleObject.addChild(boy)
         boy.run(SKAction.repeatForever(SKAction.animate(with: boyTextArr, timePerFrame: 0.1)))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.5) {
             self.boy.removeFromParent()
         }
     }
